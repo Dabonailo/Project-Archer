@@ -1,26 +1,38 @@
 #include "Jogo.h"
+#include "Ente.h"
+
+
+Jogo::Jogo(): jogador(), GG()
+{
+}
+
+Jogo::~Jogo()
+{
+}
 
 void Jogo::executar()
 {
-    sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
-
-    sf::RectangleShape shape;
-
-    shape.setSize(sf::Vector2f(100.f, 100.f));
-
-    shape.setFillColor(sf::Color::Green);
-
-    while (window.isOpen())
+    while (GG.verificaJanelaAberta())
     {
         sf::Event event;
-        while (window.pollEvent(event))
+        while (GG.getWindow()->pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
-                window.close();
+                GG.fecharJanela();
+
+            else if (event.type == sf::Event::KeyPressed)
+            {
+                if (event.key.code == sf::Keyboard::Escape)
+                    GG.fecharJanela();
+            }
         }
 
-        window.clear();
-        window.draw(shape);
-        window.display();
+        //GG.executar();
+
+        GG.limpaJanela();
+        GG.getWindow()->draw(jogador.getBody());
+        GG.mostraElementos();
+        jogador.executar();
+
     }
 }
