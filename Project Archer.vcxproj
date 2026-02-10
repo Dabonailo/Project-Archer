@@ -137,17 +137,27 @@
   <ItemGroup>
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
+    <ClCompile Include="Fase.cpp" />
+    <ClCompile Include="Fase_Primeira.cpp" />
     <ClCompile Include="GerenciadorGrafico.cpp" />
+    <ClCompile Include="Inimigo.cpp" />
     <ClCompile Include="Jogador.cpp" />
     <ClCompile Include="Jogo.cpp" />
+    <ClCompile Include="ListaEntidades.cpp" />
+    <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Project Archer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ente.h" />
     <ClInclude Include="Entidade.h" />
+    <ClInclude Include="Fase.h" />
+    <ClInclude Include="Fase_Primeira.h" />
     <ClInclude Include="GerenciadorGrafico.h" />
+    <ClInclude Include="Inimigo.h" />
     <ClInclude Include="Jogador.h" />
     <ClInclude Include="Jogo.h" />
+    <ClInclude Include="ListaEntidades.h" />
+    <ClInclude Include="Personagem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

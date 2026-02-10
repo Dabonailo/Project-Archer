@@ -2,8 +2,10 @@
 #include "Ente.h"
 
 
-Jogo::Jogo(): jogador(), GG()
+Jogo::Jogo(): jogador(), GG(), fase1(), ListaEntFixa(false)
 {
+    ListaEntFixa.adicionarElemento(&jogador);
+    fase1.executar();
 }
 
 Jogo::~Jogo()
@@ -22,16 +24,14 @@ void Jogo::executar()
 
             else if (event.type == sf::Event::KeyPressed)
             {
-                if (event.key.code == sf::Keyboard::Escape)
+                if (event.key.code == sf::Keyboard::Escape) {
                     GG.fecharJanela();
+                }
             }
         }
 
-        //GG.executar();
+        GG.executar(fase1.getListaEntFase(), &ListaEntFixa);
 
-        GG.limpaJanela();
-        GG.getWindow()->draw(jogador.getBody());
-        GG.mostraElementos();
         jogador.executar();
 
     }

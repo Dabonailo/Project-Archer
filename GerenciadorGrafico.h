@@ -3,6 +3,8 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+#include "ListaEntidades.h"
+
 class GerenciadorGrafico
 {
 private:
@@ -19,13 +21,13 @@ public:
 
 	void limpaJanela();
 
-	void desenhaElemento(sf::RectangleShape corpo);
-	void desenhaElemento(const sf::Text& texto);
+	void desenhaElemento(Entidade* e);
+	void desenhaTexto(const sf::Text& texto);
 
 	void mostraElementos();
 	void fecharJanela();
 	const bool verificaJanelaAberta();
 
-	void executar();
+	void executar(ListaEntidades* listaFA, ListaEntidades* listaFI);
 };
 

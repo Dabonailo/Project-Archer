@@ -1,6 +1,6 @@
 #include "Jogador.h"
 
-Jogador::Jogador():Entidade(), numVidas(NUM_VIDAS)
+Jogador::Jogador():Personagem()
 {
 }
 

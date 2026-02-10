@@ -43,12 +43,12 @@ void GerenciadorGrafico::limpaJanela()
 	window->clear();
 }
 
-void GerenciadorGrafico::desenhaElemento(sf::RectangleShape corpo)
+void GerenciadorGrafico::desenhaElemento(Entidade* e)
 {
-	window->draw(corpo);
+	window->draw(e->getBody());
 }
 
-void GerenciadorGrafico::desenhaElemento(const sf::Text& texto)
+void GerenciadorGrafico::desenhaTexto(const sf::Text& texto)
 {
 	window->draw(texto);
 }
@@ -71,9 +71,14 @@ const bool GerenciadorGrafico::verificaJanelaAberta()
 	return false;
 }
 
-void GerenciadorGrafico::executar()
+void GerenciadorGrafico::executar(ListaEntidades* listaFA, ListaEntidades* listaFI)
 {
 	limpaJanela();
-	//desenhaElemento();
+	listaFA->percorrerLista([this](Entidade* e) {
+		window->draw(e->getBody());
+	});
+	listaFI->percorrerLista([this](Entidade* e) {
+		window->draw(e->getBody());
+		});
 	mostraElementos();
 }

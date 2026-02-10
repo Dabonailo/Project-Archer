@@ -2,11 +2,11 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "GerenciadorGrafico.h"
-
 #include <string>
 
 #include <iostream>
+
+class GerenciadorGrafico;
 
 class Ente
 {
@@ -16,7 +16,7 @@ protected:
 
 public:
 	Ente(){}
-	~Ente(){}
+	virtual ~Ente(){}
 
 	virtual void executar() = 0;
 
