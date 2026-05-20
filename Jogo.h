@@ -12,7 +12,6 @@ private:
 	Jogador jogador;
 	GerenciadorGrafico GG;
 	Fase_Primeira fase1;
-	ListaEntidades ListaEntFixa;
 
 public:
 	Jogo();

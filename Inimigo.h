@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Personagem.h"
+#include "Jogador.h"
 
 class Inimigo :
     public Personagem
@@ -8,8 +9,11 @@ class Inimigo :
 private:
 
 public:
-    Inimigo();
+    Inimigo(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v);
+
     ~Inimigo();
+
+    virtual void danificar(Jogador* p) = 0;
 
     void executar() override;
 };

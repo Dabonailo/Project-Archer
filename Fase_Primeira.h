@@ -13,8 +13,11 @@ public:
     Fase_Primeira();
     ~Fase_Primeira();
 
+    void adicionarJogador(Jogador* p) override;
     void criarInimigos() override;
     void criarObstaculos() override{}
     void executar() override;
+
+    void executarGC() { GC.executar(); } // funcao para teste
 };
 

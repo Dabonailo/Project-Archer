@@ -10,19 +10,18 @@ private:
 		Entidade* elemento;
 
 	public:
-		Elemento(Entidade* e): pProx(nullptr), elemento(e){}
+		Elemento(Entidade* e): pProx(NULL), elemento(e){}
 		~Elemento() {
-			elemento = nullptr;
-			pProx = nullptr;
+			elemento = NULL;
+			pProx = NULL;
 		}
 	};
 
 	Elemento* pPrimeiro;
 	Elemento* pUltimo;
-	bool deletaElementos;
 
 public:
-	ListaEntidades(bool deleta = false);
+	ListaEntidades();
 	~ListaEntidades();
 
 	void adicionarElemento(Entidade* e);
@@ -30,9 +29,9 @@ public:
 	void limparLista();
 
 	template <typename Func>
-	void percorrerLista(Func func) {
+	void percorrerLista(Func& func) {
 
-		for (Elemento* aux = pPrimeiro; aux != nullptr; aux = aux->pProx) {
+		for (Elemento* aux = pPrimeiro; aux != NULL; aux = aux->pProx) {
 
 			if (aux->elemento)
 				func(aux->elemento);

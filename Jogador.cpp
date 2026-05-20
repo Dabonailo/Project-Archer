@@ -1,7 +1,10 @@
 #include "Jogador.h"
 
-Jogador::Jogador():Personagem()
+Jogador::Jogador(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v)
+	:Personagem(pos, tam, textura, v)
 {
+	texturaEntidade.loadFromFile(textura);
+	body.setTexture(&texturaEntidade);
 }
 
 Jogador::~Jogador()

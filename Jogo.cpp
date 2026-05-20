@@ -2,9 +2,11 @@
 #include "Ente.h"
 
 
-Jogo::Jogo(): jogador(), GG(), fase1(), ListaEntFixa(false)
-{
-    ListaEntFixa.adicionarElemento(&jogador);
+Jogo::Jogo(): jogador(sf::Vector2f(0.f, 0.f),
+    sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
+    "cassidy_spray.png"), GG(), fase1()
+{   
+    fase1.adicionarJogador(&jogador);
     fase1.executar();
 }
 
@@ -30,9 +32,9 @@ void Jogo::executar()
             }
         }
 
-        GG.executar(fase1.getListaEntFase(), &ListaEntFixa);
+        GG.executar(fase1.getListaEntFase());
 
         jogador.executar();
-
+        fase1.executarGC();
     }
 }

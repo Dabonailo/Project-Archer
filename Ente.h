@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-class GerenciadorGrafico;
+class GerenciadorGrafico;	
 
 class Ente
 {

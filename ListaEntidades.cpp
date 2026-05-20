@@ -1,21 +1,12 @@
 #include "ListaEntidades.h"
 
-ListaEntidades::ListaEntidades(bool deleta) :pPrimeiro(nullptr), pUltimo(nullptr), deletaElementos(deleta)
+ListaEntidades::ListaEntidades() :pPrimeiro(NULL), pUltimo(NULL)
 {
 }
 
 ListaEntidades::~ListaEntidades()
 {
-	Elemento* aux = pPrimeiro;
-	while (aux) {
-		Elemento* prox = aux->pProx;
-
-		if (deletaElementos)
-			delete aux->elemento;
-
-		delete aux;
-		aux = prox;
-	}
+	limparLista();
 }
 
 void ListaEntidades::adicionarElemento(Entidade* e)
@@ -23,14 +14,14 @@ void ListaEntidades::adicionarElemento(Entidade* e)
 	if (e) {
 		Elemento* NovoElemento = new Elemento(e);
 
-		if (pPrimeiro == nullptr) {
+		if (pPrimeiro == NULL) {
 			pPrimeiro = NovoElemento;
 			pUltimo = NovoElemento;
 		}
 
 		else {
 			Elemento* aux = pPrimeiro;
-			while (aux->pProx != nullptr) {
+			while (aux->pProx != NULL) {
 				aux = aux->pProx;
 			}
 			aux->pProx = NovoElemento;
@@ -44,8 +35,8 @@ void ListaEntidades::removerElemento(Entidade* e)
 	if (pPrimeiro->elemento == pUltimo->elemento && pPrimeiro->elemento == e) {
 		delete pPrimeiro;
 		delete pUltimo;
-		pPrimeiro = nullptr;
-		pUltimo = nullptr;
+		pPrimeiro = NULL;
+		pUltimo = NULL;
 	}
 	else if (pPrimeiro->elemento == e) {
 		Elemento* aux = pPrimeiro->pProx;
@@ -57,7 +48,7 @@ void ListaEntidades::removerElemento(Entidade* e)
 		while (aux->pProx != pUltimo) {
 			aux = aux->pProx;
 		}
-		aux->pProx = nullptr;
+		aux->pProx = NULL;
 		delete pUltimo;
 		pUltimo = aux;
 	}
@@ -77,20 +68,20 @@ void ListaEntidades::limparLista()
 	if (pPrimeiro == pUltimo) {
 		delete pPrimeiro;
 		delete pUltimo;
-		pPrimeiro = nullptr;
-		pUltimo = nullptr;
+		pPrimeiro = NULL;
+		pUltimo = NULL;
 	}
 
 	else if (pPrimeiro) {
 		Elemento* aux = pPrimeiro->pProx;
-		while (aux != nullptr) {
+		while (aux != NULL) {
 			delete pPrimeiro;
 			pPrimeiro = aux;
 			aux = aux->pProx;
 		}
 		delete pPrimeiro;
-		pPrimeiro = nullptr;
-		pUltimo = nullptr;
+		pPrimeiro = NULL;
+		pUltimo = NULL;
 	}
 }
 

@@ -1,12 +1,12 @@
 #include "GerenciadorGrafico.h"
 
-GerenciadorGrafico* GerenciadorGrafico::pGrafico = nullptr;
+GerenciadorGrafico* GerenciadorGrafico::pGrafico = NULL;
 
 
 GerenciadorGrafico::GerenciadorGrafico() :
 	window(new sf::RenderWindow(sf::VideoMode(500, 500), "Project Archers"))
 {
-	if (window == nullptr)
+	if (window == NULL)
 	{
 		std::cout << "Erro ao criar janela!";
 		exit(1);
@@ -19,13 +19,13 @@ GerenciadorGrafico::~GerenciadorGrafico()
 	if (window)
 	{
 		delete(window);
-		window = nullptr;
+		window = NULL;
 	}
 }
 
 GerenciadorGrafico* GerenciadorGrafico::getGerenciadorGrafico()
 {
-	if (pGrafico == nullptr)
+	if (pGrafico == NULL)
 	{
 		pGrafico = new GerenciadorGrafico();
 	}
@@ -71,14 +71,9 @@ const bool GerenciadorGrafico::verificaJanelaAberta()
 	return false;
 }
 
-void GerenciadorGrafico::executar(ListaEntidades* listaFA, ListaEntidades* listaFI)
+void GerenciadorGrafico::executar(ListaEntidades* listaFA)
 {
 	limpaJanela();
-	listaFA->percorrerLista([this](Entidade* e) {
-		window->draw(e->getBody());
-	});
-	listaFI->percorrerLista([this](Entidade* e) {
-		window->draw(e->getBody());
-		});
+	listaFA->percorrerLista(*this);
 	mostraElementos();
 }

@@ -16,6 +16,10 @@ public:
 	GerenciadorGrafico();
 	~GerenciadorGrafico();
 
+	void operator()(Entidade* e) {
+		window->draw(e->getBody());
+	}
+
 	static GerenciadorGrafico* getGerenciadorGrafico();
 	sf::RenderWindow* getWindow();
 
@@ -28,6 +32,6 @@ public:
 	void fecharJanela();
 	const bool verificaJanelaAberta();
 
-	void executar(ListaEntidades* listaFA, ListaEntidades* listaFI);
+	void executar(ListaEntidades* listaFA);
 };
 
