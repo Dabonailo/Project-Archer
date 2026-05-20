@@ -51,9 +51,6 @@
     <ClCompile Include="GerenciadorColisoes.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="GerenciadorEventos.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
     <ClCompile Include="Inimigo_facil.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
@@ -90,9 +87,6 @@
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="GerenciadorColisoes.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="GerenciadorEventos.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Inimigo_facil.h">

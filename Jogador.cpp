@@ -58,7 +58,7 @@ void Jogador::executar()
 
     body.move(velocidade + velocidadeKnockback);
 
-    velocidadeKnockback *= 0.995f;
+    velocidadeKnockback *= 0.995f; // atrito
 
     if (cooldownKnockback > 0.f)
         cooldownKnockback -= 0.016f;
