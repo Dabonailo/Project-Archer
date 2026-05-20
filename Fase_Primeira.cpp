@@ -1,6 +1,6 @@
 #include "Fase_Primeira.h"
 
-Fase_Primeira::Fase_Primeira() : Fase(), max_inimigos(5)
+Fase_Primeira::Fase_Primeira() : Fase(), max_inimigos(1)
 {
 }
 
@@ -22,6 +22,9 @@ void Fase_Primeira::criarInimigos()
 
 void Fase_Primeira::executar()
 {
-	criarInimigos();
-	GC.setEntidades(ListaEntFase);
+	if (GC.getTamanhoLIs() < 1) {
+		criarInimigos();
+		GC.setEntidades(ListaEntFase);
+	}
+	ListaEntFase.percorrerLista(*this);
 }

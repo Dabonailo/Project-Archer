@@ -3,8 +3,7 @@
 #include "Personagem.h"
 #include "Jogador.h"
 
-class Inimigo :
-    public Personagem
+class Inimigo : public Personagem
 {
 private:
 
@@ -15,6 +14,8 @@ public:
 
     virtual void danificar(Jogador* p) = 0;
 
-    void executar() override;
+    virtual void mover() = 0;
+
+    virtual void executar() override;
 };
 

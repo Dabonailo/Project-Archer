@@ -1,10 +1,19 @@
 #pragma once
 #include "Entidade.h"
+
+#define KNOCKBACK_X 0.7f
+#define KNOCKBACK_Y 0.25f
+#define FORCA_PULO 0.3f
+
 class Personagem :
     public Entidade
 {
-private:
+protected:
     int numVidas;
+    sf::Vector2f velocidadeKnockback;
+    float cooldownKnockback;
+    bool esquerda;
+    bool direita;
 
 public:
     Personagem(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v);
@@ -17,6 +26,8 @@ public:
     }
 
     const int getVida() const;
+
+    void aplicarKnockback(sf::Vector2f forca);
 
     virtual void executar() = 0;
 

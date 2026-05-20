@@ -3,6 +3,8 @@
 #include "Inimigo_facil.h"
 #include "GerenciadorColisoes.h"
 
+#define CHAO 350.f
+
 class Fase
 {
 protected:

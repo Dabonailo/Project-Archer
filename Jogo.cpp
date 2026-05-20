@@ -4,10 +4,9 @@
 
 Jogo::Jogo(): jogador(sf::Vector2f(0.f, 0.f),
     sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
-    "cassidy_spray.png"), GG(), fase1()
+    "hanzo_spray.png"), GG(), fase1()
 {   
     fase1.adicionarJogador(&jogador);
-    fase1.executar();
 }
 
 Jogo::~Jogo()
@@ -34,7 +33,7 @@ void Jogo::executar()
 
         GG.executar(fase1.getListaEntFase());
 
-        jogador.executar();
+        fase1.executar();
         fase1.executarGC();
     }
 }

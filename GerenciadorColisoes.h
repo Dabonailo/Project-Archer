@@ -30,6 +30,7 @@ public:
 		}
 		//adicionar mais tipos quando forem adicionados no GC
 	}
+	const int getTamanhoLIs() const;
 
 	void setEntidades(ListaEntidades& l);
 

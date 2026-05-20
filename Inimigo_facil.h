@@ -15,6 +15,7 @@ public:
 	~Inimigo_facil();
 
 	void danificar(Jogador* p) override;
+	void mover() override;
 	void executar() override;
 
 };

@@ -6,7 +6,7 @@ Inimigo_facil::Inimigo_facil(
 	const std::string& textura,
 	sf::Vector2f v)
 
-	:Inimigo(pos, tam, textura, vel), raio(0.f)
+	:Inimigo(pos, tam, textura, v), raio(0.f)
 {
 }
 
@@ -16,7 +16,30 @@ Inimigo_facil::~Inimigo_facil()
 
 void Inimigo_facil::danificar(Jogador* p)
 {
-	p->operator--();
+    if (p->getTempoInvulneravel() <= 0.f) {
+        p->operator--();
+
+        if (p->getBounds().left < getBounds().left) {
+
+            p->aplicarKnockback(sf::Vector2f(-KNOCKBACK_X, 0.f));
+            p->setVelocidade(sf::Vector2f(0.f, -KNOCKBACK_Y));
+        }
+        else {
+     
+            p->aplicarKnockback(sf::Vector2f(KNOCKBACK_X, 0.f));
+            p->setVelocidade(sf::Vector2f(0.f, -KNOCKBACK_Y));
+        }
+        
+        p->setTempoInvulneravel(1.f);
+    }
 }
 
-void Inimigo_facil::executar(){}
+void Inimigo_facil::mover() {
+    body.move(velocidade);
+}
+
+void Inimigo_facil::executar()
+{
+    mover();
+    gravitar();
+}

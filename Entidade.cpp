@@ -2,7 +2,7 @@
 
 Entidade::Entidade(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v) :
 
-	Ente(), body(), texturaEntidade(), vel(v)
+	Ente(), body(), texturaEntidade(), velocidade(v), noChao(false)
 {
 	body.setSize(tam);
 	body.setPosition(pos);
@@ -49,12 +49,26 @@ void Entidade::setTextura(const std::string& textura)
 
 void Entidade::setVelocidade(sf::Vector2f v)
 {
-	vel = v;
+	velocidade = v;
 }
 
 const sf::Vector2f Entidade::getVelocidade() const
 {
-	return vel;
+	return velocidade;
+}
+
+void Entidade::gravitar()
+{
+	if (body.getPosition().y < CHAO) {
+		velocidade.y += 0.0005f;
+	}
+	else {
+		velocidade.y = 0.f;
+	}
+	if (body.getPosition().y + body.getSize().y >= CHAO) {
+		body.setPosition(body.getPosition().x, CHAO - body.getSize().y);
+		noChao = true;
+	}
 }
 
 const sf::RectangleShape Entidade::getBody() const

@@ -1,6 +1,8 @@
 #pragma once
 #include "Ente.h"
 
+#define CHAO 350.f //lembrar de tirar
+
 #define ENT_TAM_DEFAULT_X 100.f
 #define ENT_TAM_DEFAULT_Y 100.f
 
@@ -13,7 +15,8 @@ protected:
 
 	sf::RectangleShape body;
 	sf::Texture texturaEntidade;
-	sf::Vector2f vel;
+	sf::Vector2f velocidade;
+	bool noChao;
 
 public:
 	Entidade(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v);
@@ -36,6 +39,7 @@ public:
 
 	void setVelocidade(sf::Vector2f v);
 	const sf::Vector2f getVelocidade() const;
+	void gravitar();
 
 	//CORPO
 

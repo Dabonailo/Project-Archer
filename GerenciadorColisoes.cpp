@@ -8,6 +8,11 @@ GerenciadorColisoes::~GerenciadorColisoes()
 {
 }
 
+const int GerenciadorColisoes::getTamanhoLIs() const
+{
+	return LIs.size();
+}
+
 void GerenciadorColisoes::setEntidades(ListaEntidades& l)
 {
 	l.percorrerLista(*this);
