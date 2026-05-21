@@ -145,6 +145,7 @@
     <ClCompile Include="Inimigo_facil.cpp" />
     <ClCompile Include="Jogador.cpp" />
     <ClCompile Include="Jogo.cpp" />
+    <ClCompile Include="Lista.cpp" />
     <ClCompile Include="ListaEntidades.cpp" />
     <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Project Archer.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Inimigo_facil.h" />
     <ClInclude Include="Jogador.h" />
     <ClInclude Include="Jogo.h" />
+    <ClInclude Include="Lista.h" />
     <ClInclude Include="ListaEntidades.h" />
     <ClInclude Include="Personagem.h" />
   </ItemGroup>

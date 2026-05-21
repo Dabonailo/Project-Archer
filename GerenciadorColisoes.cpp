@@ -13,11 +13,6 @@ const int GerenciadorColisoes::getTamanhoLIs() const
 	return LIs.size();
 }
 
-void GerenciadorColisoes::setEntidades(ListaEntidades& l)
-{
-	l.percorrerLista(*this);
-}
-
 const bool GerenciadorColisoes::verificarColisao(Entidade* pE1, Entidade* pE2) const
 {
 	sf::FloatRect pe1Bounds = pE1->getBounds();
@@ -31,9 +26,23 @@ const bool GerenciadorColisoes::verificarColisao(Entidade* pE1, Entidade* pE2) c
 	}
 }
 
-void GerenciadorColisoes::incluirInimigo(Inimigo* in)
+void GerenciadorColisoes::incluirJogadores(Jogador* pJ)
 {
-	LIs.push_back(in);
+	if (Jogador* j = dynamic_cast<Jogador*>(pJ)) {
+		if (jogador1 == NULL) {
+			jogador1 = j;
+		}
+		else if (jogador2 == NULL) {
+			jogador2 = j;
+		}
+	}
+}
+
+void GerenciadorColisoes::incluirInimigo(Inimigo* pI)
+{
+	if (Inimigo* in = dynamic_cast<Inimigo*>(pI)) {
+		LIs.push_back(in);
+	}
 }
 
 void GerenciadorColisoes::tratarColisoesJogsInimigs()
@@ -42,7 +51,27 @@ void GerenciadorColisoes::tratarColisoesJogsInimigs()
 		if (jogador1 != NULL) {
 			if (verificarColisao((*it), jogador1)) {
 				(*it)->danificar(jogador1);
-				std::cout << jogador1->getVida();
+
+				if (!jogador1->getVivo()) {
+					jogador1 = NULL;
+					std::cout << "jogador 1 foi nocauteado" << std::endl;
+				}
+				if (jogador1) {
+					std::cout << jogador1->getVida() << std::endl;
+				}
+			}
+		}
+		if (jogador2 != NULL) {
+			if (verificarColisao((*it), jogador2)) {
+				(*it)->danificar(jogador2);
+
+				if (!jogador2->getVivo()) {
+					jogador2 = NULL;
+					std::cout << "jogador 2 foi nocauteado" << std::endl;
+				}
+				if (jogador2) {
+					std::cout << jogador2->getVida() << std::endl;
+				}
 			}
 		}
 	}

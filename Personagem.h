@@ -10,10 +10,11 @@ class Personagem :
 {
 protected:
     int numVidas;
+
     sf::Vector2f velocidadeKnockback;
     float cooldownKnockback;
-    bool esquerda;
-    bool direita;
+
+    sf::Vector2f direcao;
 
 public:
     Personagem(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v);
@@ -26,6 +27,8 @@ public:
     }
 
     const int getVida() const;
+
+    const bool getVivo() const;
 
     void aplicarKnockback(sf::Vector2f forca);
 

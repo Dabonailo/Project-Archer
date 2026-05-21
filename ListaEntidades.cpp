@@ -1,92 +1,36 @@
 #include "ListaEntidades.h"
 
-ListaEntidades::ListaEntidades() :pPrimeiro(NULL), pUltimo(NULL)
+ListaEntidades::ListaEntidades() :LEs()
 {
 }
 
 ListaEntidades::~ListaEntidades()
 {
-	limparLista();
 }
 
-void ListaEntidades::adicionarElemento(Entidade* e)
+void ListaEntidades::incluir(Entidade* pE)
 {
-	if (e) {
-		Elemento* NovoElemento = new Elemento(e);
-
-		if (pPrimeiro == NULL) {
-			pPrimeiro = NovoElemento;
-			pUltimo = NovoElemento;
-		}
-
-		else {
-			Elemento* aux = pPrimeiro;
-			while (aux->pProx != NULL) {
-				aux = aux->pProx;
-			}
-			aux->pProx = NovoElemento;
-			pUltimo = NovoElemento;
-		}
-	}
+	LEs.incluirElemento(pE);
 }
 
-void ListaEntidades::removerElemento(Entidade* e)
+void ListaEntidades::percorrerLista()
 {
-	if (pPrimeiro->elemento == pUltimo->elemento && pPrimeiro->elemento == e) {
-		delete pPrimeiro;
-		delete pUltimo;
-		pPrimeiro = NULL;
-		pUltimo = NULL;
-	}
-	else if (pPrimeiro->elemento == e) {
-		Elemento* aux = pPrimeiro->pProx;
-		delete pPrimeiro;
-		pPrimeiro = aux;
-	}
-	else if (pUltimo->elemento == e) {
-		Elemento* aux = pPrimeiro;
-		while (aux->pProx != pUltimo) {
-			aux = aux->pProx;
-		}
-		aux->pProx = NULL;
-		delete pUltimo;
-		pUltimo = aux;
-	}
-	else {
-		Elemento* aux = pPrimeiro;
-		while (aux->pProx->elemento != e) {
-			aux = aux->pProx;
-		}
-		Elemento* temp = aux->pProx;
-		aux->pProx = temp->pProx;
-		delete temp;
-	}
-}
+    Lista<Entidade>::Elemento<Entidade>* aux = LEs.getPrimeiro();
 
-void ListaEntidades::limparLista()
-{
-	if (pPrimeiro == pUltimo) {
-		delete pPrimeiro;
-		delete pUltimo;
-		pPrimeiro = NULL;
-		pUltimo = NULL;
-	}
+    while (aux != NULL)
+    {
+        Lista<Entidade>::Elemento<Entidade>* prox = aux->getProximo();
 
-	else if (pPrimeiro) {
-		Elemento* aux = pPrimeiro->pProx;
-		while (aux != NULL) {
-			delete pPrimeiro;
-			pPrimeiro = aux;
-			aux = aux->pProx;
-		}
-		delete pPrimeiro;
-		pPrimeiro = NULL;
-		pUltimo = NULL;
-	}
-}
+        aux->getInfo()->executar();
 
-ListaEntidades::Elemento* ListaEntidades::getPrimeiro()
-{
-	return pPrimeiro;
+        if (Personagem* p = dynamic_cast<Personagem*>(aux->getInfo()))
+        {
+            if (!p->getVivo()) {
+                LEs.removerElemento(p);
+            }
+        }
+
+        aux = prox;
+    }
 }
 

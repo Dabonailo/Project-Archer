@@ -10,21 +10,23 @@ Fase_Primeira::~Fase_Primeira()
 
 void Fase_Primeira::adicionarJogador(Jogador* p)
 {
-	ListaEntFase.adicionarElemento(p);
+	ListaEntFase.incluir(p);
+	GC.incluirJogadores(p);
 }
 
 void Fase_Primeira::criarInimigos()
 {
 	Inimigo_facil* inimigo1 = new Inimigo_facil();
 	inimigo1->setPosicao(sf::Vector2f(200.f, 200.f));
-	ListaEntFase.adicionarElemento(inimigo1);
+	ListaEntFase.incluir(inimigo1);
+	GC.incluirInimigo(inimigo1);
 }
 
 void Fase_Primeira::executar()
 {
-	if (GC.getTamanhoLIs() < 1) {
+	if (GC.getTamanhoLIs() < max_inimigos) {
 		criarInimigos();
-		GC.setEntidades(ListaEntFase);
 	}
-	ListaEntFase.percorrerLista(*this);
+	ListaEntFase.percorrerLista();
+	GC.executar();
 }

@@ -40,6 +40,7 @@ void Inimigo_facil::mover() {
 
 void Inimigo_facil::executar()
 {
+    desenhar();
     mover();
     gravitar();
 }

@@ -1,8 +1,5 @@
 #include "GerenciadorGrafico.h"
 
-GerenciadorGrafico* GerenciadorGrafico::pGrafico = NULL;
-
-
 GerenciadorGrafico::GerenciadorGrafico() :
 	window(new sf::RenderWindow(sf::VideoMode(500, 500), "Project Archers"))
 {
@@ -11,7 +8,6 @@ GerenciadorGrafico::GerenciadorGrafico() :
 		std::cout << "Erro ao criar janela!";
 		exit(1);
 	}
-
 }
 
 GerenciadorGrafico::~GerenciadorGrafico()
@@ -23,39 +19,9 @@ GerenciadorGrafico::~GerenciadorGrafico()
 	}
 }
 
-GerenciadorGrafico* GerenciadorGrafico::getGerenciadorGrafico()
-{
-	if (pGrafico == NULL)
-	{
-		pGrafico = new GerenciadorGrafico();
-	}
-
-	return pGrafico;
-}
-
 sf::RenderWindow* GerenciadorGrafico::getWindow()
 {
 	return window;
-}
-
-void GerenciadorGrafico::limpaJanela()
-{
-	window->clear();
-}
-
-void GerenciadorGrafico::desenhaElemento(Entidade* e)
-{
-	window->draw(e->getBody());
-}
-
-void GerenciadorGrafico::desenhaTexto(const sf::Text& texto)
-{
-	window->draw(texto);
-}
-
-void GerenciadorGrafico::mostraElementos()
-{
-	window->display();
 }
 
 void GerenciadorGrafico::fecharJanela()
@@ -71,9 +37,7 @@ const bool GerenciadorGrafico::verificaJanelaAberta()
 	return false;
 }
 
-void GerenciadorGrafico::executar(ListaEntidades* listaFA)
+void GerenciadorGrafico::desenharEnte(Ente* pE)
 {
-	limpaJanela();
-	listaFA->percorrerLista(*this);
-	mostraElementos();
+	window->draw(pE->getBody());
 }

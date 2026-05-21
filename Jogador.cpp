@@ -30,19 +30,17 @@ void Jogador::mover()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
         velocidade.x = JOG_VELOCIDADE_DEFAULT_X;
-        direita = false;
-        esquerda = true;
         body.setOrigin(0.f, 0.f);
-        body.setScale(1.f, 1.f);
+        direcao = sf::Vector2f(1.f, 1.f);
+        body.setScale(direcao);
 
     }
         
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
         velocidade.x = -JOG_VELOCIDADE_DEFAULT_X;
-        direita = true;
-        esquerda = false;
         body.setOrigin(body.getSize().x, 0.f);
-        body.setScale(-1.f, 1.f);
+        direcao = sf::Vector2f(-1.f, 1.f);
+        body.setScale(direcao);
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && noChao) {
@@ -53,6 +51,7 @@ void Jogador::mover()
 
 void Jogador::executar()
 {
+    desenhar();
 	mover();
     gravitar();
 

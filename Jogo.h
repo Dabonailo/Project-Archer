@@ -9,7 +9,7 @@
 class Jogo
 {
 private:
-	Jogador jogador;
+	Jogador* pjogador;
 	GerenciadorGrafico GG;
 	Fase_Primeira fase1;
 
