@@ -5,25 +5,31 @@
 #define JOG_VELOCIDADE_DEFAULT_X 0.1f
 #define JOG_VELOCIDADE_DEFAULT_Y 0.1f
 
-class Jogador : public Personagem
+namespace Entidades
 {
-private:
+	namespace Personagens
+	{
 
-	float tempoInvulneravel;
+		class Jogador : public Personagem
+		{
+		private:
 
-public:
-	Jogador(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
-		sf::Vector2f tam = sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
-		const std::string& textura = "",
-		sf::Vector2f v = sf::Vector2f(ENT_VEL_DEFAULT_X, ENT_VEL_DEFAULT_Y));
+			float tempoInvulneravel;
 
-	~Jogador();
+		public:
+			Jogador(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
+				sf::Vector2f tam = sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
+				const std::string& textura = "",
+				sf::Vector2f v = sf::Vector2f(ENT_VEL_DEFAULT_X, ENT_VEL_DEFAULT_Y));
 
-	const float getTempoInvulneravel() const;
-	void setTempoInvulneravel(float t);
+			~Jogador();
 
-	void mover();
+			const float getTempoInvulneravel() const;
+			void setTempoInvulneravel(float t);
 
-	void executar() override;
-};
+			void mover();
 
+			void executar() override;
+		};
+	}
+}

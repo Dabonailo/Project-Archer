@@ -6,7 +6,7 @@ Jogo::Jogo(): pjogador(NULL), GG(), fase1()
 {   
     Ente::setGG(&GG);
 
-    Jogador* jogador = new Jogador(sf::Vector2f(0.f, 0.f),
+    Entidades::Personagens::Jogador* jogador = new Entidades::Personagens::Jogador(sf::Vector2f(0.f, 0.f),
         sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
         "hanzo_spray.png");
 

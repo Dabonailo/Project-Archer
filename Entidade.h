@@ -9,29 +9,33 @@
 #define ENT_VEL_DEFAULT_X 0.f
 #define ENT_VEL_DEFAULT_Y 0.f
 
-class Entidade : public Ente
+namespace Entidades
 {
-protected:
 
-	sf::Vector2f velocidade;
-	bool noChao;
+	class Entidade : public Ente
+	{
+	protected:
 
-public:
-	Entidade(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v);
+		sf::Vector2f velocidade;
+		bool noChao;
 
-	virtual ~Entidade();
+	public:
+		Entidade(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v);
 
-	//VELOCIDADE
+		virtual ~Entidade();
 
-	void setVelocidade(sf::Vector2f v);
-	const sf::Vector2f getVelocidade() const;
-	void gravitar();
+		//VELOCIDADE
 
-	//CORPO
+		void setVelocidade(sf::Vector2f v);
+		const sf::Vector2f getVelocidade() const;
+		void gravitar();
 
-	void mover(sf::Vector2f m);
+		//CORPO
 
-	virtual void executar() = 0;
+		void mover(sf::Vector2f m);
 
-};
+		virtual void executar() = 0;
 
+	};
+
+}

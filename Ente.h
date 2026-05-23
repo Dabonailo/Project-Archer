@@ -6,12 +6,14 @@
 
 #include <iostream>
 
-class GerenciadorGrafico;	
+namespace Gerenciadores {
+	class GerenciadorGrafico;
+}
 
 class Ente
 {
 protected:
-	static GerenciadorGrafico* pGG;
+	static Gerenciadores::GerenciadorGrafico* pGG;
 	sf::RectangleShape body;
 	sf::Texture texturaEntidade;
 
@@ -43,7 +45,7 @@ public:
 
 	void desenhar();
 
-	static void setGG(GerenciadorGrafico* pG) {
+	static void setGG(Gerenciadores::GerenciadorGrafico* pG) {
 		pGG = pG;
 	}
 };

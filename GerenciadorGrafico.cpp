@@ -1,43 +1,48 @@
 #include "GerenciadorGrafico.h"
 
-GerenciadorGrafico::GerenciadorGrafico() :
-	window(new sf::RenderWindow(sf::VideoMode(500, 500), "Project Archers"))
+namespace Gerenciadores
 {
-	if (window == NULL)
+
+	GerenciadorGrafico::GerenciadorGrafico() :
+		window(new sf::RenderWindow(sf::VideoMode(500, 500), "Project Archers"))
 	{
-		std::cout << "Erro ao criar janela!";
-		exit(1);
+		if (window == NULL)
+		{
+			std::cout << "Erro ao criar janela!";
+			exit(1);
+		}
 	}
-}
 
-GerenciadorGrafico::~GerenciadorGrafico()
-{
-	if (window)
+	GerenciadorGrafico::~GerenciadorGrafico()
 	{
-		delete(window);
-		window = NULL;
+		if (window)
+		{
+			delete(window);
+			window = NULL;
+		}
 	}
-}
 
-sf::RenderWindow* GerenciadorGrafico::getWindow()
-{
-	return window;
-}
+	sf::RenderWindow* GerenciadorGrafico::getWindow()
+	{
+		return window;
+	}
 
-void GerenciadorGrafico::fecharJanela()
-{
-	window->close();
-}
+	void GerenciadorGrafico::fecharJanela()
+	{
+		window->close();
+	}
 
-const bool GerenciadorGrafico::verificaJanelaAberta()
-{
-	if (window->isOpen())
-		return true;
+	const bool GerenciadorGrafico::verificaJanelaAberta()
+	{
+		if (window->isOpen())
+			return true;
 
-	return false;
-}
+		return false;
+	}
 
-void GerenciadorGrafico::desenharEnte(Ente* pE)
-{
-	window->draw(pE->getBody());
+	void GerenciadorGrafico::desenharEnte(Ente* pE)
+	{
+		window->draw(pE->getBody());
+	}
+
 }

@@ -9,9 +9,9 @@
 class Jogo
 {
 private:
-	Jogador* pjogador;
-	GerenciadorGrafico GG;
-	Fase_Primeira fase1;
+	Entidades::Personagens::Jogador* pjogador;
+	Gerenciadores::GerenciadorGrafico GG;
+	Fases::Fase_Primeira fase1;
 
 public:
 	Jogo();

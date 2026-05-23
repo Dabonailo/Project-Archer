@@ -4,21 +4,22 @@
 #include <SFML/Graphics.hpp>
 
 #include "Ente.h"
-
-class GerenciadorGrafico
+namespace Gerenciadores
 {
-private:
-	sf::RenderWindow* window;
+	class GerenciadorGrafico
+	{
+	private:
+		sf::RenderWindow* window;
 
-public:
-	GerenciadorGrafico();
-	~GerenciadorGrafico();
+	public:
+		GerenciadorGrafico();
+		~GerenciadorGrafico();
 
-	sf::RenderWindow* getWindow();
+		sf::RenderWindow* getWindow();
 
-	void fecharJanela();
-	const bool verificaJanelaAberta();
+		void fecharJanela();
+		const bool verificaJanelaAberta();
 
-	void desenharEnte(Ente* pE);
-};
-
+		void desenharEnte(Ente* pE);
+	};
+}

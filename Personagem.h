@@ -5,34 +5,40 @@
 #define KNOCKBACK_Y 0.25f
 #define FORCA_PULO 0.3f
 
-class Personagem :
-    public Entidade
+namespace Entidades
 {
-protected:
-    int numVidas;
+    namespace Personagens
+    {
 
-    sf::Vector2f velocidadeKnockback;
-    float cooldownKnockback;
+        class Personagem :
+            public Entidade
+        {
+        protected:
+            int numVidas;
 
-    sf::Vector2f direcao;
+            sf::Vector2f velocidadeKnockback;
+            float cooldownKnockback;
 
-public:
-    Personagem(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v);
-    ~Personagem();
+            sf::Vector2f direcao;
 
-    virtual void operator--() {
-        if (numVidas > 0) {
-            numVidas--;
-        }
+        public:
+            Personagem(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v);
+            ~Personagem();
+
+            virtual void operator--() {
+                if (numVidas > 0) {
+                    numVidas--;
+                }
+            }
+
+            const int getVida() const;
+
+            const bool getVivo() const;
+
+            void aplicarKnockback(sf::Vector2f forca);
+
+            virtual void executar() = 0;
+
+        };
     }
-
-    const int getVida() const;
-
-    const bool getVivo() const;
-
-    void aplicarKnockback(sf::Vector2f forca);
-
-    virtual void executar() = 0;
-
-};
-
+}

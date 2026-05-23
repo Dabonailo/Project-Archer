@@ -4,26 +4,29 @@
 #include "Jogador.h"
 #include "Inimigo.h"
 
-class GerenciadorColisoes
+namespace Gerenciadores
 {
-private:
-	Jogador* jogador1;
-	Jogador* jogador2;
-	std::vector<Inimigo*> LIs;
+	class GerenciadorColisoes
+	{
+	private:
+		Entidades::Personagens::Jogador* jogador1;
+		Entidades::Personagens::Jogador* jogador2;
+		std::vector<Entidades::Personagens::Inimigo*> LIs;
 
-public:
-	GerenciadorColisoes();
-	~GerenciadorColisoes();
+	public:
+		GerenciadorColisoes();
+		~GerenciadorColisoes();
 
-	const int getTamanhoLIs() const;
+		const int getTamanhoLIs() const;
 
-	const bool verificarColisao(Entidade* pE1, Entidade* pE2) const;
+		const bool verificarColisao(Entidades::Entidade* pE1, Entidades::Entidade* pE2) const;
 
-	void incluirJogadores(Jogador* pJ);
-	void incluirInimigo(Inimigo* pI);
+		void incluirJogadores(Entidades::Personagens::Jogador* pJ);
+		void incluirInimigo(Entidades::Personagens::Inimigo* pI);
 
-	void tratarColisoesJogsInimigs();
+		void tratarColisoesJogsInimigs();
 
-	void executar();
+		void executar();
 
-};
+	};
+}

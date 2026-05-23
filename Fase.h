@@ -5,23 +5,26 @@
 
 #define CHAO 350.f
 
-class Fase
+namespace Fases
 {
-protected:
-	ListaEntidades ListaEntFase;
-	GerenciadorColisoes GC;
 
-protected:
-	virtual void adicionarJogador(Jogador* p) = 0;
-	virtual void criarInimigos() = 0;
-	virtual void criarObstaculos() = 0;
+	class Fase
+	{
+	protected:
+		Listas::ListaEntidades ListaEntFase;
+		Gerenciadores::GerenciadorColisoes GC;
 
-public:
-	Fase():ListaEntFase(), GC(){}
-	~Fase(){}
+	protected:
+		virtual void adicionarJogador(Entidades::Personagens::Jogador* p) = 0;
+		virtual void criarInimigos() = 0;
+		virtual void criarObstaculos() = 0;
 
-	ListaEntidades* getListaEntFase() { return &ListaEntFase; }
+	public:
+		Fase() :ListaEntFase(), GC() {}
+		~Fase() {}
 
-	virtual void executar() = 0;
-};
+		Listas::ListaEntidades* getListaEntFase() { return &ListaEntFase; }
 
+		virtual void executar() = 0;
+	};
+}

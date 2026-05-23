@@ -3,16 +3,18 @@
 #include "Personagem.h"
 #include "Lista.h"
 
-class ListaEntidades
+namespace Listas
 {
-private:
-	Lista<Entidade> LEs;
+	class ListaEntidades
+	{
+	private:
+		Lista<Entidades::Entidade> LEs;
 
-public:
-	ListaEntidades();
-	~ListaEntidades();
+	public:
+		ListaEntidades();
+		~ListaEntidades();
 
-	void incluir(Entidade* pE);
-	void percorrerLista();
-};
-
+		void incluir(Entidades::Entidade* pE);
+		void percorrerLista();
+	};
+}

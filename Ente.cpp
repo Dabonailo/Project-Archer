@@ -61,4 +61,4 @@ void Ente::desenhar()
 }
 
 
-GerenciadorGrafico* Ente::pGG = NULL;
+Gerenciadores::GerenciadorGrafico* Ente::pGG = NULL;
