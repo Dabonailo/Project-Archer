@@ -150,6 +150,7 @@
     <ClCompile Include="ListaEntidades.cpp" />
     <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="Personagem.cpp" />
+    <ClCompile Include="Plataforma.cpp" />
     <ClCompile Include="Project Archer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +169,7 @@
     <ClInclude Include="ListaEntidades.h" />
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Personagem.h" />
+    <ClInclude Include="Plataforma.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

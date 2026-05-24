@@ -40,6 +40,8 @@ namespace Entidades
 
             void aplicarKnockback(sf::Vector2f forca);
 
+            virtual void mover() = 0;                                                   
+
             virtual void executar() = 0;
 
         };

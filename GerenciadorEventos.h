@@ -1,10 +1,7 @@
 #pragma once
 
 #include "GerenciadorGrafico.h"
-
-namespace Entidades {
-	class Jogador;
-}
+#include "Jogador.h"
 
 namespace Gerenciadores 
 {
@@ -12,7 +9,7 @@ namespace Gerenciadores
 	{
 	private:
 		static GerenciadorGrafico* pGrafico;
-		Entidades::Jogador* pJog;
+		Entidades::Personagens::Jogador* pJog;
 
 		static GerenciadorEventos* pEventos;
 		GerenciadorEventos();
@@ -22,7 +19,7 @@ namespace Gerenciadores
 
 		static GerenciadorEventos* getGerenciadorEventos();
 		
-		void setJogador(Entidades::Jogador* pJ);
+		void setJogador(Entidades::Personagens::Jogador* pJ);
 
 		void verificaTeclaPressionada(sf::Keyboard::Key tecla);
 		void executar();

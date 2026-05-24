@@ -27,7 +27,7 @@ namespace Entidades
 			const float getTempoInvulneravel() const;
 			void setTempoInvulneravel(float t);
 
-			void mover();
+			void mover() override;
 
 			void executar() override;
 		};

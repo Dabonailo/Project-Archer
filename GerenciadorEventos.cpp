@@ -21,14 +21,17 @@ namespace Gerenciadores {
 		return pEventos;
 	}
 
-	void GerenciadorEventos::setJogador(Entidades::Jogador* pJ) {
+	void GerenciadorEventos::setJogador(Entidades::Personagens::Jogador* pJ) {
 		pJog = pJ;
 	}
 
 	void GerenciadorEventos::verificaTeclaPressionada(sf::Keyboard::Key tecla)
 	{
-		if (tecla == sf::Keyboard::A) {
-
+		if (tecla == sf::Keyboard::D) {
+			//pJog->mover(true);
+		}
+		else if (tecla == sf::Keyboard::A) {
+			//pJog->mover(false);
 		}
 	}
 

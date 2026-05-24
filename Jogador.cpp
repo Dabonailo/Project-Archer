@@ -78,7 +78,6 @@ namespace Entidades
         void Jogador::executar()
         {
             mover();
-
             gravitar();
 
             body.move(
