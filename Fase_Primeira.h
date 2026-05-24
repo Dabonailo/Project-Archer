@@ -1,6 +1,7 @@
 #pragma once
 #include "Fase.h"
 #include "Jogador.h"
+#include "Plataforma.h"
 
 namespace Fases
 {
@@ -18,7 +19,7 @@ namespace Fases
 
         void adicionarJogador(Entidades::Personagens::Jogador* p) override;
         void criarInimigos() override;
-        void criarObstaculos() override {}
+        void criarObstaculos() override;
 
         void executar() override;
     };

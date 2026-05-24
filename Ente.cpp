@@ -1,18 +1,28 @@
 #include "Ente.h"
 #include "GerenciadorGrafico.h"
 
-Ente::Ente(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura) :body(), texturaEntidade() {
-	body.setSize(tam);
-	body.setPosition(pos);
+Ente::Ente(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura)
+    : body(), texturaEntidade()
+{
+    body.setSize(tam);
 
-	if (textura != "") {
-		texturaEntidade.loadFromFile(textura);
-		body.setTexture(&texturaEntidade);
-	}
-	else {
-		body.setFillColor(sf::Color::Red);
-		std::cout << "textura nao carregada" << std::endl;
-	}
+    body.setOrigin(
+        tam.x / 2.f,
+        tam.y / 2.f
+    );
+
+    body.setPosition(pos);
+
+    if (textura != "")
+    {
+        texturaEntidade.loadFromFile(textura);
+        body.setTexture(&texturaEntidade);
+    }
+    else
+    {
+        body.setFillColor(sf::Color::Red);
+        std::cout << "textura nao carregada" << std::endl;
+    }
 }
 
 Ente::~Ente()
@@ -21,7 +31,12 @@ Ente::~Ente()
 
 void Ente::setTamanho(sf::Vector2f tam)
 {
-	body.setSize(tam);
+    body.setSize(tam);
+
+    body.setOrigin(
+        tam.x / 2.f,
+        tam.y / 2.f
+    );
 }
 
 void Ente::setPosicao(sf::Vector2f pos)

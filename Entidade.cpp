@@ -37,6 +37,11 @@ namespace Entidades
 		}
 	}
 
+	void Entidade::setnoChao(bool nc)
+	{
+		noChao = nc;
+	}	
+
 	void Entidade::mover(sf::Vector2f m)
 	{
 		body.move(m);

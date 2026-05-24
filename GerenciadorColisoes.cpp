@@ -3,7 +3,7 @@
 namespace Gerenciadores
 {
 
-	GerenciadorColisoes::GerenciadorColisoes() :jogador1(NULL), jogador2(NULL), LIs()
+	GerenciadorColisoes::GerenciadorColisoes() :jogador1(NULL), jogador2(NULL), LIs(), LOs()
 	{
 	}
 
@@ -14,6 +14,11 @@ namespace Gerenciadores
 	const int GerenciadorColisoes::getTamanhoLIs() const
 	{
 		return LIs.size();
+	}
+
+	const int GerenciadorColisoes::getTamanhoLOs() const
+	{
+		return LOs.size();
 	}
 
 	const bool GerenciadorColisoes::verificarColisao(Entidades::Entidade* pE1, Entidades::Entidade* pE2) const
@@ -45,6 +50,13 @@ namespace Gerenciadores
 	{
 		if (Entidades::Personagens::Inimigo* in = dynamic_cast<Entidades::Personagens::Inimigo*>(pI)) {
 			LIs.push_back(in);
+		}
+	}
+
+	void GerenciadorColisoes::incluirObstaculo(Entidades::Obstaculos::Obstaculo* pO)
+	{
+		if (Entidades::Obstaculos::Obstaculo* ob = dynamic_cast<Entidades::Obstaculos::Obstaculo*>(pO)) {
+			LOs.push_back(ob);
 		}
 	}
 
@@ -80,8 +92,25 @@ namespace Gerenciadores
 		}
 	}
 
+	void GerenciadorColisoes::tratarColisoesJogsObstacs()
+	{
+		for (std::list<Entidades::Obstaculos::Obstaculo*>::iterator it = LOs.begin(); it != LOs.end(); ++it) {
+			if (jogador1 != NULL) {
+				if (verificarColisao((*it), jogador1)) {
+					(*it)->obstaculizar(jogador1);
+				}
+			}
+			if (jogador2 != NULL) {
+				if (verificarColisao((*it), jogador2)) {
+					(*it)->obstaculizar(jogador2);
+				}
+			}
+		}
+	}
+
 	void GerenciadorColisoes::executar() {
 		tratarColisoesJogsInimigs();
+		tratarColisoesJogsObstacs();
 	}
 
 }

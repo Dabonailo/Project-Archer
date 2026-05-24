@@ -24,11 +24,23 @@ namespace Fases
 		GC.incluirInimigo(inimigo1);
 	}
 
+	void Fase_Primeira::criarObstaculos()
+	{
+		Entidades::Obstaculos::Plataforma* plataforma1 = new Entidades::Obstaculos::Plataforma();
+		plataforma1->setPosicao(sf::Vector2f(250.f, 200.f));
+		ListaEntFase.incluir(plataforma1);
+		GC.incluirObstaculo(plataforma1);
+	}
+
 	void Fase_Primeira::executar()
 	{
-		if (GC.getTamanhoLIs() < max_inimigos) {
+		/*if (GC.getTamanhoLIs() < max_inimigos) {
 			criarInimigos();
+		}*/
+		if (GC.getTamanhoLOs() < 1) {
+			criarObstaculos();
 		}
+
 		ListaEntFase.percorrerLista();
 		GC.executar();
 	}
