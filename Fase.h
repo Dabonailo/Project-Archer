@@ -18,6 +18,7 @@ namespace Fases
 		virtual void adicionarJogador(Entidades::Personagens::Jogador* p) = 0;
 		virtual void criarInimigos() = 0;
 		virtual void criarObstaculos() = 0;
+		
 
 	public:
 		Fase() :ListaEntFase(), GC() {}
