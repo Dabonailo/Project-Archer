@@ -2,6 +2,7 @@
 
 namespace Gerenciadores
 {
+	GerenciadorGrafico* GerenciadorGrafico::pGrafico = NULL;
 
 	GerenciadorGrafico::GerenciadorGrafico() :
 		window(new sf::RenderWindow(sf::VideoMode(500, 500), "Project Archers"))
@@ -20,6 +21,14 @@ namespace Gerenciadores
 			delete(window);
 			window = NULL;
 		}
+	}
+
+	GerenciadorGrafico* GerenciadorGrafico::getGerenciadorGrafico()
+	{
+		if (pGrafico == NULL) {
+			pGrafico = new GerenciadorGrafico();
+		}
+		return pGrafico;
 	}
 
 	sf::RenderWindow* GerenciadorGrafico::getWindow()

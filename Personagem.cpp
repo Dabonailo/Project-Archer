@@ -9,7 +9,9 @@ namespace Entidades
 			: Entidade(pos, tam, textura, v), numVidas(5),
 			velocidadeKnockback(sf::Vector2f(0.f, 0.f)),
 			cooldownKnockback(0.f),
-			direcao(1.f, 1.f)
+			direcao(1.f, 1.f),
+			relogio(),
+			dt()
 		{
 		}
 

@@ -11,10 +11,13 @@ namespace Gerenciadores
 	private:
 		sf::RenderWindow* window;
 
-	public:
+		static GerenciadorGrafico* pGrafico;
 		GerenciadorGrafico();
+
+	public:
 		~GerenciadorGrafico();
 
+		static GerenciadorGrafico* getGerenciadorGrafico();
 		sf::RenderWindow* getWindow();
 
 		void fecharJanela();
