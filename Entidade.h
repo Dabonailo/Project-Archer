@@ -1,7 +1,7 @@
 #pragma once
 #include "Ente.h"
 
-#define CHAO 400.f //lembrar de tirar
+#define CHAO 700.f
 
 #define ENT_TAM_DEFAULT_X 100.f
 #define ENT_TAM_DEFAULT_Y 100.f

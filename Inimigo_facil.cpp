@@ -47,7 +47,7 @@ namespace Entidades
         {
             desenhar();
             mover();
-            gravitar();
+           gravitar();
         }
     }
 }

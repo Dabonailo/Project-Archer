@@ -3,7 +3,7 @@
 #include "Inimigo_facil.h"
 #include "GerenciadorColisoes.h"
 
-#define CHAO 350.f
+
 
 namespace Fases
 {

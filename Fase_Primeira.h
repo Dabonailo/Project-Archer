@@ -20,6 +20,7 @@ namespace Fases
         void adicionarJogador(Entidades::Personagens::Jogador* p) override;
         void criarInimigos() override;
         void criarObstaculos() override;
+        void criarInimgosFaceis();
 
         void executar() override;
     };

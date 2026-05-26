@@ -18,7 +18,9 @@ namespace Entidades
 
             virtual void danificar(Jogador* p) = 0;
 
-            virtual void mover() = 0;
+            virtual void mover() override;
+
+			void movimentoAleatorio();
 
             virtual void executar() override;
         };
