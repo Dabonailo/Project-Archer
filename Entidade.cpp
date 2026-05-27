@@ -24,23 +24,24 @@ namespace Entidades
 	}
 
 	void Entidade::gravitar()
-	{
-		if (body.getPosition().y < CHAO) {
-			velocidade.y += 0.0005f;
+	{	
+		if (!noChao)
+		{
+			velocidade.y += GRAVIDADE;
 		}
-		else {
-			velocidade.y = 0.f;
-		}
-		if (body.getPosition().y + body.getSize().y >= CHAO) {
-			body.setPosition(body.getPosition().x, CHAO - body.getSize().y);
-			noChao = true;
-		}
+		if (velocidade.y > VEL_QUEDA_MAX)
+			velocidade.y = VEL_QUEDA_MAX;
 	}
 
 	void Entidade::setnoChao(bool nc)
 	{
 		noChao = nc;
 	}	
+
+	const bool Entidade::getnoChao() const
+	{
+		return noChao;
+	}
 
 	void Entidade::mover(sf::Vector2f m)
 	{

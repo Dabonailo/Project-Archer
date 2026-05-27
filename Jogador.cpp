@@ -73,6 +73,13 @@ namespace Entidades
 
                 noChao = false;
             }
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+            {
+                std::cout << "Space pressed | noChao=" << noChao
+                    << " posY=" << body.getPosition().y
+                    << " velY=" << velocidade.y << std::endl;
+            }
         }
 
         void Jogador::executar()

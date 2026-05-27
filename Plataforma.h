@@ -21,7 +21,7 @@ namespace Entidades
 				sf::Vector2f v = sf::Vector2f(0.f, 0.f), bool d = false);
 			~Plataforma();
 			void executar();
-			void obstaculizar(Personagens::Jogador* p);
+			void obstaculizar(Entidades::Entidade* p);
 		};
 	}
 	

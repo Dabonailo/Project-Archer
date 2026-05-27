@@ -108,9 +108,63 @@ namespace Gerenciadores
 		}
 	}
 
+	void GerenciadorColisoes::tratarColisoesInimigsObstacs()
+	{
+		for (std::vector<Entidades::Personagens::Inimigo*>::iterator itI = LIs.begin(); itI != LIs.end(); ++itI) {
+			for (std::list<Entidades::Obstaculos::Obstaculo*>::iterator itO = LOs.begin(); itO != LOs.end(); ++itO) {
+				if (verificarColisao((*itI), (*itO))) {
+					(*itO)->obstaculizar(*itI);
+				}
+			}
+		}
+	}
+
+	void GerenciadorColisoes::tratarColisaoChao(Entidades::Entidade* pEnt)
+	{
+		if (!pEnt)
+			return;
+
+		float metadeAltura = pEnt->getTamanho().y / 2.f;
+		float bottom = pEnt->getPosicao().y + metadeAltura;
+
+		// CORREÇÃO: Só colide com o chão se o personagem NÃO estiver subindo (vel.y >= 0)
+		if (bottom >= CHAO && pEnt->getVelocidade().y >= 0.f)
+		{
+			pEnt->setPosicao(sf::Vector2f(
+				pEnt->getPosicao().x,
+				CHAO - metadeAltura
+			));
+
+			sf::Vector2f vel = pEnt->getVelocidade();
+			vel.y = 0.f;
+			pEnt->setVelocidade(vel);
+
+			pEnt->setnoChao(true);
+		}
+	}
+
+	void GerenciadorColisoes::tratarColisaoEntsChao()
+	{
+		if (jogador1 != NULL) {
+			jogador1->setnoChao(false);
+			tratarColisaoChao(jogador1);
+		}
+		if (jogador2 != NULL) {
+			jogador2->setnoChao(false);
+			tratarColisaoChao(jogador2);
+		}
+		for (std::vector<Entidades::Personagens::Inimigo*>::iterator it = LIs.begin(); it != LIs.end(); ++it) {
+			(*it)->setnoChao(false);
+			tratarColisaoChao(*it);
+		}
+	}
+
 	void GerenciadorColisoes::executar() {
+		tratarColisaoEntsChao();
 		tratarColisoesJogsInimigs();
 		tratarColisoesJogsObstacs();
+		tratarColisoesInimigsObstacs();	
+		
 	}
 
 }

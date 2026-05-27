@@ -6,6 +6,8 @@
 #include "Inimigo.h"
 #include "Obstaculo.h"
 
+#define CHAO 700.f
+
 namespace Gerenciadores
 {
 	class GerenciadorColisoes
@@ -31,6 +33,9 @@ namespace Gerenciadores
 
 		void tratarColisoesJogsInimigs();
 		void tratarColisoesJogsObstacs();
+		void tratarColisoesInimigsObstacs();
+		void tratarColisaoChao(Entidades::Entidade* pEnt);
+		void tratarColisaoEntsChao();
 
 		void executar();
 

@@ -1,7 +1,8 @@
 #pragma once
 #include "Ente.h"
 
-#define CHAO 700.f
+#define GRAVIDADE 0.1f
+#define VEL_QUEDA_MAX 0.3f
 
 #define ENT_TAM_DEFAULT_X 100.f
 #define ENT_TAM_DEFAULT_Y 100.f
@@ -30,6 +31,7 @@ namespace Entidades
 		const sf::Vector2f getVelocidade() const;
 		void gravitar();
 		void setnoChao(bool nc);
+		const bool getnoChao() const;
 
 		//CORPO
 

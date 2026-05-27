@@ -12,11 +12,15 @@ namespace Fases
 	{
 	}
 
-	void Fase_Primeira::adicionarJogador(Entidades::Personagens::Jogador* p)
-	{
-		ListaEntFase.incluir(p);
-		GC.incluirJogadores(p);
-	}
+    void Fase_Primeira::adicionarJogador(Entidades::Personagens::Jogador* p)
+    {
+        ListaEntFase.incluir(p);
+        GC.incluirJogadores(p);
+
+        // Ajusta estado inicial para evitar que o jogador fique sem noChao ao aparecer no chão
+        // O próprio GC vai testar e ajustar corretamente
+        GC.tratarColisaoChao(p);
+    }
 
 	void Fase_Primeira::criarInimigos()
 	{
@@ -71,9 +75,10 @@ namespace Fases
         GC.incluirObstaculo(plataforma3);
     }
 
-	void Fase_Primeira::executar()
-	{
-		ListaEntFase.percorrerLista();
-		GC.executar();
-	}
+    void Fase_Primeira::executar()
+    {
+       
+        ListaEntFase.percorrerLista();
+        GC.executar();
+    }
 }

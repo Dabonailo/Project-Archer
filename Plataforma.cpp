@@ -14,7 +14,7 @@ namespace Entidades
 		{
 		}
 
-        void Plataforma::obstaculizar(Personagens::Jogador* p)
+        void Plataforma::obstaculizar(Entidades::Entidade* p)
         {
             sf::Vector2f posPlat = getPosicao();
             sf::Vector2f posJog = p->getPosicao();
