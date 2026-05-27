@@ -67,7 +67,6 @@ namespace Entidades
                 }
                 cooldownMovimento = 5.f;
             }
-            std::cout << movimento << std::endl;
         }
 
         void Inimigo_facil::executar()
