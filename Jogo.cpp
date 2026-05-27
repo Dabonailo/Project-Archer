@@ -29,5 +29,6 @@ void Jogo::executar()
         GG->getWindow()->clear();
         fase1.executar();
         GG->getWindow()->display();
+        GG->resetarRelogio();
     }
 }

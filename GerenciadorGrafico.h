@@ -11,6 +11,9 @@ namespace Gerenciadores
 	private:
 		sf::RenderWindow* window;
 
+		sf::Clock relogio;
+		float tempo;
+
 		static GerenciadorGrafico* pGrafico;
 		GerenciadorGrafico();
 
@@ -19,6 +22,9 @@ namespace Gerenciadores
 
 		static GerenciadorGrafico* getGerenciadorGrafico();
 		sf::RenderWindow* getWindow();
+
+		float getTempo();
+		void resetarRelogio();
 
 		void fecharJanela();
 		const bool verificaJanelaAberta();

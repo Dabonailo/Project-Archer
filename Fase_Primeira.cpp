@@ -34,9 +34,9 @@ namespace Fases
 
 	void Fase_Primeira::executar()
 	{
-		/*if (GC.getTamanhoLIs() < max_inimigos) {
+		if (GC.getTamanhoLIs() < max_inimigos) {
 			criarInimigos();
-		}*/
+		}
 		if (GC.getTamanhoLOs() < 1) {
 			criarObstaculos();
 		}

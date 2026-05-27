@@ -9,7 +9,9 @@ namespace Entidades
     {
         class Inimigo : public Personagem
         {
-        private:
+        protected:
+            float cooldownMovimento;
+            int movimento;
 
         public:
             Inimigo(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v);
@@ -17,6 +19,12 @@ namespace Entidades
             ~Inimigo();
 
             virtual void danificar(Jogador* p) = 0;
+
+            void setCooldownMovimento(float c);
+            float getCooldownMovimento();
+
+            void setMovimento(int m);
+            int getMovimento();
 
             virtual void mover() = 0;
 

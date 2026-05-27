@@ -5,7 +5,7 @@
 
 #define CHAO 350.f
 
-namespace Fases
+namespace Fases	
 {
 
 	class Fase
