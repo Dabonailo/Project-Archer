@@ -11,8 +11,7 @@ namespace Entidades
             const std::string& textura,
             sf::Vector2f v
         )
-            : Personagem(pos, tam, textura, v),
-            tempoInvulneravel(0.f)
+            : Personagem(pos, tam, textura, v)
         {
             texturaEntidade.loadFromFile(textura);
             body.setTexture(&texturaEntidade);
@@ -34,15 +33,7 @@ namespace Entidades
         {
         }
 
-        const float Jogador::getTempoInvulneravel() const
-        {
-            return tempoInvulneravel;
-        }
-
-        void Jogador::setTempoInvulneravel(float t)
-        {
-            tempoInvulneravel = t;
-        }
+        
 
         void Jogador::mover()
         {
@@ -54,14 +45,16 @@ namespace Entidades
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
             {
-                velocidade.x = JOG_VELOCIDADE_DEFAULT_X;
+				if (velocidade.x < JOG_VELOCIDADE_MAX) 
+                    velocidade.x += JOG_ACELERACAO;
 
                 body.setScale(1.f, 1.f);
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
             {
-                velocidade.x = -JOG_VELOCIDADE_DEFAULT_X;
+                if (velocidade.x > -JOG_VELOCIDADE_MAX)
+                    velocidade.x -= JOG_ACELERACAO;
 
                 body.setScale(-1.f, 1.f);
             }
@@ -71,13 +64,6 @@ namespace Entidades
                 velocidade.y = -FORCA_PULO;
 
                 noChao = false;
-            }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-            {
-                std::cout << "Space pressed | noChao=" << noChao
-                    << " posY=" << body.getPosition().y
-                    << " velY=" << velocidade.y << std::endl;
             }
         }
 
@@ -100,6 +86,8 @@ namespace Entidades
                 cooldownKnockback -= pGG->getTempo();
 
             desenhar();
+
+			std::cout << getBody().getPosition().x << " " << getBody().getPosition().y << std::endl;    
         }
 
     }

@@ -23,6 +23,7 @@ namespace Entidades
             void setCooldownMovimento(float c);
             float getCooldownMovimento();
 
+			void movimentoAleatorio();
             void setMovimento(int m);
             int getMovimento();
 

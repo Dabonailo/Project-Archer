@@ -21,6 +21,7 @@ namespace Fases
 	void Fase_Primeira::criarInimigos()
 	{
 		criarInimgosFaceis();
+        criarInimgosMedios();
 	}
 
     void Fase_Primeira::criarInimgosFaceis()
@@ -31,62 +32,170 @@ namespace Fases
         GC.incluirInimigo(inimigo1);
     }
 
-    void Fase_Primeira::criarObstaculos()
+    void Fase_Primeira::criarInimgosMedios()
+    {
+        Entidades::Personagens::Inimigo_medio* inimigo1 = new Entidades::Personagens::Inimigo_medio();
+        inimigo1->setPosicao(sf::Vector2f(1040.f, 150.f));
+        ListaEntFase.incluir(inimigo1);
+        GC.incluirInimigo(inimigo1);
+	}
+
+    void Fase_Primeira::criarPlataformas()
     {
 
-        Entidades::Obstaculos::Plataforma* plataforma1 =
+        // Parede esquerda
+        Entidades::Obstaculos::Plataforma* paredeEsq =
             new Entidades::Obstaculos::Plataforma(
-                sf::Vector2f(220.f, 180.f),
-                sf::Vector2f(200.f, 40.f),
+                sf::Vector2f(25.f, 350.f),
+                sf::Vector2f(50.f, 700.f),
                 "",
                 sf::Vector2f(0.f, 0.f),
-                false
-            );
+                false);
 
-        ListaEntFase.incluir(plataforma1);
-        GC.incluirObstaculo(plataforma1);
+        ListaEntFase.incluir(paredeEsq);
+        GC.incluirObstaculo(paredeEsq);
 
-        Entidades::Obstaculos::Plataforma* plataforma2 =
+        // Parede direita
+        Entidades::Obstaculos::Plataforma* paredeDir =
             new Entidades::Obstaculos::Plataforma(
-                sf::Vector2f(370.f, 480.f),
-                sf::Vector2f(220.f, 40.f),
+                sf::Vector2f(1225.f, 350.f),
+                sf::Vector2f(50.f, 700.f),
                 "",
                 sf::Vector2f(0.f, 0.f),
-                false
-            );
+                false);
 
-        ListaEntFase.incluir(plataforma2);
-        GC.incluirObstaculo(plataforma2);
+        ListaEntFase.incluir(paredeDir);
+        GC.incluirObstaculo(paredeDir);
 
-        Entidades::Obstaculos::Plataforma* plataforma3 =
+        // Plataforma 1
+        Entidades::Obstaculos::Plataforma* p1 =
             new Entidades::Obstaculos::Plataforma(
-                sf::Vector2f(590.f, 340.f),
-                sf::Vector2f(260.f, 50.f),
+                sf::Vector2f(250.f, 550.f),
+                sf::Vector2f(250.f, 25.f),
                 "",
                 sf::Vector2f(0.f, 0.f),
-                false
-            );
+                false);
 
-        ListaEntFase.incluir(plataforma3);
-        GC.incluirObstaculo(plataforma3);
+        ListaEntFase.incluir(p1);
+        GC.incluirObstaculo(p1);
+
+        // Plataforma 2
+        Entidades::Obstaculos::Plataforma* p2 =
+            new Entidades::Obstaculos::Plataforma(
+                sf::Vector2f(600.f, 450.f),
+                sf::Vector2f(250.f, 25.f),
+                "",
+                sf::Vector2f(0.f, 0.f),
+                false);
+
+        ListaEntFase.incluir(p2);
+        GC.incluirObstaculo(p2);
+
+        // Plataforma 3
+        Entidades::Obstaculos::Plataforma* p3 =
+            new Entidades::Obstaculos::Plataforma(
+                sf::Vector2f(950.f, 325.f),
+                sf::Vector2f(300.f, 25.f),
+                "",
+                sf::Vector2f(0.f, 0.f),
+                false);
+
+        ListaEntFase.incluir(p3);
+        GC.incluirObstaculo(p3);
+
+        // Plataforma central inferior
+        Entidades::Obstaculos::Plataforma* p4 =
+            new Entidades::Obstaculos::Plataforma(
+                sf::Vector2f(650.f, 620.f),
+                sf::Vector2f(200.f, 25.f),
+                "",
+                sf::Vector2f(0.f, 0.f),
+                false);
+
+        ListaEntFase.incluir(p4);
+        GC.incluirObstaculo(p4);
+
+        // Plataforma superior direita
+        Entidades::Obstaculos::Plataforma* p5 =
+            new Entidades::Obstaculos::Plataforma(
+                sf::Vector2f(1050.f, 180.f),
+                sf::Vector2f(150.f, 25.f),
+                "",
+                sf::Vector2f(0.f, 0.f),
+                false);
+
+        ListaEntFase.incluir(p5);
+        GC.incluirObstaculo(p5);
     }
 
+    void Fase_Primeira::criarEspinhos()
+    {
+        Entidades::Obstaculos::Espinho* esp;
+
+        esp = new Entidades::Obstaculos::Espinho(sf::Vector2f(550.f, 650.f),
+            sf::Vector2f(ESPINHO_TAM_DEFAULT_X, ESPINHO_TAM_DEFAULT_Y),
+            "",
+            sf::Vector2f(0.f, 0.f),
+            true);
+        
+        ListaEntFase.incluir(esp);
+        GC.incluirObstaculo(esp);
+
+        esp = new Entidades::Obstaculos::Espinho(sf::Vector2f(600.f, 650.f), sf::Vector2f(ESPINHO_TAM_DEFAULT_X, ESPINHO_TAM_DEFAULT_Y),
+            "",
+            sf::Vector2f(0.f, 0.f),
+            true);
+        ListaEntFase.incluir(esp);
+        GC.incluirObstaculo(esp);
+
+        esp = new Entidades::Obstaculos::Espinho(sf::Vector2f(650.f, 650.f), sf::Vector2f(ESPINHO_TAM_DEFAULT_X, ESPINHO_TAM_DEFAULT_Y),
+            "",
+            sf::Vector2f(0.f, 0.f),
+            true);
+        ListaEntFase.incluir(esp);
+        GC.incluirObstaculo(esp);
+
+        esp = new Entidades::Obstaculos::Espinho(sf::Vector2f(700.f, 650.f), sf::Vector2f(ESPINHO_TAM_DEFAULT_X, ESPINHO_TAM_DEFAULT_Y),
+            "",
+            sf::Vector2f(0.f, 0.f),
+            true);
+        ListaEntFase.incluir(esp);
+        GC.incluirObstaculo(esp);
+
+
+        // Espinhos próximos ao início
+        esp = new Entidades::Obstaculos::Espinho();
+        esp->setPosicao(sf::Vector2f(250.f, 650.f));
+        ListaEntFase.incluir(esp);
+        GC.incluirObstaculo(esp);
+
+        esp = new Entidades::Obstaculos::Espinho();
+        esp->setPosicao(sf::Vector2f(300.f, 650.f));
+        ListaEntFase.incluir(esp);
+        GC.incluirObstaculo(esp);
+
+
+        // Espinhos próximos ao final
+        esp = new Entidades::Obstaculos::Espinho();
+        esp->setPosicao(sf::Vector2f(1050.f, 650.f));
+        ListaEntFase.incluir(esp);
+        GC.incluirObstaculo(esp);
+
+        esp = new Entidades::Obstaculos::Espinho();
+        esp->setPosicao(sf::Vector2f(1100.f, 650.f));
+        ListaEntFase.incluir(esp);
+        GC.incluirObstaculo(esp);
+	}
+    void Fase_Primeira::criarObstaculos()
+    {
+        criarPlataformas();
+		criarEspinhos();
+	}
     void Fase_Primeira::executar()
     {
        
         ListaEntFase.percorrerLista();
         GC.executar();
     }
-	void Fase_Primeira::executar()
-	{
-		if (GC.getTamanhoLIs() < max_inimigos) {
-			criarInimigos();
-		}
-		if (GC.getTamanhoLOs() < 1) {
-			criarObstaculos();
-		}
 
-		ListaEntFase.percorrerLista();
-		GC.executar();
-	}
 }

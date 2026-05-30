@@ -71,9 +71,6 @@ namespace Gerenciadores
 						jogador1 = NULL;
 						std::cout << "jogador 1 foi nocauteado" << std::endl;
 					}
-					if (jogador1) {
-						std::cout << jogador1->getVida() << std::endl;
-					}
 				}
 			}
 			if (jogador2 != NULL) {
@@ -83,9 +80,6 @@ namespace Gerenciadores
 					if (!jogador2->getVivo()) {
 						jogador2 = NULL;
 						std::cout << "jogador 2 foi nocauteado" << std::endl;
-					}
-					if (jogador2) {
-						std::cout << jogador2->getVida() << std::endl;
 					}
 				}
 			}

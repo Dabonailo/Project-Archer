@@ -3,7 +3,7 @@
 
 #define KNOCKBACK_X 0.7f
 #define KNOCKBACK_Y 0.25f
-#define FORCA_PULO 10.f
+#define FORCA_PULO 6.f
 
 namespace Entidades
 {
@@ -21,15 +21,11 @@ namespace Entidades
 
             sf::Vector2f direcao;
 
+            float tempoInvulneravel;
+
         public:
             Personagem(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v);
             ~Personagem();
-
-            virtual void operator--() {
-                if (numVidas > 0) {
-                    numVidas--;
-                }
-            }
 
             const int getVida() const;
 
@@ -37,9 +33,15 @@ namespace Entidades
 
             void aplicarKnockback(sf::Vector2f forca);
 
+            void recebeDano(int dano);
+
             virtual void mover() = 0;                                                   
 
             virtual void executar() = 0;
+
+            const float getTempoInvulneravel() const;
+
+            void setTempoInvulneravel(float t);
 
         };
     }

@@ -2,10 +2,10 @@
 #include "Ente.h"
 
 #define GRAVIDADE 0.1f
-#define VEL_QUEDA_MAX 0.3f
+#define VEL_QUEDA_MAX 0.6f
 
-#define ENT_TAM_DEFAULT_X 100.f
-#define ENT_TAM_DEFAULT_Y 100.f
+#define ENT_TAM_DEFAULT_X 50.f
+#define ENT_TAM_DEFAULT_Y 50.f
 
 #define ENT_VEL_DEFAULT_X 0.f
 #define ENT_VEL_DEFAULT_Y 0.f

@@ -22,7 +22,7 @@ namespace Entidades
         void Inimigo_facil::danificar(Jogador* p)
         {
             if (p->getTempoInvulneravel() <= 0.f) {
-                p->operator--();
+				p->recebeDano(1);
 
                 if (p->getBounds().left < getBounds().left) {
 

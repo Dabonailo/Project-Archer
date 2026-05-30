@@ -1,34 +1,23 @@
 #pragma once
-#include "Personagem.h"
-#include "GerenciadorGrafico.h"
-
-#define NUM_VIDAS 5
-#define JOG_VELOCIDADE_MAX 1.f
-#define JOG_ACELERACAO 1.f
+#include "Inimigo.h"
+#define INIMIGO_MEDIO_VELOCIDADE_X 0.2f
 
 namespace Entidades
 {
 	namespace Personagens
 	{
-
-		class Jogador : public Personagem
+		class Inimigo_medio : public Inimigo
 		{
 		private:
-
-			
-
+			float altura_voo;
 		public:
-			Jogador(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
+			Inimigo_medio(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
 				sf::Vector2f tam = sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
 				const std::string& textura = "",
 				sf::Vector2f v = sf::Vector2f(ENT_VEL_DEFAULT_X, ENT_VEL_DEFAULT_Y));
-
-			~Jogador();
-
-			
-
+			~Inimigo_medio();
+			void danificar(Jogador* p) override;
 			void mover() override;
-
 			void executar() override;
 		};
 	}

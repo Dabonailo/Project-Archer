@@ -2,6 +2,7 @@
 #include "Fase.h"
 #include "Jogador.h"
 #include "Plataforma.h"
+#include "Espinho.h"
 
 namespace Fases
 {
@@ -19,8 +20,12 @@ namespace Fases
 
         void adicionarJogador(Entidades::Personagens::Jogador* p) override;
         void criarInimigos() override;
-        void criarObstaculos() override;
         void criarInimgosFaceis();
+		void criarInimgosMedios();
+        
+        void criarObstaculos() override;
+		void criarPlataformas();
+		void criarEspinhos();
 
         void executar() override;
     };

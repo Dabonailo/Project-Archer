@@ -9,7 +9,8 @@ namespace Entidades
 			: Entidade(pos, tam, textura, v), numVidas(5),
 			velocidadeKnockback(sf::Vector2f(0.f, 0.f)),
 			cooldownKnockback(0.f),
-			direcao(1.f, 1.f)
+			direcao(1.f, 1.f),
+			tempoInvulneravel(0.f)
 		{
 		}
 
@@ -36,6 +37,22 @@ namespace Entidades
 		{
 			velocidadeKnockback += forca;
 			cooldownKnockback = 1.2f;
+		}
+	
+		void Personagem::recebeDano(int dano)
+		{
+			numVidas -= dano;
+			std::cout << getVida() << std::endl;
+		}
+
+		const float Personagem::getTempoInvulneravel() const
+		{
+			return tempoInvulneravel;
+		}
+
+		void Personagem::setTempoInvulneravel(float t)
+		{
+			tempoInvulneravel = t;
 		}
 	}
 }

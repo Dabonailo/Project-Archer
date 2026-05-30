@@ -8,7 +8,7 @@ Jogo::Jogo(): pjogador(NULL), GG(), GE(), fase1()
     GE = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
     Ente::setGG(GG);
 
-    Entidades::Personagens::Jogador* jogador = new Entidades::Personagens::Jogador(sf::Vector2f(0.f, 0.f),
+    Entidades::Personagens::Jogador* jogador = new Entidades::Personagens::Jogador(sf::Vector2f(100.f, 675.f),
         sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
         "hanzo_spray.png");
 

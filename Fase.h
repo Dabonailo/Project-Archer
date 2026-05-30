@@ -1,6 +1,7 @@
 #pragma once
 #include "ListaEntidades.h"
 #include "Inimigo_facil.h"
+#include "Inimigo_medio.h"
 #include "GerenciadorColisoes.h"
 
 
