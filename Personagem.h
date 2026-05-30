@@ -19,9 +19,6 @@ namespace Entidades
             sf::Vector2f velocidadeKnockback;
             float cooldownKnockback;
 
-            sf::Clock relogio;
-            float dt;
-
             sf::Vector2f direcao;
 
         public:

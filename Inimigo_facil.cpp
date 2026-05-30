@@ -35,19 +35,50 @@ namespace Entidades
                     p->setVelocidade(sf::Vector2f(0.f, -KNOCKBACK_Y));
                 }
 
-                p->setTempoInvulneravel(1.f);
+                p->setTempoInvulneravel(2.f);
             }
         }
 
         void Inimigo_facil::mover() {
-            body.move(velocidade);
+            if (cooldownMovimento <= 0.f) {
+                movimento = rand() % 4 + 1;
+
+                switch(movimento)
+                {
+                case 1:
+                    velocidade.x = INIMIGO_FACIL_VELOCIDADE_X;
+                    break;
+
+                case 2:
+                    velocidade.x = -INIMIGO_FACIL_VELOCIDADE_X;
+                    break;
+
+                case 3:
+                    if (noChao)
+                    {
+                        velocidade.y = -FORCA_PULO;
+                        noChao = false;
+                    }
+                    break;
+
+                case 4:
+                    velocidade.x = 0.f;
+                    break;
+                }
+                cooldownMovimento = 5.f;
+            }
         }
 
         void Inimigo_facil::executar()
         {
             desenhar();
             mover();
-           gravitar();
+            gravitar();
+            body.move(velocidade.x /** pGG->getTempo()*/, velocidade.y /** pGG->getTempo()*/);
+
+            if (cooldownMovimento > 0.f) {
+                cooldownMovimento -= pGG->getTempo();
+            }
         }
     }
 }

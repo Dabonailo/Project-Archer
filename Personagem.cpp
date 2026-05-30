@@ -9,9 +9,7 @@ namespace Entidades
 			: Entidade(pos, tam, textura, v), numVidas(5),
 			velocidadeKnockback(sf::Vector2f(0.f, 0.f)),
 			cooldownKnockback(0.f),
-			direcao(1.f, 1.f),
-			relogio(),
-			dt()
+			direcao(1.f, 1.f)
 		{
 		}
 
@@ -37,8 +35,7 @@ namespace Entidades
 		void Personagem::aplicarKnockback(sf::Vector2f forca)
 		{
 			velocidadeKnockback += forca;
-
-			cooldownKnockback = 25.f;
+			cooldownKnockback = 1.2f;
 		}
 	}
 }

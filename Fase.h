@@ -5,7 +5,7 @@
 
 
 
-namespace Fases
+namespace Fases	
 {
 
 	class Fase

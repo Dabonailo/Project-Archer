@@ -1,5 +1,6 @@
 #pragma once
 #include "Personagem.h"
+#include "GerenciadorGrafico.h"
 
 #define NUM_VIDAS 5
 #define JOG_VELOCIDADE_DEFAULT_X 0.1f

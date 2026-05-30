@@ -6,6 +6,8 @@
 
 #include <iostream>
 
+#include <cstdlib>
+
 namespace Gerenciadores {
 	class GerenciadorGrafico;
 }

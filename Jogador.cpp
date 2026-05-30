@@ -28,8 +28,6 @@ namespace Entidades
 
             velocidade = sf::Vector2f(0.f, 0.f);
             velocidadeKnockback = sf::Vector2f(0.f, 0.f);
-
-            cooldownKnockback = 0.f;
         }
 
         Jogador::~Jogador()
@@ -52,6 +50,7 @@ namespace Entidades
 
             //if (cooldownKnockback > 0.f)
                // return;
+
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
             {
@@ -88,17 +87,17 @@ namespace Entidades
             gravitar();
 
             body.move(
-                velocidade.x + velocidadeKnockback.x,
-                velocidade.y + velocidadeKnockback.y
+                (velocidade.x + velocidadeKnockback.x) /** pGG->getTempo()*/,
+                (velocidade.y + velocidadeKnockback.y) /** pGG->getTempo()*/
             );
 
             velocidadeKnockback *= 0.995f;
 
-            if (cooldownKnockback > 0.f)
-                cooldownKnockback -= 0.016f;
-
             if (tempoInvulneravel > 0.f)
-                tempoInvulneravel -= 0.016f;
+                tempoInvulneravel -= pGG->getTempo();
+
+            if (cooldownKnockback > 0.f)
+                cooldownKnockback -= pGG->getTempo();
 
             desenhar();
         }

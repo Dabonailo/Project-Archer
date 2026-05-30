@@ -36,6 +36,17 @@ namespace Gerenciadores
 		return window;
 	}
 
+	float GerenciadorGrafico::getTempo()
+	{
+		return tempo;
+	}
+
+	void GerenciadorGrafico::resetarRelogio()
+	{
+		tempo = relogio.getElapsedTime().asSeconds();
+		relogio.restart();
+	}
+
 	void GerenciadorGrafico::fecharJanela()
 	{
 		window->close();

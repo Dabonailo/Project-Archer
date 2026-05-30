@@ -1,5 +1,8 @@
 #pragma once
 #include "Inimigo.h"
+#include "GerenciadorGrafico.h"
+
+#define INIMIGO_FACIL_VELOCIDADE_X 0.02f
 
 namespace Entidades
 {
@@ -10,6 +13,7 @@ namespace Entidades
 		{
 		private:
 			float raio;
+
 
 		public:
 			Inimigo_facil(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
