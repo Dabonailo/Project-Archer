@@ -22,6 +22,7 @@ namespace Gerenciadores
 
 		static GerenciadorGrafico* getGerenciadorGrafico();
 		sf::RenderWindow* getWindow();
+		sf::Vector2f getWindowTam();
 
 		float getTempo();
 		void resetarRelogio();
