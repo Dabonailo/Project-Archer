@@ -3,7 +3,7 @@
 
 #define KNOCKBACK_X 0.7f
 #define KNOCKBACK_Y 0.25f
-#define FORCA_PULO 6.f
+#define FORCA_PULO 8.f
 
 namespace Entidades
 {

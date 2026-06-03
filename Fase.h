@@ -3,6 +3,8 @@
 #include "Inimigo_facil.h"
 #include "Inimigo_medio.h"
 #include "GerenciadorColisoes.h"
+#include "Plataforma.h"
+#include "Espinho.h"
 
 
 
