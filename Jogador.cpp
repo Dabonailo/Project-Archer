@@ -39,8 +39,8 @@ namespace Entidades
         {
             velocidade.x = 0.f;
 
-            //if (cooldownKnockback > 0.f)
-               // return;
+            if (cooldownKnockback > 0.f)
+                return;
 
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))

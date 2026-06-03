@@ -76,12 +76,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\pedro\OneDrive\Documentos\TECPROGEUTEAMO\SFML-2.6.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Danil\OneDrive\Documentos\Archer Project\SFML-2.6.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\pedro\OneDrive\Documentos\TECPROGEUTEAMO\SFML-2.6.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Danil\OneDrive\Documentos\Archer Project\SFML-2.6.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -93,12 +93,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\pedro\OneDrive\Documentos\TECPROGEUTEAMO\SFML-2.6.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Danil\OneDrive\Documentos\Archer Project\SFML-2.6.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\pedro\OneDrive\Documentos\TECPROGEUTEAMO\SFML-2.6.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Danil\OneDrive\Documentos\Archer Project\SFML-2.6.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Botao.cpp" />
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Espinho.cpp" />
@@ -150,12 +151,14 @@
     <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="Lista.cpp" />
     <ClCompile Include="ListaEntidades.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Plataforma.cpp" />
     <ClCompile Include="Project Archer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Botao.h" />
     <ClInclude Include="Ente.h" />
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Espinho.h" />
@@ -171,6 +174,7 @@
     <ClInclude Include="Jogo.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="ListaEntidades.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Personagem.h" />
     <ClInclude Include="Plataforma.h" />

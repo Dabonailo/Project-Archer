@@ -5,7 +5,7 @@ namespace Gerenciadores
 	GerenciadorGrafico* GerenciadorGrafico::pGrafico = NULL;
 
 	GerenciadorGrafico::GerenciadorGrafico() :
-		window(new sf::RenderWindow(sf::VideoMode(1250, 750), "Project Archers"))
+		window(new sf::RenderWindow(sf::VideoMode(1250, 750), "Project Archers")), relogio(), tempo(0.f)
 	{
 		if (window == NULL)
 		{
@@ -34,6 +34,11 @@ namespace Gerenciadores
 	sf::RenderWindow* GerenciadorGrafico::getWindow()
 	{
 		return window;
+	}
+
+	sf::Vector2f GerenciadorGrafico::getWindowTam()
+	{
+		return sf::Vector2f(getWindow()->getSize().x, getWindow()->getSize().y);
 	}
 
 	float GerenciadorGrafico::getTempo()
