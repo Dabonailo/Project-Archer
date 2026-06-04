@@ -32,6 +32,8 @@ namespace Entidades
 			}
 		}
 		void Inimigo_medio::mover() {
+			float x = getPosicao().x;
+			setPosicao(sf::Vector2f(x, altura_voo));
 			if (cooldownMovimento <= 0.f) {
 				movimento = rand() % 4 + 1;
 				switch(movimento)

@@ -1,8 +1,6 @@
 #pragma once
 #include "Fase.h"
 #include "Jogador.h"
-#include "Plataforma.h"
-#include "Espinho.h"
 
 namespace Fases
 {
