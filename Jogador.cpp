@@ -87,7 +87,7 @@ namespace Entidades
 
             desenhar();
 
-			std::cout << getBody().getPosition().x << " " << getBody().getPosition().y << std::endl;    
+			std::cout << getVelocidade().y << std::endl;    
         }
 
     }
