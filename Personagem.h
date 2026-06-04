@@ -1,9 +1,10 @@
 #pragma once
 #include "Entidade.h"
+#include "direcao.h"
 
-#define KNOCKBACK_X 0.7f
-#define KNOCKBACK_Y 0.25f
-#define FORCA_PULO 6.f
+#define KNOCKBACK_X 550.f
+#define KNOCKBACK_Y 200.f
+#define FORCA_PULO 650.f
 
 namespace Entidades
 {
@@ -19,7 +20,10 @@ namespace Entidades
             sf::Vector2f velocidadeKnockback;
             float cooldownKnockback;
 
-            sf::Vector2f direcao;
+            bool esquerda;
+            bool direita;
+
+            float tempoNoChao;
 
             float tempoInvulneravel;
 
@@ -42,6 +46,8 @@ namespace Entidades
             const float getTempoInvulneravel() const;
 
             void setTempoInvulneravel(float t);
+
+            void setDirecao(Direcao d);
 
         };
     }

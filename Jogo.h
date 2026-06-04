@@ -6,6 +6,7 @@
 #include "GerenciadorEventos.h"
 #include "ListaEntidades.h"
 #include "Fase_Primeira.h"
+#include "Menu.h"
 
 class Jogo
 {
@@ -14,6 +15,7 @@ private:
 	Gerenciadores::GerenciadorGrafico* GG;
 	Gerenciadores::GerenciadorEventos* GE;
 	Fases::Fase_Primeira fase1;
+	Menu* menu;
 
 public:
 	Jogo();

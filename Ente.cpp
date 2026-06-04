@@ -54,6 +54,11 @@ const sf::Vector2f Ente::getPosicao() const
 	return body.getPosition();
 }
 
+float Ente::getTempo() const
+{
+    return pGG->getTempo();
+}
+
 void Ente::setTextura(const std::string& textura)
 {
 	texturaEntidade.loadFromFile(textura);

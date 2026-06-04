@@ -189,11 +189,10 @@ namespace Fases
     void Fase_Primeira::criarObstaculos()
     {
         criarPlataformas();
-		criarEspinhos();
+        criarEspinhos();
 	}
     void Fase_Primeira::executar()
-    {
-       
+    {  
         ListaEntFase.percorrerLista();
         GC.executar();
     }

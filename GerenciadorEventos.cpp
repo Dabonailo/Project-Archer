@@ -25,14 +25,42 @@ namespace Gerenciadores {
 		pJog = pJ;
 	}
 
+	void GerenciadorEventos::setMenu(Menu* m)
+	{
+		menu = m;
+	}
+
 	void GerenciadorEventos::verificaTeclaPressionada(sf::Keyboard::Key tecla)
 	{
-		if (tecla == sf::Keyboard::D) {
-			//pJog->mover(true);
+		if (pJog) {
+			if (tecla == sf::Keyboard::D)
+				pJog->setMovDir(true);
+
+			if (tecla == sf::Keyboard::A)
+				pJog->setMovEsq(true);
+
+			if (tecla == sf::Keyboard::Space) {
+				pJog->pular();
+			}
 		}
-		else if (tecla == sf::Keyboard::A) {
-			//pJog->mover(false);
+
+		if (menu) {
+			if (tecla == sf::Keyboard::W || tecla == sf::Keyboard::PageUp) {
+				menu->selecionarBotoes(CIMA);
+			}
+			if (tecla == sf::Keyboard::S || tecla == sf::Keyboard::PageDown) {
+				menu->selecionarBotoes(BAIXO);
+			}
 		}
+	}
+
+	void GerenciadorEventos::verificaTeclaSolta(sf::Keyboard::Key tecla)
+	{
+		if (tecla == sf::Keyboard::D)
+			pJog->setMovDir(false);
+
+		if (tecla == sf::Keyboard::A)
+			pJog->setMovEsq(false);	
 	}
 
 	void GerenciadorEventos::executar() {
@@ -47,6 +75,13 @@ namespace Gerenciadores {
 				if (evento.key.code == sf::Keyboard::Escape) {
 					pGrafico->fecharJanela();
 				}
+
+				verificaTeclaPressionada(evento.key.code);
+			}
+
+			else if (evento.type == sf::Event::KeyReleased)
+			{
+				verificaTeclaSolta(evento.key.code);
 			}
 		}
 	}

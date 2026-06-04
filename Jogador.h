@@ -1,10 +1,10 @@
 #pragma once
 #include "Personagem.h"
-#include "GerenciadorGrafico.h"
 
 #define NUM_VIDAS 5
-#define JOG_VELOCIDADE_MAX 1.f
-#define JOG_ACELERACAO 1.f
+#define JOG_VELOCIDADE_MAX 200.f
+#define JOG_ACELERACAO 200.f
+#define ATRITO 500.f
 
 namespace Entidades
 {
@@ -14,8 +14,8 @@ namespace Entidades
 		class Jogador : public Personagem
 		{
 		private:
-
-			
+			bool movDir;
+			bool movEsq;
 
 		public:
 			Jogador(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
@@ -25,9 +25,11 @@ namespace Entidades
 
 			~Jogador();
 
-			
+			void setMovDir(bool b);
+			void setMovEsq(bool b);
 
 			void mover() override;
+			void pular();
 
 			void executar() override;
 		};

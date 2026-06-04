@@ -27,7 +27,7 @@ namespace Entidades
 	{	
 		if (!noChao)
 		{
-			velocidade.y += GRAVIDADE;
+			velocidade.y += GRAVIDADE * getTempo();
 		}
 		if (velocidade.y > VEL_QUEDA_MAX)
 			velocidade.y = VEL_QUEDA_MAX;
