@@ -34,6 +34,10 @@ public:
 	const sf::Vector2f getTamanho() const;
 	const sf::Vector2f getPosicao() const;
 
+	//TEMPO
+
+	float getTempo() const;
+
 	//TEXTURA
 
 	void setTextura(const std::string& textura);

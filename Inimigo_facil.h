@@ -1,8 +1,7 @@
 #pragma once
 #include "Inimigo.h"
-#include "GerenciadorGrafico.h"
 
-#define INIMIGO_FACIL_VELOCIDADE_X 0.02f
+#define INIMIGO_FACIL_VELOCIDADE_X 50.f
 
 namespace Entidades
 {

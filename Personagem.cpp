@@ -9,8 +9,10 @@ namespace Entidades
 			: Entidade(pos, tam, textura, v), numVidas(5),
 			velocidadeKnockback(sf::Vector2f(0.f, 0.f)),
 			cooldownKnockback(0.f),
-			direcao(1.f, 1.f),
-			tempoInvulneravel(0.f)
+			esquerda(false),
+			direita(true),
+			tempoInvulneravel(0.f),
+			tempoNoChao(0.f)
 		{
 		}
 
@@ -53,6 +55,17 @@ namespace Entidades
 		void Personagem::setTempoInvulneravel(float t)
 		{
 			tempoInvulneravel = t;
+		}
+		void Personagem::setDirecao(Direcao d)
+		{
+			if (d == Direcao::ESQUERDA) {
+				esquerda = true;
+				direita = false;
+			}
+			else if (d == Direcao::DIREITA) {
+				direita = true;
+				esquerda = false;
+			}
 		}
 	}
 }

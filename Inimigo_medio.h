@@ -1,6 +1,6 @@
 #pragma once
 #include "Inimigo.h"
-#define INIMIGO_MEDIO_VELOCIDADE_X 0.2f
+#define INIMIGO_MEDIO_VELOCIDADE_X 100.f
 
 namespace Entidades
 {

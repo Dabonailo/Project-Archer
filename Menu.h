@@ -4,10 +4,20 @@
 #include "Botao.h"
 #include "GerenciadorGrafico.h"
 #include <vector>
+#include "direcao.h"
+
+enum tipoMenu
+{
+	MENU_PRINCIPAL,
+	MENU_FASES,
+	MENU_OPCOES
+};
 
 class Menu :public Ente {
 private:
+	tipoMenu menuAtual;
 	std::vector<Botao*> vecBotao;
+	std::vector<Botao*>::iterator botaoSelecionado;
 	sf::Text titulo;
 
 public:
@@ -19,7 +29,13 @@ public:
 
 	~Menu();
 
-	void adicionarBotoes();
+	void mudarMenu(tipoMenu menu);
 
-	void executarMenuPrincipal();
+	void limparvecBotao();
+
+	void criarMenuPrincipal();
+
+	void selecionarBotoes(Direcao d);
+
+	void executar() override;
 };

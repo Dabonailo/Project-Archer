@@ -74,10 +74,10 @@ namespace Entidades
             desenhar();
             mover();
             gravitar();
-            body.move(velocidade.x /** pGG->getTempo()*/, velocidade.y /** pGG->getTempo()*/);
+            body.move(velocidade.x * getTempo(), velocidade.y * getTempo());
 
             if (cooldownMovimento > 0.f) {
-                cooldownMovimento -= pGG->getTempo();
+                cooldownMovimento -= getTempo();
             }
         }
     }

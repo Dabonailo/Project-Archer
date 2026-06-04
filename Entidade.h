@@ -1,8 +1,8 @@
 #pragma once
 #include "Ente.h"
 
-#define GRAVIDADE 0.1f
-#define VEL_QUEDA_MAX 1.f
+#define GRAVIDADE 1200.f
+#define VEL_QUEDA_MAX 600.f
 
 #define ENT_TAM_DEFAULT_X 50.f
 #define ENT_TAM_DEFAULT_Y 50.f

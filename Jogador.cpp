@@ -11,7 +11,7 @@ namespace Entidades
             const std::string& textura,
             sf::Vector2f v
         )
-            : Personagem(pos, tam, textura, v)
+            : Personagem(pos, tam, textura, v), movDir(false), movEsq(false)
         {
             texturaEntidade.loadFromFile(textura);
             body.setTexture(&texturaEntidade);
@@ -20,8 +20,6 @@ namespace Entidades
                 body.getSize().x / 2.f,
                 body.getSize().y / 2.f
             );
-
-            direcao = sf::Vector2f(1.f, 1.f);
 
             noChao = false;
 
@@ -33,61 +31,93 @@ namespace Entidades
         {
         }
 
-        
+        void Jogador::setMovDir(bool b)
+        {
+            movDir = b;
+        }
+
+        void Jogador::setMovEsq(bool b) {
+            movEsq = b;
+        }
 
         void Jogador::mover()
         {
-            velocidade.x = 0.f;
-
             if (cooldownKnockback > 0.f)
                 return;
 
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+            // ATRITO
+            if (!movDir && !movEsq)
             {
-				if (velocidade.x < JOG_VELOCIDADE_MAX) 
-                    velocidade.x += JOG_ACELERACAO;
+                if (velocidade.x > 0.f)
+                {
+                    velocidade.x -= ATRITO * getTempo();
+                    if (velocidade.x < 0.f) velocidade.x = 0.f;
+                }
+                else if (velocidade.x < 0.f)
+                {
+                    velocidade.x += ATRITO * getTempo();
+                    if (velocidade.x > 0.f) velocidade.x = 0.f;
+                }
+            }
+
+            // MOVIMENTO
+            if (movDir)
+            {
+                velocidade.x += JOG_ACELERACAO;
+                if (velocidade.x > JOG_VELOCIDADE_MAX)
+                    velocidade.x = JOG_VELOCIDADE_MAX;
 
                 body.setScale(1.f, 1.f);
             }
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+            if (movEsq)
             {
-                if (velocidade.x > -JOG_VELOCIDADE_MAX)
-                    velocidade.x -= JOG_ACELERACAO;
+                velocidade.x -= JOG_ACELERACAO;
+                if (velocidade.x < -JOG_VELOCIDADE_MAX)
+                    velocidade.x = -JOG_VELOCIDADE_MAX;
 
                 body.setScale(-1.f, 1.f);
             }
+        }
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && noChao)
+        void Jogador::pular()
+        {
+            if (tempoNoChao > 0.f)
             {
                 velocidade.y = -FORCA_PULO;
-
+                tempoNoChao = 0.f;
                 noChao = false;
             }
         }
 
         void Jogador::executar()
         {
+            if (noChao)
+                tempoNoChao = 0.1f; // 100 ms
+            else if (tempoNoChao > 0.f)
+                tempoNoChao -= getTempo();
+
             mover();
             gravitar();
 
             body.move(
-                (velocidade.x + velocidadeKnockback.x) /** pGG->getTempo()*/,
-                (velocidade.y + velocidadeKnockback.y) /** pGG->getTempo()*/
+                (velocidade.x + velocidadeKnockback.x) * getTempo(),
+                (velocidade.y + velocidadeKnockback.y) * getTempo()
             );
 
             velocidadeKnockback *= 0.995f;
 
             if (tempoInvulneravel > 0.f)
-                tempoInvulneravel -= pGG->getTempo();
+                tempoInvulneravel -= getTempo();
 
             if (cooldownKnockback > 0.f)
-                cooldownKnockback -= pGG->getTempo();
+                cooldownKnockback -= getTempo();
 
             desenhar();
 
-			std::cout << getVelocidade().y << std::endl;    
+			//std::cout << getBody().getPosition().x << " " << getBody().getPosition().y << std::endl; 
+            // 
+            std::cout << velocidade.y << std::endl;
         }
 
     }

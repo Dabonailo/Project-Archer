@@ -63,6 +63,8 @@ namespace Entidades
 			mover();
 			gravitar();
 			desenhar();
+
+			body.move(velocidade.x * getTempo(), velocidade.y * getTempo());
 		}
 	}
 }
