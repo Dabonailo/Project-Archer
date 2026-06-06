@@ -24,11 +24,13 @@ namespace Fases
 		
 
 	public:
-		Fase() :ListaEntFase(), GC() {}
-		~Fase() {}
+		Fase();
+		~Fase();
 
-		Listas::ListaEntidades* getListaEntFase() { return &ListaEntFase; }
+		Listas::ListaEntidades* getListaEntFase();
 
 		virtual void executar() = 0;
+
+		void desenhar();
 	};
 }

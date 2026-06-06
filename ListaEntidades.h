@@ -16,5 +16,6 @@ namespace Listas
 
 		void incluir(Entidades::Entidade* pE);
 		void percorrerLista();
+		void desenharLista();
 	};
 }

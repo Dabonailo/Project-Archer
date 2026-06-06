@@ -44,7 +44,9 @@ namespace Entidades
 		void Personagem::recebeDano(int dano)
 		{
 			numVidas -= dano;
-			std::cout << getVida() << std::endl;
+			if (getVida() >= 0) {
+				std::cout << "vida: " << getVida() << std::endl;
+			}
 		}
 
 		const float Personagem::getTempoInvulneravel() const

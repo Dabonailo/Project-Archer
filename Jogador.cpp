@@ -114,10 +114,6 @@ namespace Entidades
                 cooldownKnockback -= getTempo();
 
             desenhar();
-
-			//std::cout << getBody().getPosition().x << " " << getBody().getPosition().y << std::endl; 
-            // 
-            std::cout << velocidade.y << std::endl;
         }
 
     }

@@ -23,6 +23,7 @@ namespace Gerenciadores
 		static GerenciadorGrafico* getGerenciadorGrafico();
 		sf::RenderWindow* getWindow();
 		sf::Vector2f getWindowTam();
+		sf::Vector2f getWindowCentro();
 
 		float getTempo();
 		void resetarRelogio();
@@ -31,5 +32,6 @@ namespace Gerenciadores
 		const bool verificaJanelaAberta();
 
 		void desenharEnte(Ente* pE);
+		void desenharTexto(sf::Text pT);
 	};
 }

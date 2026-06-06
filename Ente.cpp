@@ -80,5 +80,9 @@ void Ente::desenhar()
 	pGG->desenharEnte(this);
 }
 
+void Ente::desenhar(sf::Text t) {
+    pGG->desenharTexto(t);
+}
+
 
 Gerenciadores::GerenciadorGrafico* Ente::pGG = NULL;

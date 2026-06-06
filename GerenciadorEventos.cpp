@@ -42,14 +42,21 @@ namespace Gerenciadores {
 			if (tecla == sf::Keyboard::Space) {
 				pJog->pular();
 			}
+			
+			if (tecla == sf::Keyboard::Escape) {
+				menu->mudarMenu(MENU_PAUSA);
+			}
 		}
 
-		if (menu) {
+		if (menu && menu->getTipoMenu() == MENU_PRINCIPAL || menu->getTipoMenu() == MENU_PAUSA) {
 			if (tecla == sf::Keyboard::W || tecla == sf::Keyboard::PageUp) {
 				menu->selecionarBotoes(CIMA);
 			}
 			if (tecla == sf::Keyboard::S || tecla == sf::Keyboard::PageDown) {
 				menu->selecionarBotoes(BAIXO);
+			}
+			if (tecla == sf::Keyboard::Enter) {
+				menu->executarBotao();
 			}
 		}
 	}
@@ -72,10 +79,6 @@ namespace Gerenciadores {
 
 			else if (evento.type == sf::Event::KeyPressed)
 			{
-				if (evento.key.code == sf::Keyboard::Escape) {
-					pGrafico->fecharJanela();
-				}
-
 				verificaTeclaPressionada(evento.key.code);
 			}
 

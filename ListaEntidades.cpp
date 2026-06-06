@@ -36,4 +36,17 @@ namespace Listas
             aux = prox;
         }
     }
+    void ListaEntidades::desenharLista()
+    {
+        Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* aux = LEs.getPrimeiro();
+
+        while (aux != NULL)
+        {
+            Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* prox = aux->getProximo();
+
+            aux->getInfo()->desenhar();
+
+            aux = prox;
+        }
+    }
 }

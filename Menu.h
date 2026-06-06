@@ -6,19 +6,28 @@
 #include <vector>
 #include "direcao.h"
 
+class Jogo;
+
 enum tipoMenu
 {
+	NO_JOGO,
 	MENU_PRINCIPAL,
+	MENU_PAUSA,
 	MENU_FASES,
 	MENU_OPCOES
 };
 
 class Menu :public Ente {
 private:
+	Jogo* pJogo;
+
 	tipoMenu menuAtual;
 	std::vector<Botao*> vecBotao;
 	std::vector<Botao*>::iterator botaoSelecionado;
-	sf::Text titulo;
+	
+	std::vector<sf::Text> vecTexto;
+
+	sf::Font fonte;
 
 public:
 	Menu(
@@ -29,13 +38,21 @@ public:
 
 	~Menu();
 
+	void setJogo(Jogo* pJ);
+
 	void mudarMenu(tipoMenu menu);
+	tipoMenu getTipoMenu();
 
 	void limparvecBotao();
+	void limparvecTexto();
+
+	void adicionarTexto(sf::String s = "Inserir texto", sf::Vector2f pos = sf::Vector2f(0.f, 0.f), unsigned int tam = 30);
 
 	void criarMenuPrincipal();
+	void criarMenuPausa();
 
 	void selecionarBotoes(Direcao d);
+	void executarBotao();
 
 	void executar() override;
 };

@@ -2,7 +2,7 @@
 #include "Ente.h"
 #include "GerenciadorGrafico.h"
 
-#define TAMANHO_BOTAO_DEFAUlT_X 100.f
+#define TAMANHO_BOTAO_DEFAUlT_X 400.f
 #define TAMANHO_BOTAO_DEFAULT_Y 50.f
 
 enum AcaoBotao
@@ -10,7 +10,8 @@ enum AcaoBotao
 	ACAO_JOGAR,
 	ACAO_SAIR,
 	ACAO_MENU_FASES,
-	ACAO_VOLTAR
+	ACAO_VOLTAR,
+	ACAO_RESUMIR
 };
 
 class Botao : public Ente
@@ -20,6 +21,9 @@ private:
 	sf::Font fonte;
 
 	AcaoBotao acao;
+	bool selecionado;
+
+	float tempoAnimacao;
 
 public:
 	Botao(
@@ -33,6 +37,11 @@ public:
 	~Botao();
 
 	AcaoBotao getAcao() const;
+	
+	void centralizarTexto();
+
+	void setSelecionado(bool s);
+	bool getSelecionado();
 
 	void executar() override;
 };

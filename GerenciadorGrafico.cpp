@@ -41,6 +41,11 @@ namespace Gerenciadores
 		return sf::Vector2f(getWindow()->getSize().x, getWindow()->getSize().y);
 	}
 
+	sf::Vector2f GerenciadorGrafico::getWindowCentro()
+	{
+		return sf::Vector2f(getWindowTam().x / 2.f, getWindowTam().y / 2.f);
+	}
+
 	float GerenciadorGrafico::getTempo()
 	{
 		return tempo;
@@ -68,6 +73,11 @@ namespace Gerenciadores
 	void GerenciadorGrafico::desenharEnte(Ente* pE)
 	{
 		window->draw(pE->getBody());
+	}
+
+	void GerenciadorGrafico::desenharTexto(sf::Text pT)
+	{
+		window->draw(pT);
 	}
 
 }
