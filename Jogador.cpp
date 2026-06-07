@@ -11,7 +11,7 @@ namespace Entidades
             const std::string& textura,
             sf::Vector2f v
         )
-            : Personagem(pos, tam, textura, v), movDir(false), movEsq(false)
+            : Personagem(pos, tam, textura, v), movDir(false), movEsq(false), querAtirar(false), coolDownTiro(0.f)
         {
             texturaEntidade.loadFromFile(textura);
             body.setTexture(&texturaEntidade);
@@ -38,6 +38,26 @@ namespace Entidades
 
         void Jogador::setMovEsq(bool b) {
             movEsq = b;
+        }
+
+        void Jogador::setQuerAtirar(bool a)
+        {
+            querAtirar = a;
+        }
+
+        bool Jogador::getQuerAtirar()
+        {
+            return querAtirar;
+        }
+
+        void Jogador::setCooldownTiro(float cd)
+        {
+            coolDownTiro = cd;
+        }
+
+        float Jogador::getCooldownTiro()
+        {
+            return coolDownTiro;
         }
 
         void Jogador::mover()
@@ -112,6 +132,12 @@ namespace Entidades
 
             if (cooldownKnockback > 0.f)
                 cooldownKnockback -= getTempo();
+
+            if (coolDownTiro > 0.f) {
+                coolDownTiro -= getTempo();
+            }
+
+           // std::cout << esquerda << "||" << direita << std::endl;
 
             desenhar();
         }

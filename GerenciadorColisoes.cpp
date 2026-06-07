@@ -3,7 +3,7 @@
 namespace Gerenciadores
 {
 
-	GerenciadorColisoes::GerenciadorColisoes() :jogador1(NULL), jogador2(NULL), LIs(), LOs()
+	GerenciadorColisoes::GerenciadorColisoes() :jogador1(NULL), jogador2(NULL), LIs(), LOs(), LPs()
 	{
 	}
 
@@ -57,6 +57,13 @@ namespace Gerenciadores
 	{
 		if (Entidades::Obstaculos::Obstaculo* ob = dynamic_cast<Entidades::Obstaculos::Obstaculo*>(pO)) {
 			LOs.push_back(ob);
+		}
+	}
+
+	void GerenciadorColisoes::incluirProjetil(Entidades::Projetil* pPr)
+	{
+		if (Entidades::Projetil* pr = dynamic_cast<Entidades::Projetil*>(pPr)) {
+			LPs.insert(pPr);
 		}
 	}
 

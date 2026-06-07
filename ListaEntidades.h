@@ -1,6 +1,7 @@
 #pragma once
 #include "Entidade.h"
 #include "Personagem.h"
+#include "Projetil.h"
 #include "Lista.h"
 
 namespace Listas

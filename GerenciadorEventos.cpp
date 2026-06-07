@@ -33,14 +33,25 @@ namespace Gerenciadores {
 	void GerenciadorEventos::verificaTeclaPressionada(sf::Keyboard::Key tecla)
 	{
 		if (pJog && pJog->getVivo()) {
-			if (tecla == sf::Keyboard::D)
+			if (tecla == sf::Keyboard::D) {
 				pJog->setMovDir(true);
+				pJog->setDirecao(DIREITA);
+			}
 
-			if (tecla == sf::Keyboard::A)
+			if (tecla == sf::Keyboard::A) {
 				pJog->setMovEsq(true);
+				pJog->setDirecao(ESQUERDA);
+			}
 
 			if (tecla == sf::Keyboard::Space) {
 				pJog->pular();
+			}
+
+			if (tecla == sf::Keyboard::Q) {
+				if (pJog->getCooldownTiro() <= 0.f) {
+					pJog->setQuerAtirar(true);
+					pJog->setCooldownTiro(1.f);
+				}
 			}
 			
 			if (tecla == sf::Keyboard::Escape) {
@@ -73,6 +84,10 @@ namespace Gerenciadores {
 
 		if (tecla == sf::Keyboard::A)
 			pJog->setMovEsq(false);	
+
+		if(tecla == sf::Keyboard::Q){
+			pJog->setQuerAtirar(false);
+		}
 	}
 
 	void GerenciadorEventos::executar() {

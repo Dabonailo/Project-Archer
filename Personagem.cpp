@@ -58,6 +58,7 @@ namespace Entidades
 		{
 			tempoInvulneravel = t;
 		}
+
 		void Personagem::setDirecao(Direcao d)
 		{
 			if (d == Direcao::ESQUERDA) {
@@ -67,6 +68,19 @@ namespace Entidades
 			else if (d == Direcao::DIREITA) {
 				direita = true;
 				esquerda = false;
+			}
+		}
+
+		Direcao Personagem::getDirecao()
+		{
+			if (direita) {
+				return DIREITA;
+			}
+			if (esquerda) {
+				return ESQUERDA;
+			}
+			else {
+				return DIREITA;
 			}
 		}
 	}

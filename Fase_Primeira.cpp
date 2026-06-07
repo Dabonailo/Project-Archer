@@ -12,12 +12,6 @@ namespace Fases
 	{
 	}
 
-	void Fase_Primeira::adicionarJogador(Entidades::Personagens::Jogador* p)
-	{
-		ListaEntFase.incluir(p);
-		GC.incluirJogadores(p);
-	}
-
 	void Fase_Primeira::criarInimigos()
 	{
 		criarInimgosFaceis();
@@ -186,14 +180,17 @@ namespace Fases
         ListaEntFase.incluir(esp);
         GC.incluirObstaculo(esp);
 	}
+
     void Fase_Primeira::criarObstaculos()
     {
         criarPlataformas();
         criarEspinhos();
 	}
+
     void Fase_Primeira::executar()
     {  
         ListaEntFase.percorrerLista();
+        criarProjetilJogador();
         GC.executar();
     }
 
