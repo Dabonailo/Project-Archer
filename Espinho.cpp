@@ -4,8 +4,8 @@ namespace Entidades
 {
 	namespace Obstaculos
 	{
-		Espinho::Espinho(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, bool d, short int dano) 
-			: Obstaculo(pos, tam, textura, v, d), danosidade(dano)
+		Espinho::Espinho(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, bool d, short int dano, float e)
+			: Obstaculo(pos, tam, textura, v, d, e), danosidade(dano)
 		{
 			body.setFillColor(sf::Color::White);
 		}

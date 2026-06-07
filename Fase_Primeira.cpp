@@ -16,6 +16,7 @@ namespace Fases
 	{
 		ListaEntFase.incluir(p);
 		GC.incluirJogadores(p);
+		lJogs.incluir(p);
 	}
 
 	void Fase_Primeira::criarInimigos()
@@ -28,14 +29,15 @@ namespace Fases
     {
         Entidades::Personagens::Inimigo_facil* inimigo1 = new Entidades::Personagens::Inimigo_facil();
         inimigo1->setPosicao(sf::Vector2f(600.f, 200.f));
+		inimigo1->setListaJogadores(&lJogs);
         ListaEntFase.incluir(inimigo1);
         GC.incluirInimigo(inimigo1);
     }
 
     void Fase_Primeira::criarInimgosMedios()
     {
-        Entidades::Personagens::Inimigo_medio* inimigo1 = new Entidades::Personagens::Inimigo_medio();
-        inimigo1->setPosicao(sf::Vector2f(1040.f, 150.f));
+        Entidades::Personagens::Inimigo_medio* inimigo1 = new Entidades::Personagens::Inimigo_medio(sf::Vector2f(1040.f, 150.f));
+		inimigo1->setListaJogadores(&lJogs);
         ListaEntFase.incluir(inimigo1);
         GC.incluirInimigo(inimigo1);
 	}

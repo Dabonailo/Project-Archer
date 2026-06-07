@@ -5,8 +5,8 @@ namespace Entidades
 	namespace Personagens
 	{
 
-		Personagem::Personagem(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v)
-			: Entidade(pos, tam, textura, v), numVidas(5),
+		Personagem::Personagem(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, float e)
+			: Entidade(pos, tam, textura, v, e), numVidas(5),
 			velocidadeKnockback(sf::Vector2f(0.f, 0.f)),
 			cooldownKnockback(0.f),
 			esquerda(false),

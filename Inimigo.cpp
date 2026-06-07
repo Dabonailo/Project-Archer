@@ -5,8 +5,8 @@ namespace Entidades
 	namespace Personagens
 	{
 
-		Inimigo::Inimigo(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v)
-			:Personagem(pos, tam, textura, v), cooldownMovimento(0.f), movimento(-1)
+		Inimigo::Inimigo(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, float e)
+			:Personagem(pos, tam, textura, v, e), cooldownMovimento(0.f), movimento(-1), lJogs(NULL)
 		{
 		}
 

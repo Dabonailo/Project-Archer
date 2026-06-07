@@ -9,9 +9,9 @@ namespace Entidades
             sf::Vector2f pos,
             sf::Vector2f tam,
             const std::string& textura,
-            sf::Vector2f v)
+            sf::Vector2f v, float e)
 
-            :Inimigo(pos, tam, textura, v), raio(0.f)
+            :Inimigo(pos, tam, textura, v, e), raio(250.f)
         {
         }
 
@@ -39,18 +39,82 @@ namespace Entidades
             }
         }
 
-        void Inimigo_facil::mover() {
+        void Inimigo_facil::mover()
+        {
+            bool achou = false;
+
+            Listas::Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* atual =
+                lJogs->getPrimeiro();
+
+            while (atual && !achou)
+            {
+                Jogador* pJog =
+                    dynamic_cast<Jogador*>(atual->getInfo());
+
+                if (pJog)
+                {
+
+                    float dx = pJog->getPosicao().x - getPosicao().x;
+                    float dy = pJog->getPosicao().y - getPosicao().y;
+
+                    float dist = sqrt(dx * dx + dy * dy);
+
+                    if (dist <= raio)
+
+                    {
+                        perseguir(pJog);
+                        achou = true;
+                    }
+                }
+
+                atual = atual->getProximo();
+            }
+
+            if (!achou)
+                movimentoAleatorio();
+        }
+
+        void Inimigo_facil::perseguir(Jogador* pJog)
+        {
+            if (!pJog)
+                return;
+
+            if (pJog->getPosicao().x > getPosicao().x)
+            {
+                velocidade.x = INIMIGO_FACIL_VELOCIDADE_X;
+                body.setScale(-1.f, 1.f);
+            }
+            else
+            {
+                velocidade.x = -INIMIGO_FACIL_VELOCIDADE_X;
+                body.setScale(1.f, 1.f);
+            }
+
+            if (pJog->getPosicao().y < getPosicao().y - 40.f)
+            {
+                if (noChao)
+                {
+                    velocidade.y = -FORCA_PULO;
+                    noChao = false;
+                }
+            }
+        }
+
+        void Inimigo_facil::movimentoAleatorio()
+        {
             if (cooldownMovimento <= 0.f) {
                 movimento = rand() % 4 + 1;
 
-                switch(movimento)
+                switch (movimento)
                 {
                 case 1:
                     velocidade.x = INIMIGO_FACIL_VELOCIDADE_X;
+                    body.setScale(-1.f, 1.f);
                     break;
 
                 case 2:
                     velocidade.x = -INIMIGO_FACIL_VELOCIDADE_X;
+                    body.setScale(1.f, 1.f);
                     break;
 
                 case 3:
@@ -67,7 +131,7 @@ namespace Entidades
                 }
                 cooldownMovimento = 5.f;
             }
-        }
+		}
 
         void Inimigo_facil::executar()
         {

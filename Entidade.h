@@ -19,9 +19,10 @@ namespace Entidades
 
 		sf::Vector2f velocidade;
 		bool noChao;
+		float empuxo;
 
 	public:
-		Entidade(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v);
+		Entidade(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, float e);
 
 		virtual ~Entidade();
 

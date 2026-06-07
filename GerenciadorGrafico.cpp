@@ -70,4 +70,10 @@ namespace Gerenciadores
 		window->draw(pE->getBody());
 	}
 
+	void GerenciadorGrafico::desenharAtaque(const sf::RectangleShape* ataque)
+	{
+		window->draw(*ataque);
+		std::cout << "desenhou ataque" << std::endl;
+	}
+
 }

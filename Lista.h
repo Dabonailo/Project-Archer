@@ -15,7 +15,7 @@ namespace Listas
 
 		public:
 			Elemento(TE* e) : pProx(NULL), pInfo(e) {}
-			~Elemento() { delete pInfo; }
+			~Elemento() {}
 
 			void incluir(TE* p) {
 				pInfo = p;
@@ -32,6 +32,48 @@ namespace Listas
 			TE* getInfo() {
 				return pInfo;
 			}
+		};
+
+		template <class TE>
+		class Iterator
+		{
+		private:
+			Elemento<TE>* atual;
+		public:
+			Iterator(Elemento<TE>* c = nullptr) :
+				atual(c) {
+			}
+			~Iterator() {}
+
+			Iterator& operator++()
+			{
+				atual = atual->prox;
+				return *this;
+			}
+			Iterator& operator++(int)
+			{
+				atual = atual->get_Proximo();
+				return *this;
+			}
+			bool operator==(const Elemento<TE>* outro) const
+			{
+				return atual == outro;
+			}
+
+			bool operator!=(const Elemento<TE>* outro) const
+			{
+				return !(atual == outro);
+			}
+			void operator=(const Elemento<TE>* outro)
+			{
+				atual = outro;
+			}
+			TE* operator*()
+			{
+				if (atual)
+					return atual->get_data();
+			}
+			const Elemento<TE>* get_atual() const { return atual; }
 		};
 
 	private:

@@ -3,8 +3,8 @@
 namespace Entidades
 {
 
-	Entidade::Entidade(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v) :
-		Ente(pos, tam, textura), velocidade(v), noChao(false)
+	Entidade::Entidade(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, float e) :
+		Ente(pos, tam, textura), velocidade(v), noChao(false), empuxo(e)
 	{
 	}
 
@@ -27,7 +27,7 @@ namespace Entidades
 	{	
 		if (!noChao)
 		{
-			velocidade.y += GRAVIDADE * getTempo();
+			velocidade.y += (GRAVIDADE - empuxo)* getTempo();
 		}
 		if (velocidade.y > VEL_QUEDA_MAX)
 			velocidade.y = VEL_QUEDA_MAX;
@@ -47,4 +47,5 @@ namespace Entidades
 	{
 		body.move(m);
 	}
+
 }

@@ -1,4 +1,5 @@
 #include "Jogador.h"
+#include "GerenciadorGrafico.h" 
 
 namespace Entidades
 {
@@ -9,9 +10,10 @@ namespace Entidades
             sf::Vector2f pos,
             sf::Vector2f tam,
             const std::string& textura,
-            sf::Vector2f v
+            sf::Vector2f v,
+            float e
         )
-            : Personagem(pos, tam, textura, v), movDir(false), movEsq(false)
+            : Personagem(pos, tam, textura, v, e), movDir(false), movEsq(false)
         {
             texturaEntidade.loadFromFile(textura);
             body.setTexture(&texturaEntidade);
@@ -25,6 +27,16 @@ namespace Entidades
 
             velocidade = sf::Vector2f(0.f, 0.f);
             velocidadeKnockback = sf::Vector2f(0.f, 0.f);
+
+            // Ataque: tamanho relativo ao corpo e origem no centro para facilitar o posicionamento
+            ataque_corpo.setFillColor(sf::Color::Cyan);
+            ataque_corpo.setSize(sf::Vector2f(body.getSize().x * ATQ_SCALE_X, body.getSize().y * ATQ_SCALE_Y));
+            ataque_corpo.setOrigin(ataque_corpo.getSize().x / 2.f, ataque_corpo.getSize().y / 2.f);
+
+            // Inicializa flags/tempos de ataque
+            ataqueAtivo = false;
+            tempoAtaque = 0.f;
+            tempoCooldown = 0.f;
         }
 
         Jogador::~Jogador()
@@ -90,6 +102,29 @@ namespace Entidades
             }
         }
 
+        void Jogador::atacar()
+        {
+            // Não inicia novo ataque enquanto estiver ativo ou em cooldown
+            if (ataqueAtivo || tempoCooldown > 0.f)
+                return;
+
+            // posiciona inicialmente ao lado do corpo conforme direção
+            if (body.getScale().x > 0.f)
+            {
+                ataque_corpo.setPosition(sf::Vector2f(body.getPosition().x + body.getSize().x / 2.f + ataque_corpo.getSize().x / 2.f, body.getPosition().y));
+            }
+            else
+            {
+                ataque_corpo.setPosition(sf::Vector2f(body.getPosition().x - body.getSize().x / 2.f - ataque_corpo.getSize().x / 2.f, body.getPosition().y));
+            }
+
+            ataqueAtivo = true;
+            tempoAtaque = ATQ_TEMPO; // duração do ataque
+            tempoCooldown = ATQ_COOLDOWN; // tempo até poder atacar de novo
+
+            std::cout << "ataque acionado" << std::endl;
+        }
+
         void Jogador::executar()
         {
             if (noChao)
@@ -113,11 +148,29 @@ namespace Entidades
             if (cooldownKnockback > 0.f)
                 cooldownKnockback -= getTempo();
 
+            // reduzir tempo de cooldown do ataque (sempre)
+            if (tempoCooldown > 0.f)
+                tempoCooldown -= getTempo();
+
             desenhar();
 
-			//std::cout << getBody().getPosition().x << " " << getBody().getPosition().y << std::endl; 
-            // 
-            std::cout << velocidade.y << std::endl;
+            if (ataqueAtivo)
+            {
+                // Mantém o ataque preso ao jogador enquanto ativo (atualiza posição a cada frame)
+                if (body.getScale().x > 0.f)
+                {
+                    ataque_corpo.setPosition(sf::Vector2f(body.getPosition().x + body.getSize().x / 2.f + ataque_corpo.getSize().x / 2.f, body.getPosition().y));
+                }
+                else
+                {
+                    ataque_corpo.setPosition(sf::Vector2f(body.getPosition().x - body.getSize().x / 2.f - ataque_corpo.getSize().x / 2.f, body.getPosition().y));
+                }
+
+                pGG->desenharAtaque(&ataque_corpo);
+                tempoAtaque -= getTempo();
+                if (tempoAtaque <= 0.f)
+                    ataqueAtivo = false;
+            }
         }
 
     }

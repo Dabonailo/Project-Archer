@@ -28,7 +28,7 @@ namespace Entidades
             float tempoInvulneravel;
 
         public:
-            Personagem(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v);
+            Personagem(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, float e);
             ~Personagem();
 
             const int getVida() const;

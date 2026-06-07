@@ -5,8 +5,8 @@ namespace Entidades
 	namespace Obstaculos
 	{
 		
-		Plataforma::Plataforma(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, bool d)
-			: Obstaculo(pos, tam, textura, v, d)
+		Plataforma::Plataforma(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, bool d, float e)
+			: Obstaculo(pos, tam, textura, v, d, e)
 		{
 			body.setFillColor(sf::Color::Green);
 		}

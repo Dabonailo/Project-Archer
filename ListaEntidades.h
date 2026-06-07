@@ -16,5 +16,10 @@ namespace Listas
 
 		void incluir(Entidades::Entidade* pE);
 		void percorrerLista();
+
+		Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* getPrimeiro()
+		{
+			return LEs.getPrimeiro();
+		}
 	};
 }

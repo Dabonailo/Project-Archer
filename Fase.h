@@ -15,6 +15,7 @@ namespace Fases
 	{
 	protected:
 		Listas::ListaEntidades ListaEntFase;
+		Listas::ListaEntidades lJogs;
 		Gerenciadores::GerenciadorColisoes GC;
 
 	protected:

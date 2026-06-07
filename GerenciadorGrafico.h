@@ -31,5 +31,6 @@ namespace Gerenciadores
 		const bool verificaJanelaAberta();
 
 		void desenharEnte(Ente* pE);
+		void desenharAtaque(const sf::RectangleShape* ataque);
 	};
 }

@@ -39,8 +39,11 @@ namespace Gerenciadores {
 			if (tecla == sf::Keyboard::A)
 				pJog->setMovEsq(true);
 
-			if (tecla == sf::Keyboard::Space) {
+			if (tecla == sf::Keyboard::W) {
 				pJog->pular();
+			}
+			if (tecla == sf::Keyboard::Space) {
+				pJog->atacar();
 			}
 		}
 

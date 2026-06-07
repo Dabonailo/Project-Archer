@@ -6,6 +6,11 @@
 #define JOG_ACELERACAO 200.f
 #define ATRITO 500.f
 
+#define ATQ_TEMPO 0.20f
+#define ATQ_COOLDOWN 0.30f
+#define ATQ_SCALE_X 0.6f
+#define ATQ_SCALE_Y 0.6f
+
 namespace Entidades
 {
 	namespace Personagens
@@ -13,15 +18,24 @@ namespace Entidades
 
 		class Jogador : public Personagem
 		{
+		public:
+			sf::RectangleShape ataque_corpo;
+
 		private:
+			bool ataqueAtivo;
+			float tempoAtaque;
+			float tempoCooldown;
+
 			bool movDir;
 			bool movEsq;
+			
 
 		public:
 			Jogador(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
 				sf::Vector2f tam = sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
 				const std::string& textura = "",
-				sf::Vector2f v = sf::Vector2f(ENT_VEL_DEFAULT_X, ENT_VEL_DEFAULT_Y));
+				sf::Vector2f v = sf::Vector2f(ENT_VEL_DEFAULT_X, ENT_VEL_DEFAULT_Y),
+				float e = 0);
 
 			~Jogador();
 
@@ -30,6 +44,7 @@ namespace Entidades
 
 			void mover() override;
 			void pular();
+			void atacar();
 
 			void executar() override;
 		};
