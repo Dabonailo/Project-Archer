@@ -16,7 +16,6 @@ namespace Fases
         Fase_Primeira();
         ~Fase_Primeira();
 
-        void adicionarJogador(Entidades::Personagens::Jogador* p) override;
         void criarInimigos() override;
         void criarInimgosFaceis();
 		void criarInimgosMedios();

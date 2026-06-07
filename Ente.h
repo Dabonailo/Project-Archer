@@ -50,6 +50,7 @@ public:
 	virtual void executar() = 0;
 
 	void desenhar();
+	void desenhar(sf::Text t); //para botões
 
 	static void setGG(Gerenciadores::GerenciadorGrafico* pG) {
 		pGG = pG;

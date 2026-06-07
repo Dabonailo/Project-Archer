@@ -188,14 +188,17 @@ namespace Fases
         ListaEntFase.incluir(esp);
         GC.incluirObstaculo(esp);
 	}
+
     void Fase_Primeira::criarObstaculos()
     {
         criarPlataformas();
         criarEspinhos();
 	}
+
     void Fase_Primeira::executar()
     {  
         ListaEntFase.percorrerLista();
+        criarProjetilJogador();
         GC.executar();
     }
 

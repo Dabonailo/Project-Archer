@@ -48,6 +48,7 @@ namespace Entidades
             void setTempoInvulneravel(float t);
 
             void setDirecao(Direcao d);
+            Direcao getDirecao();
 
         };
     }

@@ -44,7 +44,9 @@ namespace Entidades
 		void Personagem::recebeDano(int dano)
 		{
 			numVidas -= dano;
-			std::cout << getVida() << std::endl;
+			if (getVida() >= 0) {
+				std::cout << "vida: " << getVida() << std::endl;
+			}
 		}
 
 		const float Personagem::getTempoInvulneravel() const
@@ -56,6 +58,7 @@ namespace Entidades
 		{
 			tempoInvulneravel = t;
 		}
+
 		void Personagem::setDirecao(Direcao d)
 		{
 			if (d == Direcao::ESQUERDA) {
@@ -65,6 +68,19 @@ namespace Entidades
 			else if (d == Direcao::DIREITA) {
 				direita = true;
 				esquerda = false;
+			}
+		}
+
+		Direcao Personagem::getDirecao()
+		{
+			if (direita) {
+				return DIREITA;
+			}
+			if (esquerda) {
+				return ESQUERDA;
+			}
+			else {
+				return DIREITA;
 			}
 		}
 	}

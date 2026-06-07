@@ -14,12 +14,17 @@ private:
 	Entidades::Personagens::Jogador* pjogador;
 	Gerenciadores::GerenciadorGrafico* GG;
 	Gerenciadores::GerenciadorEventos* GE;
-	Fases::Fase_Primeira fase1;
+	Fases::Fase_Primeira* fase1;
 	Menu* menu;
 
 public:
 	Jogo();
 	~Jogo();
+
+	void criarFasePrimeira();
+	void deletarFasePrimeira();
+
+	void executarMenu();
 
 	void executar();
 };

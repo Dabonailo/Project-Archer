@@ -32,27 +32,47 @@ namespace Gerenciadores {
 
 	void GerenciadorEventos::verificaTeclaPressionada(sf::Keyboard::Key tecla)
 	{
-		if (pJog) {
-			if (tecla == sf::Keyboard::D)
+		if (pJog && pJog->getVivo()) {
+			if (tecla == sf::Keyboard::D) {
 				pJog->setMovDir(true);
+				pJog->setDirecao(DIREITA);
+			}
 
-			if (tecla == sf::Keyboard::A)
+			if (tecla == sf::Keyboard::A) {
 				pJog->setMovEsq(true);
+				pJog->setDirecao(ESQUERDA);
+			}
 
-			if (tecla == sf::Keyboard::W) {
+			if (tecla == sf::Keyboard::Space) {
 				pJog->pular();
 			}
-			if (tecla == sf::Keyboard::Space) {
-				pJog->atacar();
+
+			if (tecla == sf::Keyboard::Q) {
+				if (pJog->getCooldownTiro() <= 0.f) {
+					pJog->setQuerAtirar(true);
+					pJog->setCooldownTiro(1.f);
+				}
+			}
+			
+			if (tecla == sf::Keyboard::Escape) {
+				menu->mudarMenu(MENU_PAUSA);
 			}
 		}
 
-		if (menu) {
+		if (menu && menu->getTipoMenu() == MENU_PRINCIPAL || 
+			menu->getTipoMenu() == MENU_PAUSA || 
+			menu->getTipoMenu() == MENU_FASES ||
+			menu->getTipoMenu() == MENU_GAME_OVER
+			) 
+		{
 			if (tecla == sf::Keyboard::W || tecla == sf::Keyboard::PageUp) {
 				menu->selecionarBotoes(CIMA);
 			}
 			if (tecla == sf::Keyboard::S || tecla == sf::Keyboard::PageDown) {
 				menu->selecionarBotoes(BAIXO);
+			}
+			if (tecla == sf::Keyboard::Enter) {
+				menu->executarBotao();
 			}
 		}
 	}
@@ -64,6 +84,10 @@ namespace Gerenciadores {
 
 		if (tecla == sf::Keyboard::A)
 			pJog->setMovEsq(false);	
+
+		if(tecla == sf::Keyboard::Q){
+			pJog->setQuerAtirar(false);
+		}
 	}
 
 	void GerenciadorEventos::executar() {
@@ -75,10 +99,6 @@ namespace Gerenciadores {
 
 			else if (evento.type == sf::Event::KeyPressed)
 			{
-				if (evento.key.code == sf::Keyboard::Escape) {
-					pGrafico->fecharJanela();
-				}
-
 				verificaTeclaPressionada(evento.key.code);
 			}
 

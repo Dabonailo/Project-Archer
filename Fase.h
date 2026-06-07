@@ -5,31 +5,34 @@
 #include "GerenciadorColisoes.h"
 #include "Plataforma.h"
 #include "Espinho.h"
-
-
+#include "Projetil.h"
 
 namespace Fases	
 {
-
 	class Fase
 	{
 	protected:
 		Listas::ListaEntidades ListaEntFase;
 		Listas::ListaEntidades lJogs;
 		Gerenciadores::GerenciadorColisoes GC;
+		Entidades::Personagens::Jogador* pJogador;
 
 	protected:
-		virtual void adicionarJogador(Entidades::Personagens::Jogador* p) = 0;
 		virtual void criarInimigos() = 0;
 		virtual void criarObstaculos() = 0;
+		virtual void criarProjetilJogador();
 		
 
 	public:
-		Fase() :ListaEntFase(), GC() {}
-		~Fase() {}
+		Fase();
+		~Fase();
 
-		Listas::ListaEntidades* getListaEntFase() { return &ListaEntFase; }
+		virtual void adicionarJogador(Entidades::Personagens::Jogador* p);
+
+		Listas::ListaEntidades* getListaEntFase();
 
 		virtual void executar() = 0;
+
+		void desenhar();
 	};
 }

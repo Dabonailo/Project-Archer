@@ -1,6 +1,7 @@
 #pragma once
 #include "Entidade.h"
 #include "Personagem.h"
+#include "Projetil.h"
 #include "Lista.h"
 
 namespace Listas
@@ -16,6 +17,7 @@ namespace Listas
 
 		void incluir(Entidades::Entidade* pE);
 		void percorrerLista();
+		void desenharLista();
 
 		Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* getPrimeiro()
 		{
