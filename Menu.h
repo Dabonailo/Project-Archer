@@ -14,7 +14,8 @@ enum tipoMenu
 	MENU_PRINCIPAL,
 	MENU_PAUSA,
 	MENU_FASES,
-	MENU_OPCOES
+	MENU_OPCOES,
+	MENU_GAME_OVER
 };
 
 class Menu :public Ente {
@@ -45,11 +46,14 @@ public:
 
 	void limparvecBotao();
 	void limparvecTexto();
+	void limparMenu();
 
 	void adicionarTexto(sf::String s = "Inserir texto", sf::Vector2f pos = sf::Vector2f(0.f, 0.f), unsigned int tam = 30);
 
 	void criarMenuPrincipal();
+	void criarMenuFases();
 	void criarMenuPausa();
+	void criarMenuGameOver();
 
 	void selecionarBotoes(Direcao d);
 	void executarBotao();

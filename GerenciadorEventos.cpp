@@ -32,7 +32,7 @@ namespace Gerenciadores {
 
 	void GerenciadorEventos::verificaTeclaPressionada(sf::Keyboard::Key tecla)
 	{
-		if (pJog) {
+		if (pJog && pJog->getVivo()) {
 			if (tecla == sf::Keyboard::D)
 				pJog->setMovDir(true);
 
@@ -48,7 +48,12 @@ namespace Gerenciadores {
 			}
 		}
 
-		if (menu && menu->getTipoMenu() == MENU_PRINCIPAL || menu->getTipoMenu() == MENU_PAUSA) {
+		if (menu && menu->getTipoMenu() == MENU_PRINCIPAL || 
+			menu->getTipoMenu() == MENU_PAUSA || 
+			menu->getTipoMenu() == MENU_FASES ||
+			menu->getTipoMenu() == MENU_GAME_OVER
+			) 
+		{
 			if (tecla == sf::Keyboard::W || tecla == sf::Keyboard::PageUp) {
 				menu->selecionarBotoes(CIMA);
 			}

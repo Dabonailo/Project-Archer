@@ -24,6 +24,8 @@ public:
 	void criarFasePrimeira();
 	void deletarFasePrimeira();
 
+	void executarMenu();
+
 	void executar();
 };
 

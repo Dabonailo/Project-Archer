@@ -39,10 +39,40 @@ void Jogo::criarFasePrimeira()
 
 void Jogo::deletarFasePrimeira()
 {
-    delete fase1;
-    fase1 = NULL;
-    GE->setJogador(NULL);
-    std::cout << "fase deletada" << std::endl;
+    if (fase1) {
+        delete fase1;
+        fase1 = NULL;
+        pjogador = NULL;
+        GE->setJogador(NULL);
+        std::cout << "fase deletada" << std::endl;
+    }
+}
+
+void Jogo::executarMenu()
+{
+    if (pjogador && !pjogador->getVivo() && menu->getTipoMenu() != MENU_GAME_OVER)
+    {
+        menu->mudarMenu(MENU_GAME_OVER);
+    }
+
+    switch (menu->getTipoMenu())
+    {
+    case MENU_PRINCIPAL:
+    case MENU_FASES:
+        menu->executar();
+        break;
+
+    case MENU_PAUSA:
+        fase1->desenhar();
+        menu->executar();
+        break;
+
+    case MENU_GAME_OVER:
+    case NO_JOGO:
+        fase1->executar();
+        menu->executar();
+        break;
+    }
 }
 
 void Jogo::executar()
@@ -52,22 +82,8 @@ void Jogo::executar()
         GE->executar();
         GG->getWindow()->clear();
 
-        switch (menu->getTipoMenu())
-        {
-        case MENU_PRINCIPAL:
-            menu->executar();
-            break;
-
-        case MENU_PAUSA:
-            fase1->desenhar();
-            menu->executar();
-            break;
-
-        case NO_JOGO:
-            fase1->executar();
-            break;
-        }
-
+        executarMenu();
+        
         GG->getWindow()->display();
         GG->resetarRelogio();
     }

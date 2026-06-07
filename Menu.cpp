@@ -32,12 +32,28 @@ void Menu::mudarMenu(tipoMenu menu)
 
     switch (menuAtual)
     {
+    case NO_JOGO:
+        limparMenu();
+        break;
+        
     case MENU_PRINCIPAL:
         criarMenuPrincipal();
         break;
 
+    case MENU_FASES:
+        criarMenuFases();
+        break;
+
     case MENU_PAUSA:
         criarMenuPausa();
+        break;
+
+    case MENU_GAME_OVER:
+        criarMenuGameOver();
+        break;
+
+    default:
+        std::cout << "Sem Menu definido" << std::endl;
         break;
     }
 
@@ -67,6 +83,13 @@ void Menu::limparvecTexto()
     vecTexto.clear();
 }
 
+void Menu::limparMenu()
+{
+    limparvecBotao();
+    limparvecTexto();
+    body.setFillColor(sf::Color(0, 0, 0, 0));
+}
+
 void Menu::adicionarTexto(sf::String s, sf::Vector2f pos, unsigned int tam)
 {
     sf::Text texto;
@@ -92,7 +115,7 @@ void Menu::criarMenuPrincipal()
 
     adicionarTexto("JOGO", sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 200.f), 100);
 
-    vecBotao.push_back(new Botao(ACAO_JOGAR, //mudar assim que adicionar o menu fases
+    vecBotao.push_back(new Botao(ACAO_MENU_FASES, //mudar assim que adicionar o menu fases
         sf::String("Jogar"),
         pGG->getWindowCentro()
     ));
@@ -100,6 +123,30 @@ void Menu::criarMenuPrincipal()
     vecBotao.push_back(new Botao(ACAO_SAIR,
         sf::String("Sair"),
         sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 100.f)
+    ));
+}
+
+void Menu::criarMenuFases()
+{
+    body.setFillColor(sf::Color(255, 255, 255, 255));
+
+    limparvecTexto();
+
+    adicionarTexto("SELECIONE UMA FASE", sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 200.f), 100);
+
+    vecBotao.push_back(new Botao(ACAO_JOGAR_FASE_1,
+        sf::String("FASE 1"),
+        pGG->getWindowCentro()
+    ));
+
+    vecBotao.push_back(new Botao(ACAO_JOGAR_FASE_2,
+        sf::String("FASE 2"),
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 100.f)
+    ));
+
+    vecBotao.push_back(new Botao(ACAO_VOLTAR,
+        sf::String("Voltar"),
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 200.f)
     ));
 }
 
@@ -113,6 +160,25 @@ void Menu::criarMenuPausa()
 
     vecBotao.push_back(new Botao(ACAO_RESUMIR,
         sf::String("Resumir"),
+        pGG->getWindowCentro()
+    ));
+
+    vecBotao.push_back(new Botao(ACAO_VOLTAR,
+        sf::String("Voltar para o Menu Principal"),
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 100.f)
+    ));
+}
+
+void Menu::criarMenuGameOver()
+{
+    body.setFillColor(sf::Color(0, 0, 0, 150));
+
+    limparvecTexto();
+
+    adicionarTexto("GAME OVER", sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 200.f), 100);
+
+    vecBotao.push_back(new Botao(ACAO_JOGAR_FASE_1,
+        sf::String("Tentar de novo"),
         pGG->getWindowCentro()
     ));
 
@@ -150,9 +216,13 @@ void Menu::executarBotao()
 {
     switch ((*botaoSelecionado)->getAcao())
     {
-    case ACAO_JOGAR:
+    case ACAO_JOGAR_FASE_1:
         pJogo->criarFasePrimeira();
         mudarMenu(NO_JOGO);
+        break;
+
+    case ACAO_MENU_FASES:
+        mudarMenu(MENU_FASES);
         break;
 
     case ACAO_SAIR:
@@ -167,8 +237,10 @@ void Menu::executarBotao()
     case ACAO_RESUMIR:
         mudarMenu(NO_JOGO);
         break;
-    }
 
+    default:
+        std::cout << "Botao sem acao definida" << std::endl;
+    }
 }
 
 void Menu::executar()

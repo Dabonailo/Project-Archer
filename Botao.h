@@ -7,7 +7,8 @@
 
 enum AcaoBotao
 {
-	ACAO_JOGAR,
+	ACAO_JOGAR_FASE_1,
+	ACAO_JOGAR_FASE_2,
 	ACAO_SAIR,
 	ACAO_MENU_FASES,
 	ACAO_VOLTAR,
@@ -27,7 +28,7 @@ private:
 
 public:
 	Botao(
-		AcaoBotao a = ACAO_JOGAR,
+		AcaoBotao a = ACAO_JOGAR_FASE_1,
 		const sf::String& str = sf::String("Inserir Texto"),
 		sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
 		sf::Vector2f tam = sf::Vector2f(TAMANHO_BOTAO_DEFAUlT_X, TAMANHO_BOTAO_DEFAULT_Y),
