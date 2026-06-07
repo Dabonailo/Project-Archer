@@ -4,8 +4,8 @@ Entidades::Projetil::Projetil(sf::Vector2f pos,
 	sf::Vector2f escala, 
 	sf::Vector2f velocidade,
 	sf::Vector2f tam,  
-	const std::string& textura) :
-		Entidade(pos, tam, textura, velocidade), ativo(true)
+	const std::string& textura, float e) :
+		Entidade(pos, tam, textura, velocidade, e), ativo(true)
 {
 	body.setScale(escala);
 }

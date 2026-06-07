@@ -21,7 +21,7 @@ namespace Entidades {
 			sf::Vector2f escala = sf::Vector2f(1.f, 1.f),
 			sf::Vector2f velocidade = sf::Vector2f(0.f, 0.f),
 			sf::Vector2f tam = sf::Vector2f(TAMANHO_PROJETIL_X, TAMANHO_PROJETIL_Y),
-			const std::string& textura = "Flecha.png");
+			const std::string& textura = "Flecha.png", float e = GRAVIDADE);
 
 		~Projetil();
 
