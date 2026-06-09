@@ -155,6 +155,12 @@ namespace Entidades
                 cooldownMovimento -= getTempo();
             }
 
+            if (tempoInvulneravel > 0.f) {
+                tempoInvulneravel -= getTempo();
+            }
+
+            //std::cout << tempoInvulneravel << std::endl;
+
         }
     }
 }

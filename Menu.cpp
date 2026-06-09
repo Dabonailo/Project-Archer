@@ -97,6 +97,8 @@ void Menu::adicionarTexto(sf::String s, sf::Vector2f pos, unsigned int tam)
     texto.setFont(fonte);
     texto.setString(s);
     texto.setCharacterSize(tam);
+    texto.setOutlineColor(sf::Color::Black);
+    texto.setOutlineThickness(3.f);
 
     sf::FloatRect bounds = texto.getLocalBounds();
 

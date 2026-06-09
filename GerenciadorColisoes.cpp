@@ -158,6 +158,10 @@ namespace Gerenciadores
 			(*it)->setnoChao(false);
 			tratarColisaoChao(*it);
 		}
+		for (std::set<Entidades::Projetil*>::iterator it = LPs.begin(); it != LPs.end(); ++it) {
+			(*it)->setnoChao(false);
+			tratarColisaoChao(*it);
+		}
 	}
 
 	void GerenciadorColisoes::tratarColisaoObstacProjetil()

@@ -72,6 +72,7 @@ void Entidades::Projetil::executar()
 		if (tempoCravado >= 2.f)
 			ativo = false;
 
+		gravitar();
 		desenhar();
 	}
 
