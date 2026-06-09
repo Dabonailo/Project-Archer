@@ -1,17 +1,16 @@
 #include "Projetil.h"
 
-Entidades::Projetil::Projetil(sf::Vector2f pos, 
-	sf::Vector2f escala, 
+Entidades::Projetil::Projetil(sf::Vector2f pos,
 	sf::Vector2f velocidade,
-	sf::Vector2f tam,  
+	sf::Vector2f tam,
 	const std::string& textura, float e) :
-		Entidade(pos, tam, textura, velocidade, e), ativo(true)
+	Entidade(pos, tam, textura, velocidade, e), ativo(true), cooldownParado(0.f), cravado(false), tempoCravado(0.f)
 {
-	body.setScale(escala);
 }
 
 Entidades::Projetil::~Projetil()
 {
+	ativo = false;
 }
 
 void Entidades::Projetil::setAtivo(bool a)
@@ -22,6 +21,27 @@ void Entidades::Projetil::setAtivo(bool a)
 bool Entidades::Projetil::getAtivo()
 {
 	return ativo;
+}
+
+void Entidades::Projetil::verificaForaDaTela()
+{
+	if (getPosicao().x < 0.f ||
+		getPosicao().x > pGG->getWindowTam().x ||
+		getPosicao().y < 0.f ||
+		getPosicao().y > pGG->getWindowTam().y)
+	{
+		ativo = false;
+	}
+}
+
+void Entidades::Projetil::cravarProjetil(Entidade* e)
+{
+	cravado = true;
+	alvo = e;
+
+	offset = getPosicao() - e->getPosicao();
+
+	velocidade = sf::Vector2f(0.f, 0.f);
 }
 
 void Entidades::Projetil::mover()
@@ -37,12 +57,29 @@ void Entidades::Projetil::mover()
 	{
 		velocidade.x += RESISTENCIA_DO_AR * getTempo();
 		if (velocidade.x > 0.f) velocidade.x = 0.f;
-	}
+	}	
+	body.setRotation((std::atan2(velocidade.y, velocidade.x)) * 180.f / 3.14159265f);
 }
 
 void Entidades::Projetil::executar()
 {
-	desenhar();
-	gravitar();
-	mover();
+	if (cravado && alvo)
+	{
+		setPosicao(alvo->getPosicao() + offset);
+
+		tempoCravado += getTempo();
+
+		if (tempoCravado >= 2.f)
+			ativo = false;
+
+		desenhar();
+	}
+
+	else {
+
+		gravitar();
+		mover();
+		verificaForaDaTela();
+		desenhar();
+	}
 }

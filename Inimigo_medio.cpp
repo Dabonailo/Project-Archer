@@ -11,7 +11,7 @@ namespace Entidades
 			sf::Vector2f v, float e, float a)
 			:Inimigo(sf::Vector2f(pos.x, pos.y - a), tam, textura, v, e), altura_voo(a), diving(false), altura_default(pos.y - a), direcao(1), delay_troca_direcao(3.f)
 		{
-			body.setFillColor(sf::Color::Red);
+			//body.setFillColor(sf::Color::Red);
 			std::cout
 				<< "CRIADO: "
 				<< body.getPosition().x
@@ -154,9 +154,9 @@ namespace Entidades
 
 		void Inimigo_medio::executar()
 		{	
-			std::cout << "PosX: " << getPosicao().x
+			/*std::cout << "PosX: " << getPosicao().x
 				<< " Dir: " << direcao
-				<< std::endl;
+				<< std::endl;*/
 			mover();
 			gravitar();
 			desenhar();

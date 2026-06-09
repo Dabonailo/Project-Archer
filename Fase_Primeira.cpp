@@ -2,7 +2,8 @@
 
 namespace Fases
 {
-	Fase_Primeira::Fase_Primeira() : Fase(), max_inimigos(1)
+	Fase_Primeira::Fase_Primeira(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura) : 
+        Fase(pos, tam, textura), max_inimigos(1)
 	{
         criarInimigos();
         criarObstaculos();
@@ -21,7 +22,7 @@ namespace Fases
     void Fase_Primeira::criarInimgosFaceis()
     {
         Entidades::Personagens::Inimigo_facil* inimigo1 = new Entidades::Personagens::Inimigo_facil();
-        inimigo1->setPosicao(sf::Vector2f(600.f, 200.f));
+        inimigo1->setPosicao(sf::Vector2f(589.f, 300.f));
 		inimigo1->setListaJogadores(&lJogs);
         ListaEntFase.incluir(inimigo1);
         GC.incluirInimigo(inimigo1);
@@ -41,9 +42,9 @@ namespace Fases
         // Parede esquerda
         Entidades::Obstaculos::Plataforma* paredeEsq =
             new Entidades::Obstaculos::Plataforma(
-                sf::Vector2f(25.f, 350.f),
-                sf::Vector2f(50.f, 700.f),
-                "",
+                sf::Vector2f(-40.f, 350.f),
+                sf::Vector2f(200.f, 700.f),
+                "parede_tijolo.png",
                 sf::Vector2f(0.f, 0.f),
                 false);
 
@@ -53,9 +54,9 @@ namespace Fases
         // Parede direita
         Entidades::Obstaculos::Plataforma* paredeDir =
             new Entidades::Obstaculos::Plataforma(
-                sf::Vector2f(1225.f, 350.f),
-                sf::Vector2f(50.f, 700.f),
-                "",
+                sf::Vector2f(1270.f, 350.f),
+                sf::Vector2f(200.f, 700.f),
+                "parede_tijolo.png",
                 sf::Vector2f(0.f, 0.f),
                 false);
 
@@ -67,7 +68,7 @@ namespace Fases
             new Entidades::Obstaculos::Plataforma(
                 sf::Vector2f(250.f, 550.f),
                 sf::Vector2f(250.f, 25.f),
-                "",
+                "ginger_brand/Plataforma.png",
                 sf::Vector2f(0.f, 0.f),
                 false);
 
@@ -79,7 +80,7 @@ namespace Fases
             new Entidades::Obstaculos::Plataforma(
                 sf::Vector2f(600.f, 450.f),
                 sf::Vector2f(250.f, 25.f),
-                "",
+                "ginger_brand/Plataforma.png",
                 sf::Vector2f(0.f, 0.f),
                 false);
 
@@ -91,7 +92,7 @@ namespace Fases
             new Entidades::Obstaculos::Plataforma(
                 sf::Vector2f(950.f, 325.f),
                 sf::Vector2f(300.f, 25.f),
-                "",
+                "ginger_brand/Plataforma.png",
                 sf::Vector2f(0.f, 0.f),
                 false);
 
@@ -101,9 +102,9 @@ namespace Fases
         // Plataforma central inferior
         Entidades::Obstaculos::Plataforma* p4 =
             new Entidades::Obstaculos::Plataforma(
-                sf::Vector2f(650.f, 620.f),
+                sf::Vector2f(650.f, 570.f),
                 sf::Vector2f(200.f, 25.f),
-                "",
+                "ginger_brand/Plataforma.png",
                 sf::Vector2f(0.f, 0.f),
                 false);
 
@@ -115,7 +116,7 @@ namespace Fases
             new Entidades::Obstaculos::Plataforma(
                 sf::Vector2f(1050.f, 180.f),
                 sf::Vector2f(150.f, 25.f),
-                "",
+                "ginger_brand/Plataforma.png",
                 sf::Vector2f(0.f, 0.f),
                 false);
 
@@ -127,31 +128,31 @@ namespace Fases
     {
         Entidades::Obstaculos::Espinho* esp;
 
-        esp = new Entidades::Obstaculos::Espinho(sf::Vector2f(550.f, 650.f),
+        esp = new Entidades::Obstaculos::Espinho(sf::Vector2f(550.f, 635.f),
             sf::Vector2f(ESPINHO_TAM_DEFAULT_X, ESPINHO_TAM_DEFAULT_Y),
-            "",
+            "espinhos.png",
             sf::Vector2f(0.f, 0.f),
             true);
         
         ListaEntFase.incluir(esp);
         GC.incluirObstaculo(esp);
 
-        esp = new Entidades::Obstaculos::Espinho(sf::Vector2f(600.f, 650.f), sf::Vector2f(ESPINHO_TAM_DEFAULT_X, ESPINHO_TAM_DEFAULT_Y),
-            "",
+        esp = new Entidades::Obstaculos::Espinho(sf::Vector2f(600.f, 635.f), sf::Vector2f(ESPINHO_TAM_DEFAULT_X, ESPINHO_TAM_DEFAULT_Y),
+            "espinhos.png",
             sf::Vector2f(0.f, 0.f),
             true);
         ListaEntFase.incluir(esp);
         GC.incluirObstaculo(esp);
 
-        esp = new Entidades::Obstaculos::Espinho(sf::Vector2f(650.f, 650.f), sf::Vector2f(ESPINHO_TAM_DEFAULT_X, ESPINHO_TAM_DEFAULT_Y),
-            "",
+        esp = new Entidades::Obstaculos::Espinho(sf::Vector2f(650.f, 635.f), sf::Vector2f(ESPINHO_TAM_DEFAULT_X, ESPINHO_TAM_DEFAULT_Y),
+            "espinhos.png",
             sf::Vector2f(0.f, 0.f),
             true);
         ListaEntFase.incluir(esp);
         GC.incluirObstaculo(esp);
 
-        esp = new Entidades::Obstaculos::Espinho(sf::Vector2f(700.f, 650.f), sf::Vector2f(ESPINHO_TAM_DEFAULT_X, ESPINHO_TAM_DEFAULT_Y),
-            "",
+        esp = new Entidades::Obstaculos::Espinho(sf::Vector2f(700.f, 635.f), sf::Vector2f(ESPINHO_TAM_DEFAULT_X, ESPINHO_TAM_DEFAULT_Y),
+            "espinhos.png",
             sf::Vector2f(0.f, 0.f),
             true);
         ListaEntFase.incluir(esp);
@@ -160,24 +161,24 @@ namespace Fases
 
         // Espinhos próximos ao início
         esp = new Entidades::Obstaculos::Espinho();
-        esp->setPosicao(sf::Vector2f(250.f, 650.f));
+        esp->setPosicao(sf::Vector2f(250.f, 635.f));
         ListaEntFase.incluir(esp);
         GC.incluirObstaculo(esp);
 
         esp = new Entidades::Obstaculos::Espinho();
-        esp->setPosicao(sf::Vector2f(300.f, 650.f));
+        esp->setPosicao(sf::Vector2f(300.f, 635.f));
         ListaEntFase.incluir(esp);
         GC.incluirObstaculo(esp);
 
 
         // Espinhos próximos ao final
         esp = new Entidades::Obstaculos::Espinho();
-        esp->setPosicao(sf::Vector2f(1050.f, 650.f));
+        esp->setPosicao(sf::Vector2f(1050.f, 635.f));
         ListaEntFase.incluir(esp);
         GC.incluirObstaculo(esp);
 
         esp = new Entidades::Obstaculos::Espinho();
-        esp->setPosicao(sf::Vector2f(1100.f, 650.f));
+        esp->setPosicao(sf::Vector2f(1100.f, 635.f));
         ListaEntFase.incluir(esp);
         GC.incluirObstaculo(esp);
 	}
@@ -190,8 +191,10 @@ namespace Fases
 
     void Fase_Primeira::executar()
     {  
-        ListaEntFase.percorrerLista();
+        Ente::desenhar();
+
         criarProjetilJogador();
+        ListaEntFase.percorrerLista();
         GC.executar();
     }
 

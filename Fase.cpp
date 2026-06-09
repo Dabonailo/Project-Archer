@@ -1,7 +1,12 @@
 #include "Fase.h"
 
 namespace Fases {
-	Fase::Fase():ListaEntFase(), GC(), pJogador(NULL){}
+	Fase::Fase(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura):
+        Ente(pos == sf::Vector2f(0.f, 0.f) ? pGG->getWindowCentro() : pos,
+            tam == sf::Vector2f(0.f, 0.f) ? pGG->getWindowTam() : tam, textura), ListaEntFase(), GC(), pJogador(NULL)
+    {
+        body.setFillColor(sf::Color(255, 255, 255, 150));
+    }
 
 	Fase::~Fase() {}
 
@@ -17,20 +22,17 @@ namespace Fases {
         if (pJogador->getQuerAtirar()) {
             sf::Vector2f pos = pJogador->getPosicao();
             sf::Vector2f velP;
-            sf::Vector2f escala;
 
             if (pJogador->getDirecao() == Direcao::DIREITA) {
                 pos.x += pJogador->getBody().getSize().x;
                 velP = sf::Vector2f(VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
-                escala = sf::Vector2f(1.f, 1.f);
             }
             if (pJogador->getDirecao() == Direcao::ESQUERDA) {
                 pos.x -= pJogador->getBody().getSize().x;
                 velP = sf::Vector2f(-VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
-                escala = sf::Vector2f(-1.f, 1.f);
             }
 
-            Entidades::Projetil* novoProjetil = new Entidades::Projetil(pos, escala, velP);
+            Entidades::Projetil* novoProjetil = new Entidades::Projetil(pos, velP);
 
             ListaEntFase.incluir(novoProjetil);
             GC.incluirProjetil(novoProjetil);
@@ -45,6 +47,7 @@ namespace Fases {
 	}
 
 	void Fase::desenhar() {
+        Ente::desenhar();
 		ListaEntFase.desenharLista();
 	}
 

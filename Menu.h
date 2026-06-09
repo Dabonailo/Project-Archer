@@ -34,7 +34,7 @@ public:
 	Menu(
 		sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
 		sf::Vector2f tam = sf::Vector2f(0.f, 0.f),
-		const std::string& texturaFundo = "ginger_brand/FundoMenu2.png" // mudar depois
+		const std::string& texturaFundo = "Hanamura.jpeg"
 	);
 
 	~Menu();

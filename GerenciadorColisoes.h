@@ -8,7 +8,7 @@
 #include "Obstaculo.h"
 #include "Projetil.h"
 
-#define CHAO 700.f
+#define CHAO 659.f
 
 namespace Gerenciadores
 {
@@ -40,6 +40,8 @@ namespace Gerenciadores
 		void tratarColisoesInimigsObstacs();
 		void tratarColisaoChao(Entidades::Entidade* pEnt);
 		void tratarColisaoEntsChao();
+		void tratarColisaoObstacProjetil();
+		void tratarColisaoInimigsProjetil();
 
 		void executar();
 

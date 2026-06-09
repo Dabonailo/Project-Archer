@@ -41,6 +41,9 @@ namespace Entidades
 
         void Inimigo_facil::mover()
         {
+            if (cooldownKnockback > 0.f)
+                return;
+
             bool achou = false;
 
             Listas::Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* atual =
@@ -138,11 +141,20 @@ namespace Entidades
             desenhar();
             mover();
             gravitar();
-            body.move(velocidade.x * getTempo(), velocidade.y * getTempo());
+            body.move(
+                (velocidade.x + velocidadeKnockback.x) * getTempo(),
+                (velocidade.y + velocidadeKnockback.y) * getTempo()
+            );
+
+            velocidadeKnockback *= 0.995f;
+
+            if (cooldownKnockback > 0.f)
+                cooldownKnockback -= getTempo();
 
             if (cooldownMovimento > 0.f) {
                 cooldownMovimento -= getTempo();
             }
+
         }
     }
 }

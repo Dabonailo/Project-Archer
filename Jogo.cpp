@@ -24,7 +24,7 @@ void Jogo::criarFasePrimeira()
         deletarFasePrimeira();
     }
 
-    Entidades::Personagens::Jogador* jogador = new Entidades::Personagens::Jogador(sf::Vector2f(100.f, 675.f),
+    Entidades::Personagens::Jogador* jogador = new Entidades::Personagens::Jogador(sf::Vector2f(100.f, 0.f),
         sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
         "hanzo_spray.png");
 

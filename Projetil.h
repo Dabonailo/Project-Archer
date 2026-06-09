@@ -1,11 +1,12 @@
 #pragma once
 #include "Entidade.h"
+#include "GerenciadorGrafico.h"
 
 #define TAMANHO_PROJETIL_X 40.f
 #define TAMANHO_PROJETIL_Y 10.f
 
-#define VELOCIDADE_PROJETIL_X 1300.f
-#define VELOCIDADE_PROJETIL_Y 0.F
+#define VELOCIDADE_PROJETIL_X 700.f
+#define VELOCIDADE_PROJETIL_Y 0.f
 
 #define RESISTENCIA_DO_AR 300.f
 
@@ -15,10 +16,15 @@ namespace Entidades {
 	{
 	private:
 		bool ativo;
+		float cooldownParado;
+
+		Entidade* alvo;
+		sf::Vector2f offset; //posicao do alvo
+		bool cravado;
+		float tempoCravado;
 
 	public:
 		Projetil(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
-			sf::Vector2f escala = sf::Vector2f(1.f, 1.f),
 			sf::Vector2f velocidade = sf::Vector2f(0.f, 0.f),
 			sf::Vector2f tam = sf::Vector2f(TAMANHO_PROJETIL_X, TAMANHO_PROJETIL_Y),
 			const std::string& textura = "Flecha.png", float e = GRAVIDADE - 100.0);
@@ -27,6 +33,10 @@ namespace Entidades {
 
 		void setAtivo(bool a);
 		bool getAtivo();
+
+		void verificaForaDaTela();
+
+		void cravarProjetil(Entidade* e);
 
 		void mover();
 		void executar() override;

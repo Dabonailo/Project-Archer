@@ -1,5 +1,6 @@
 #include "Jogador.h"
 #include "GerenciadorGrafico.h" 
+#include "Inimigo.h"
 
 namespace Entidades
 {
@@ -112,6 +113,22 @@ namespace Entidades
             }
         }
 
+        void Jogador::colidir(Inimigo* pIn)
+        {
+            pIn->recebeDano(1);
+
+            if (pIn->getBounds().left < getBounds().left) {
+
+                pIn->aplicarKnockback(sf::Vector2f(-KNOCKBACK_X, 0.f));
+                pIn->setVelocidade(sf::Vector2f(0.f, -KNOCKBACK_Y));
+            }
+            else {
+
+                pIn->aplicarKnockback(sf::Vector2f(KNOCKBACK_X, 0.f));
+                pIn->setVelocidade(sf::Vector2f(0.f, -KNOCKBACK_Y));
+            }
+        }
+
         void Jogador::executar()
         {
             if (noChao)
@@ -138,14 +155,10 @@ namespace Entidades
             if (coolDownTiro > 0.f) {
                 coolDownTiro -= getTempo();
             }
-
-           // std::cout << esquerda << "||" << direita << std::endl;
-
             desenhar();
 
 			//std::cout << getBody().getPosition().x << " " << getBody().getPosition().y << std::endl; 
-            // 
-            std::cout << velocidade.y << std::endl;
+
         }
 
     }

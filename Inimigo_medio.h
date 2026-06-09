@@ -21,7 +21,7 @@ namespace Entidades
 		public:
 			Inimigo_medio(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
 				sf::Vector2f tam = sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
-				const std::string& textura = "",
+				const std::string& textura = "dragao.png",
 				sf::Vector2f v = sf::Vector2f(ENT_VEL_DEFAULT_X, ENT_VEL_DEFAULT_Y),
 				float e = GRAVIDADE, float a = 50.f);
 			~Inimigo_medio();

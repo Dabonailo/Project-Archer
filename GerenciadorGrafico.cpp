@@ -79,5 +79,4 @@ namespace Gerenciadores
 	{
 		window->draw(pT);
 	}
-
 }

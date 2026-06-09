@@ -6,9 +6,9 @@ namespace Entidades
 	{
 		
 		Plataforma::Plataforma(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, bool d, float e)
-			: Obstaculo(pos, tam, textura, v, d, e)
+			: Obstaculo(pos, tam, textura, v, d, e), altura(0)
 		{
-			body.setFillColor(sf::Color::Green);
+			//body.setFillColor(sf::Color::Green);
 		}
 		Plataforma::~Plataforma()
 		{

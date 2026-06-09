@@ -5,7 +5,7 @@ namespace Gerenciadores {
 	GerenciadorEventos* GerenciadorEventos::pEventos = NULL;
 	GerenciadorGrafico* GerenciadorEventos::pGrafico = GerenciadorGrafico::getGerenciadorGrafico();
 
-	GerenciadorEventos::GerenciadorEventos() :pJog(NULL)
+	GerenciadorEventos::GerenciadorEventos() :pJog(NULL), menu(NULL)
 	{
 	}
 

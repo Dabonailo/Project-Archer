@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Ente.h"
+
 namespace Gerenciadores
 {
 	class GerenciadorGrafico

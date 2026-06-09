@@ -1,15 +1,18 @@
 #pragma once
 #include "Personagem.h"
 
+namespace Entidades
+{
+	namespace Personagens
+	{
+		class Inimigo;
+	}
+}
+
 #define NUM_VIDAS 5
 #define JOG_VELOCIDADE_MAX 200.f
 #define JOG_ACELERACAO 200.f
 #define ATRITO 1000.f
-
-#define ATQ_TEMPO 0.20f
-#define ATQ_COOLDOWN 0.30f
-#define ATQ_SCALE_X 0.6f
-#define ATQ_SCALE_Y 0.6f
 
 namespace Entidades
 {
@@ -18,18 +21,10 @@ namespace Entidades
 
 		class Jogador : public Personagem
 		{
-		public:
-			sf::RectangleShape ataque_corpo;
-
 		private:
-			bool ataqueAtivo;
-			float tempoAtaque;
-			float tempoCooldown;
-
 			bool movDir;
 			bool movEsq;
 			
-
 			bool querAtirar;
 
 			float coolDownTiro;
@@ -54,7 +49,8 @@ namespace Entidades
 
 			void mover() override;
 			void pular();
-			void atacar();
+
+			void colidir(Inimigo* pIn);
 
 			void executar() override;
 		};
