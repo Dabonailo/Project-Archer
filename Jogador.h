@@ -4,7 +4,7 @@
 #define NUM_VIDAS 5
 #define JOG_VELOCIDADE_MAX 200.f
 #define JOG_ACELERACAO 200.f
-#define ATRITO 500.f
+#define ATRITO 1000.f
 
 #define ATQ_TEMPO 0.20f
 #define ATQ_COOLDOWN 0.30f

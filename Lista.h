@@ -15,7 +15,7 @@ namespace Listas
 
 		public:
 			Elemento(TE* e) : pProx(NULL), pInfo(e) {}
-			~Elemento() {}
+			~Elemento() { delete pInfo; }
 
 			void incluir(TE* p) {
 				pInfo = p;

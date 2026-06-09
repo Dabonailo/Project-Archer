@@ -2,7 +2,7 @@
 #include "Entidade.h"
 #include "direcao.h"
 
-#define KNOCKBACK_X 550.f
+#define KNOCKBACK_X 350.f
 #define KNOCKBACK_Y 200.f
 #define FORCA_PULO 650.f
 

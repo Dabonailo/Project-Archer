@@ -5,7 +5,7 @@
 #define TAMANHO_PROJETIL_Y 10.f
 
 #define VELOCIDADE_PROJETIL_X 1300.f
-#define VELOCIDADE_PROJETIL_Y -200.f
+#define VELOCIDADE_PROJETIL_Y 0.F
 
 #define RESISTENCIA_DO_AR 300.f
 
@@ -21,7 +21,7 @@ namespace Entidades {
 			sf::Vector2f escala = sf::Vector2f(1.f, 1.f),
 			sf::Vector2f velocidade = sf::Vector2f(0.f, 0.f),
 			sf::Vector2f tam = sf::Vector2f(TAMANHO_PROJETIL_X, TAMANHO_PROJETIL_Y),
-			const std::string& textura = "Flecha.png", float e = GRAVIDADE);
+			const std::string& textura = "Flecha.png", float e = GRAVIDADE - 100.0);
 
 		~Projetil();
 
