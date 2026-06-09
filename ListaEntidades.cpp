@@ -20,11 +20,11 @@ namespace Listas
     {
         Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* aux = LEs.getPrimeiro();
 
-        bool remover = false;
-
         while (aux != NULL)
         {
             Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* prox = aux->getProximo();
+
+            bool remover = false; // <<-- mover/definir aqui por iteração
 
             aux->getInfo()->executar();
 
@@ -32,7 +32,7 @@ namespace Listas
             {
                 if (!p->getVivo()) {
                     remover = true;
-                }   
+                }
             }
 
             if (Entidades::Projetil* pr = dynamic_cast<Entidades::Projetil*>(aux->getInfo())) {
@@ -48,6 +48,7 @@ namespace Listas
             aux = prox;
         }
     }
+
     void ListaEntidades::desenharLista()
     {
         Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* aux = LEs.getPrimeiro();
