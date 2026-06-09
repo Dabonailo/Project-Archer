@@ -20,7 +20,9 @@ namespace Fases
 
 	protected:
 		virtual void criarInimigos() = 0;
+		void criarInimgosFaceis();
 		virtual void criarObstaculos() = 0;
+		void criarPlataformas();
 		virtual void criarProjetilJogador();
 		
 

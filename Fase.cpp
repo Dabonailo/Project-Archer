@@ -52,5 +52,137 @@ namespace Fases {
 		ListaEntFase.desenharLista();
 	}
 
+    void Fase::criarInimgosFaceis()
+    {
+        Entidades::Personagens::Inimigo_facil* inimigo;
 
+        if (rand() % 2 == 0)
+        {
+            inimigo = new Entidades::Personagens::Inimigo_facil();
+            inimigo->setPosicao(sf::Vector2f(280.f, 560.f));
+            inimigo->setListaJogadores(&lJogs);
+            ListaEntFase.incluir(inimigo);
+            GC.incluirInimigo(inimigo);
+        }
+
+
+        inimigo = new Entidades::Personagens::Inimigo_facil();
+        inimigo->setPosicao(sf::Vector2f(560.f, 455.f));
+        inimigo->setListaJogadores(&lJogs);
+        ListaEntFase.incluir(inimigo);
+        GC.incluirInimigo(inimigo);
+
+        inimigo = new Entidades::Personagens::Inimigo_facil();
+        inimigo->setPosicao(sf::Vector2f(875.f, 350.f));
+        inimigo->setListaJogadores(&lJogs);
+        ListaEntFase.incluir(inimigo);
+        GC.incluirInimigo(inimigo);
+
+        inimigo = new Entidades::Personagens::Inimigo_facil();
+        inimigo->setPosicao(sf::Vector2f(490.f, 245.f));
+        inimigo->setListaJogadores(&lJogs);
+        ListaEntFase.incluir(inimigo);
+        GC.incluirInimigo(inimigo);
+
+        if (rand() % 2 == 0)
+        {
+            inimigo = new Entidades::Personagens::Inimigo_facil();
+            inimigo->setPosicao(sf::Vector2f(1015.f, 175.f));
+            inimigo->setListaJogadores(&lJogs);
+            ListaEntFase.incluir(inimigo);
+            GC.incluirInimigo(inimigo);
+        }
+    }
+
+    void Fase::criarPlataformas()
+    {
+        // Parede esquerda
+        Entidades::Obstaculos::Plataforma* p =
+            new Entidades::Obstaculos::Plataforma(
+                sf::Vector2f(-40.f, 350.f),
+                sf::Vector2f(200.f, 700.f),
+                "parede_tijolo.png",
+                sf::Vector2f(0.f, 0.f),
+                false);
+
+        ListaEntFase.incluir(p);
+        GC.incluirObstaculo(p);
+
+        // Parede direita
+        p = new Entidades::Obstaculos::Plataforma(
+            sf::Vector2f(1270.f, 350.f),
+            sf::Vector2f(200.f, 700.f),
+            "parede_tijolo.png",
+            sf::Vector2f(0.f, 0.f),
+            false);
+
+        ListaEntFase.incluir(p);
+        GC.incluirObstaculo(p);
+
+        // Plataforma 1
+        p = new Entidades::Obstaculos::Plataforma(
+            sf::Vector2f(280.f, 595.f),
+            sf::Vector2f(245.f, 35.f),
+            "ginger_brand/Plataforma.png",
+            sf::Vector2f(0.f, 0.f),
+            false);
+
+        ListaEntFase.incluir(p);
+        GC.incluirObstaculo(p);
+
+        // Plataforma 2
+        p = new Entidades::Obstaculos::Plataforma(
+            sf::Vector2f(595.f, 490.f),
+            sf::Vector2f(280.f, 35.f),
+            "ginger_brand/Plataforma.png",
+            sf::Vector2f(0.f, 0.f),
+            false);
+
+        ListaEntFase.incluir(p);
+        GC.incluirObstaculo(p);
+
+        // Plataforma 3
+        p = new Entidades::Obstaculos::Plataforma(
+            sf::Vector2f(910.f, 385.f),
+            sf::Vector2f(280.f, 35.f),
+            "ginger_brand/Plataforma.png",
+            sf::Vector2f(0.f, 0.f),
+            false);
+
+        ListaEntFase.incluir(p);
+        GC.incluirObstaculo(p);
+
+        // Plataforma 4
+        p = new Entidades::Obstaculos::Plataforma(
+            sf::Vector2f(490.f, 280.f),
+            sf::Vector2f(210.f, 35.f),
+            "ginger_brand/Plataforma.png",
+            sf::Vector2f(0.f, 0.f),
+            false);
+
+        ListaEntFase.incluir(p);
+        GC.incluirObstaculo(p);
+
+        // Plataforma 5
+        p = new Entidades::Obstaculos::Plataforma(
+            sf::Vector2f(1015.f, 210.f),
+            sf::Vector2f(210.f, 35.f),
+            "ginger_brand/Plataforma.png",
+            sf::Vector2f(0.f, 0.f),
+            false);
+
+        ListaEntFase.incluir(p);
+        GC.incluirObstaculo(p);
+
+        // Plataforma central alta
+        p = new Entidades::Obstaculos::Plataforma(
+            sf::Vector2f(735.f, 105.f),
+            sf::Vector2f(280.f, 35.f),
+            "ginger_brand/Plataforma.png",
+            sf::Vector2f(0.f, 0.f),
+            false);
+
+        ListaEntFase.incluir(p);
+        GC.incluirObstaculo(p);
+    }
 }

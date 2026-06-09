@@ -2,8 +2,8 @@
 #include "Entidade.h"
 #include "GerenciadorGrafico.h"
 
-#define TAMANHO_PROJETIL_X 40.f
-#define TAMANHO_PROJETIL_Y 10.f
+#define TAMANHO_PROJETIL_X 28.f
+#define TAMANHO_PROJETIL_Y 7.f
 
 #define VELOCIDADE_PROJETIL_X 700.f
 #define VELOCIDADE_PROJETIL_Y 0.f

@@ -4,8 +4,8 @@
 #define GRAVIDADE 1200.f
 #define VEL_QUEDA_MAX 600.f
 
-#define ENT_TAM_DEFAULT_X 50.f
-#define ENT_TAM_DEFAULT_Y 50.f
+#define ENT_TAM_DEFAULT_X 35.f
+#define ENT_TAM_DEFAULT_Y 35.f
 
 #define ENT_VEL_DEFAULT_X 0.f
 #define ENT_VEL_DEFAULT_Y 0.f

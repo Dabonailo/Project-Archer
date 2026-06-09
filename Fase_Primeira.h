@@ -20,11 +20,11 @@ namespace Fases
         ~Fase_Primeira();
 
         void criarInimigos() override;
-        void criarInimgosFaceis();
+        
 		void criarInimgosMedios();
         
         void criarObstaculos() override;
-		void criarPlataformas();
+		
 		void criarEspinhos();
 
         void executar() override;

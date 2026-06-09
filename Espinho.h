@@ -1,8 +1,8 @@
 #pragma once
 #include "Obstaculo.h"
 #define ESPINHO_DANO_DEFAULT 1
-#define ESPINHO_TAM_DEFAULT_X 50.f
-#define ESPINHO_TAM_DEFAULT_Y 50.f
+#define ESPINHO_TAM_DEFAULT_X 35.f
+#define ESPINHO_TAM_DEFAULT_Y 35.f
 
 namespace Entidades
 {
