@@ -22,8 +22,6 @@ namespace Listas
 
         while (aux != NULL)
         {
-            bool remover = false;
-
             Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* prox = aux->getProximo();
 
             bool remover = false; // <<-- mover/definir aqui por iteração
