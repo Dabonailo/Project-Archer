@@ -13,6 +13,7 @@ namespace Fases {
 	void Fase::adicionarJogador(Entidades::Personagens::Jogador* p)
 	{
 		ListaEntFase.incluir(p);
+		lJogs.incluir(p);
 		GC.incluirJogadores(p);
 		pJogador = p;
 	}

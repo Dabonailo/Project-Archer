@@ -43,7 +43,7 @@ namespace Entidades
 		return noChao;
 	}
 
-	void Entidade::mover(sf::Vector2f m)
+	void Entidade::movimentar(sf::Vector2f m)
 	{
 		body.move(m);
 	}

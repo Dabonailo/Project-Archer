@@ -26,6 +26,8 @@ namespace Listas
 
             Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* prox = aux->getProximo();
 
+            bool remover = false; // <<-- mover/definir aqui por iteração
+
             aux->getInfo()->executar();
 
             if (Entidades::Personagens::Personagem* p = dynamic_cast<Entidades::Personagens::Personagem*>(aux->getInfo()))

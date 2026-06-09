@@ -36,7 +36,7 @@ namespace Entidades
 
 		//CORPO
 
-		void mover(sf::Vector2f m);
+		void movimentar(sf::Vector2f m);
 
 		virtual void executar() = 0;
 
