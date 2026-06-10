@@ -15,9 +15,10 @@ namespace Entidades
             float cooldownMovimento;
             int movimento;
 			Listas::ListaEntidades* lJogs;
+            int nivel_maldade;
 
         public:
-            Inimigo(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, float e);
+            Inimigo(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, float e, int n, int nm);
 
             ~Inimigo();
 
@@ -25,6 +26,8 @@ namespace Entidades
 
             void setCooldownMovimento(float c);
             float getCooldownMovimento();
+
+            void recebeDano(int dano);
 
 			virtual void perseguir(Jogador* pJog) = 0;
 			virtual void movimentoAleatorio() = 0;

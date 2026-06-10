@@ -28,7 +28,7 @@ namespace Entidades
             float tempoInvulneravel;
 
         public:
-            Personagem(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, float e);
+            Personagem(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, float e, int n);
             ~Personagem();
 
             const int getVida() const;
@@ -37,7 +37,7 @@ namespace Entidades
 
             void aplicarKnockback(sf::Vector2f forca);
 
-            void recebeDano(int dano);
+            virtual void recebeDano(int dano);
 
             virtual void mover() = 0;                                                   
 

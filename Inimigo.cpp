@@ -5,8 +5,8 @@ namespace Entidades
 	namespace Personagens
 	{
 
-		Inimigo::Inimigo(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, float e)
-			:Personagem(pos, tam, textura, v, e), cooldownMovimento(0.f), movimento(-1), lJogs(NULL)
+		Inimigo::Inimigo(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, float e, int n, int nm)
+			:Personagem(pos, tam, textura, v, e, n), cooldownMovimento(0.f), movimento(-1), lJogs(NULL), nivel_maldade(nm)
 		{
 		}
 
@@ -60,6 +60,16 @@ namespace Entidades
 				break;
 			}
 			gravitar();
+		}
+
+		void Inimigo::recebeDano(int dano)
+		{
+			numVidas -= dano;
+			if (getVida() >= 0) {
+				std::cout << "vida: " << getVida() << std::endl;
+			}
+			if (dano > 5)
+				nivel_maldade++;
 		}
 
 		void Inimigo::executar()

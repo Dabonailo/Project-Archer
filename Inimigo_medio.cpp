@@ -8,8 +8,8 @@ namespace Entidades
 			sf::Vector2f pos,
 			sf::Vector2f tam,
 			const std::string& textura,
-			sf::Vector2f v, float e, float a)
-			:Inimigo(sf::Vector2f(pos.x, pos.y - a), tam, textura, v, e), altura_voo(a), diving(false), altura_default(pos.y - a), direcao(1), delay_troca_direcao(3.f)
+			sf::Vector2f v, float e, float a, int n, int nm)
+			:Inimigo(sf::Vector2f(pos.x, pos.y - a), tam, textura, v, e, n, nm), altura_voo(a), diving(false), altura_default(pos.y - a), direcao(1), delay_troca_direcao(3.f)
 		{
 			//body.setFillColor(sf::Color::Red);
 			std::cout
@@ -27,7 +27,7 @@ namespace Entidades
 		void Inimigo_medio::danificar(Jogador* p)
 		{
 			if (p->getTempoInvulneravel() <= 0.f) {
-				p->recebeDano(1);
+				p->recebeDano(10*nivel_maldade);
 				if (p->getBounds().left < getBounds().left) {
 					p->aplicarKnockback(sf::Vector2f(-KNOCKBACK_X, 0.f));
 					p->setVelocidade(sf::Vector2f(0.f, -KNOCKBACK_Y));

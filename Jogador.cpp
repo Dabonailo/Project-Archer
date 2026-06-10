@@ -12,9 +12,10 @@ namespace Entidades
             sf::Vector2f tam,
             const std::string& textura,
             sf::Vector2f v,
-            float e
+            float e, 
+            int n
         )
-            : Personagem(pos, tam, textura, v, e), movDir(false), movEsq(false), querAtirar(false), coolDownTiro(0.f)
+            : Personagem(pos, tam, textura, v, e, n), movDir(false), movEsq(false), querAtirar(false), coolDownTiro(0.f)
         {
             texturaEntidade.loadFromFile(textura);
             body.setTexture(&texturaEntidade);
@@ -115,7 +116,7 @@ namespace Entidades
 
         void Jogador::colidir(Inimigo* pIn)
         {
-            pIn->recebeDano(1);
+            pIn->recebeDano(10);
 
             if (pIn->getBounds().left < getBounds().left) {
 

@@ -9,9 +9,9 @@ namespace Entidades
             sf::Vector2f pos,
             sf::Vector2f tam,
             const std::string& textura,
-            sf::Vector2f v, float e)
+            sf::Vector2f v, float e, int n, int nm)
 
-            :Inimigo(pos, tam, textura, v, e), raio(250.f)
+            :Inimigo(pos, tam, textura, v, e, n, nm), raio(250.f)
         {
         }
 
@@ -22,7 +22,7 @@ namespace Entidades
         void Inimigo_facil::danificar(Jogador* p)
         {
             if (p->getTempoInvulneravel() <= 0.f) {
-				p->recebeDano(1);
+				p->recebeDano(5*nivel_maldade);
 
                 if (p->getBounds().left < getBounds().left) {
 
