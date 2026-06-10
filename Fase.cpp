@@ -42,6 +42,34 @@ namespace Fases {
         }
     }
 
+    void Fase::criarProjetilChefao()
+    {
+        if (!vecChefao.empty()) {
+            for (std::vector<Entidades::Personagens::Chefao*>::iterator it; it != vecChefao.end(); ++it) {
+                if ((*it)->getQuerAtirar()) {
+                    sf::Vector2f pos = (*it)->getPosicao();
+                    sf::Vector2f velP;
+
+                    if ((*it)->getDirecao() == Direcao::DIREITA) {
+                        pos.x += (*it)->getBody().getSize().x;
+                        velP = sf::Vector2f(VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
+                    }
+                    if ((*it)->getDirecao() == Direcao::ESQUERDA) {
+                        pos.x -= (*it)->getBody().getSize().x;
+                        velP = sf::Vector2f(-VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
+                    }
+
+                    Entidades::Projetil* novoProjetil = new Entidades::Projetil(pos, velP);
+
+                    ListaEntFase.incluir(novoProjetil);
+                    GC.incluirProjetil(novoProjetil);
+
+                    (*it)->setQuerAtirar(false);
+                }
+            }
+        }
+    }
+
 	Listas::ListaEntidades* Fase::getListaEntFase()
 	{
 		return &ListaEntFase;

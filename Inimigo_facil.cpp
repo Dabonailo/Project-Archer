@@ -113,11 +113,13 @@ namespace Entidades
                 case 1:
                     velocidade.x = INIMIGO_FACIL_VELOCIDADE_X;
                     body.setScale(-1.f, 1.f);
+                    setDirecao(DIREITA);
                     break;
 
                 case 2:
                     velocidade.x = -INIMIGO_FACIL_VELOCIDADE_X;
                     body.setScale(1.f, 1.f);
+                    setDirecao(ESQUERDA);
                     break;
 
                 case 3:
@@ -154,6 +156,12 @@ namespace Entidades
             if (cooldownMovimento > 0.f) {
                 cooldownMovimento -= getTempo();
             }
+
+            if (tempoInvulneravel > 0.f) {
+                tempoInvulneravel -= getTempo();
+            }
+
+            //std::cout << esquerda << "||" << direita << std::endl;
 
         }
     }

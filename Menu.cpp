@@ -107,6 +107,11 @@ void Menu::adicionarTexto(sf::String s, sf::Vector2f pos, unsigned int tam)
     vecTexto.push_back(texto);
 }
 
+void Menu::mostrarHUD()
+{
+
+}
+
 void Menu::criarMenuPrincipal()
 {
     body.setFillColor(sf::Color(255, 255, 255, 255));

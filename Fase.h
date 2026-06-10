@@ -7,6 +7,9 @@
 #include "Plataforma.h"
 #include "Espinho.h"
 #include "Projetil.h"
+#include "Chefao.h"
+
+#include <vector>
 
 namespace Fases	
 {
@@ -17,6 +20,8 @@ namespace Fases
 		Listas::ListaEntidades lJogs;
 		Gerenciadores::GerenciadorColisoes GC;
 		Entidades::Personagens::Jogador* pJogador;
+		std::vector<Entidades::Personagens::Chefao*> vecChefao;
+
 
 	protected:
 		virtual void criarInimigos() = 0;
@@ -24,6 +29,7 @@ namespace Fases
 		virtual void criarObstaculos() = 0;
 		void criarPlataformas();
 		virtual void criarProjetilJogador();
+		virtual void criarProjetilChefao();
 		
 
 	public:
