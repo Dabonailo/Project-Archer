@@ -30,8 +30,7 @@ void Jogo::criarFasePrimeira()
 
     pjogador = jogador;
 
-    fase1 = new Fases::Fase_Primeira();
-    fase1->adicionarJogador(pjogador);
+    fase1 = new Fases::Fase_Primeira(pjogador);
 
     GE->setJogador(pjogador);
 

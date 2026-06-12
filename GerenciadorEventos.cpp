@@ -48,8 +48,8 @@ namespace Gerenciadores {
 			}
 
 			if (tecla == sf::Keyboard::Q) {
-				if (pJog->getCooldownTiro() <= 0.f) {
-					pJog->setQuerAtirar(true);
+				if (pJog->getCooldownTiro() <= 0.f && !pJog->getProjetilAtivo()) {
+					pJog->atirar();
 					pJog->setCooldownTiro(1.f);
 				}
 			}
@@ -84,10 +84,6 @@ namespace Gerenciadores {
 
 		if (tecla == sf::Keyboard::A)
 			pJog->setMovEsq(false);	
-
-		if(tecla == sf::Keyboard::Q){
-			pJog->setQuerAtirar(false);
-		}
 	}
 
 	void GerenciadorEventos::executar() {

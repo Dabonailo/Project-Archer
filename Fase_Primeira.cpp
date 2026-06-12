@@ -2,11 +2,13 @@
 
 namespace Fases
 {
-	Fase_Primeira::Fase_Primeira(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura) : 
-        Fase(pos, tam, textura), max_inimigos(1)
+	Fase_Primeira::Fase_Primeira(Entidades::Personagens::Jogador* pJ, 
+        sf::Vector2f pos, sf::Vector2f tam, const std::string& textura) : 
+        Fase(pJ, pos, tam, textura), max_inimigos(1)
 	{
         criarInimigos();
         criarObstaculos();
+        criarProjeteis();
 	}
 
 	Fase_Primeira::~Fase_Primeira()
@@ -18,8 +20,6 @@ namespace Fases
 		criarInimgosFaceis();
         criarInimgosMedios();
 	}
-
-    
 
     void Fase_Primeira::criarInimgosMedios()
     {
@@ -92,6 +92,16 @@ namespace Fases
          esp->setPosicao(sf::Vector2f(1155.f, 642.f));
          ListaEntFase.incluir(esp);
          GC.incluirObstaculo(esp);
+     }
+
+     void Fase_Primeira::criarProjeteis()
+     {
+         Entidades::Projetil* novoProjetilJogador = new Entidades::Projetil();
+
+         pJogador->setProjetil(novoProjetilJogador);
+
+         ListaEntFase.incluir(novoProjetilJogador);
+         GC.incluirProjetil(novoProjetilJogador);
      }
 
     void Fase_Primeira::criarObstaculos()

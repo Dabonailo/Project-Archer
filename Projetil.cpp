@@ -1,10 +1,11 @@
 #include "Projetil.h"
 
 Entidades::Projetil::Projetil(sf::Vector2f pos,
-	sf::Vector2f velocidade,
 	sf::Vector2f tam,
-	const std::string& textura, float e) :
-	Entidade(pos, tam, textura, velocidade, e), ativo(true), cooldownParado(0.f), cravado(false), tempoCravado(0.f)
+	const std::string& textura,
+	sf::Vector2f velocidade, float e) :
+	Entidade(pos, tam, textura, velocidade, e),
+	ativo(true), alvo(NULL), offset(sf::Vector2f(0.f,0.f)), cravado(false), tempoCravado(0.f)
 {
 }
 
@@ -15,6 +16,9 @@ Entidades::Projetil::~Projetil()
 
 void Entidades::Projetil::setAtivo(bool a)
 {
+	cravado = false;
+	alvo = NULL;
+	offset = sf::Vector2f(0.f, 0.f);
 	ativo = a;
 }
 
@@ -36,6 +40,7 @@ void Entidades::Projetil::verificaForaDaTela()
 
 void Entidades::Projetil::cravarProjetil(Entidade* e)
 {
+	ativo = false;
 	cravado = true;
 	alvo = e;
 
@@ -66,21 +71,13 @@ void Entidades::Projetil::executar()
 	if (cravado && alvo)
 	{
 		setPosicao(alvo->getPosicao() + offset);
-
-		tempoCravado += getTempo();
-
-		if (tempoCravado >= 2.f)
-			ativo = false;
-
-		gravitar();
-		desenhar();
 	}
 
 	else {
-
-		gravitar();
 		mover();
 		verificaForaDaTela();
-		desenhar();
 	}
+
+	gravitar();
+	desenhar();
 }

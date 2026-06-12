@@ -16,7 +16,6 @@ namespace Entidades {
 	{
 	private:
 		bool ativo;
-		float cooldownParado;
 
 		Entidade* alvo;
 		sf::Vector2f offset; //posicao do alvo
@@ -25,9 +24,9 @@ namespace Entidades {
 
 	public:
 		Projetil(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
-			sf::Vector2f velocidade = sf::Vector2f(0.f, 0.f),
 			sf::Vector2f tam = sf::Vector2f(TAMANHO_PROJETIL_X, TAMANHO_PROJETIL_Y),
-			const std::string& textura = "Flecha.png", float e = GRAVIDADE - 100.0);
+			const std::string& textura = "Flecha.png", sf::Vector2f velocidade = sf::Vector2f(0.f, 0.f),
+			float e = GRAVIDADE - 100.0);
 
 		~Projetil();
 

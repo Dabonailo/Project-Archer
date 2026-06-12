@@ -15,7 +15,8 @@ namespace Entidades
             float e, 
             int n
         )
-            : Personagem(pos, tam, textura, v, e, n), movDir(false), movEsq(false), querAtirar(false), coolDownTiro(0.f)
+            : Personagem(pos, tam, textura, v, e, n), movDir(false), movEsq(false), coolDownTiro(0.f),
+            projetil(NULL)
         {
             texturaEntidade.loadFromFile(textura);
             body.setTexture(&texturaEntidade);
@@ -44,14 +45,34 @@ namespace Entidades
             movEsq = b;
         }
 
-        void Jogador::setQuerAtirar(bool a)
+        void Jogador::atirar()
         {
-            querAtirar = a;
+            projetil->setAtivo(true);
+
+            sf::Vector2f pos = getPosicao();
+            sf::Vector2f velP;
+
+            if (getDirecao() == Direcao::DIREITA) {
+                pos.x += body.getSize().x;
+                velP = sf::Vector2f(VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
+            }
+            if (getDirecao() == Direcao::ESQUERDA) {
+                pos.x -= body.getSize().x;
+                velP = sf::Vector2f(-VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
+            }
+
+            projetil->setPosicao(pos);
+            projetil->setVelocidade(velP);
         }
 
-        bool Jogador::getQuerAtirar()
+        void Jogador::setProjetil(Projetil* p)
         {
-            return querAtirar;
+            projetil = p;
+        }
+
+        bool Jogador::getProjetilAtivo()
+        {
+            return projetil->getAtivo();
         }
 
         void Jogador::setCooldownTiro(float cd)

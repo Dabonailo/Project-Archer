@@ -1,11 +1,16 @@
 #include "Fase.h"
 
 namespace Fases {
-	Fase::Fase(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura):
+	Fase::Fase(Entidades::Personagens::Jogador* pJ, sf::Vector2f pos, sf::Vector2f tam, const std::string& textura):
         Ente(pos == sf::Vector2f(0.f, 0.f) ? pGG->getWindowCentro() : pos,
             tam == sf::Vector2f(0.f, 0.f) ? pGG->getWindowTam() : tam, textura), ListaEntFase(), GC(), pJogador(NULL)
     {
         body.setFillColor(sf::Color(255, 255, 255, 150));
+
+        ListaEntFase.incluir(pJ);
+        lJogs.incluir(pJ);
+        GC.incluirJogadores(pJ);
+        pJogador = pJ;
     }
 
 	Fase::~Fase() {}
@@ -20,6 +25,7 @@ namespace Fases {
 
     void Fase::criarProjetilJogador()
     {
+        /*
         if (pJogador->getQuerAtirar()) {
             sf::Vector2f pos = pJogador->getPosicao();
             sf::Vector2f velP;
@@ -40,6 +46,7 @@ namespace Fases {
 
             pJogador->setQuerAtirar(false);
         }
+        */
     }
 
 	Listas::ListaEntidades* Fase::getListaEntFase()

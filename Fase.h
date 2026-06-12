@@ -25,9 +25,12 @@ namespace Fases
 		void criarPlataformas();
 		virtual void criarProjetilJogador();
 		
+		virtual void criarProjeteis() = 0;
+		
 
 	public:
-		Fase(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
+		Fase(Entidades::Personagens::Jogador* pJ, 
+			sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
 			sf::Vector2f tam = sf::Vector2f(0.f, 0.f),
 			const std::string& textura = "");
 		~Fase();

@@ -35,11 +35,11 @@ namespace Listas
                 }
             }
 
-            if (Entidades::Projetil* pr = dynamic_cast<Entidades::Projetil*>(aux->getInfo())) {
+            /*/if (Entidades::Projetil* pr = dynamic_cast<Entidades::Projetil*>(aux->getInfo())) {
                 if (!pr->getAtivo()) {
                     remover = true;
                 }
-            }
+            }*/
 
             if (remover) {
                 LEs.removerElemento(aux->getInfo());
