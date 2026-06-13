@@ -113,11 +113,13 @@ namespace Entidades
                 case 1:
                     velocidade.x = INIMIGO_FACIL_VELOCIDADE_X;
                     body.setScale(-1.f, 1.f);
+                    setDirecao(DIREITA);
                     break;
 
                 case 2:
                     velocidade.x = -INIMIGO_FACIL_VELOCIDADE_X;
                     body.setScale(1.f, 1.f);
+                    setDirecao(ESQUERDA);
                     break;
 
                 case 3:

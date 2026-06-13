@@ -7,6 +7,9 @@
 #include "Plataforma.h"
 #include "Espinho.h"
 #include "Projetil.h"
+#include "Chefao.h"
+
+#include <vector>
 
 namespace Fases	
 {

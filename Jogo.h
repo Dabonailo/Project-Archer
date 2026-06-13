@@ -25,6 +25,7 @@ public:
 	~Jogo();
 
 	int getVidaJogador(int j);
+	int getPontuacaoJogador(int j);
 
 	void criarFasePrimeira();
 	void deletarFasePrimeira();

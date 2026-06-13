@@ -29,6 +29,8 @@ namespace Entidades
 
             void recebeDano(int dano);
 
+            int getNivelMaldade();
+
 			virtual void perseguir(Jogador* pJog) = 0;
 			virtual void movimentoAleatorio() = 0;
             void setMovimento(int m);

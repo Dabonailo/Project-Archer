@@ -72,6 +72,11 @@ namespace Entidades
 				nivel_maldade++;
 		}
 
+		int Inimigo::getNivelMaldade()
+		{
+			return nivel_maldade;
+		}
+
 		void Inimigo::executar()
 		{
 		}

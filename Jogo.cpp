@@ -42,6 +42,17 @@ int Jogo::getVidaJogador(int j)
     }
 }
 
+int Jogo::getPontuacaoJogador(int j)
+{
+    if (pjogador && j == 1) {
+        return pjogador->getPontuacao();
+    }
+
+    else if (pjogador2 && j == 2) {
+        return pjogador2->getPontuacao();
+    }
+}
+
 void Jogo::criarFasePrimeira()
 {
     if (fase1) {
@@ -56,7 +67,7 @@ void Jogo::criarFasePrimeira()
 
     Entidades::Personagens::Jogador* jogador2 = new Entidades::Personagens::Jogador(sf::Vector2f(100.f, 0.f),
         sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
-        "hanzo_spray.png");
+        "hanzo2_spray.png");
 
     pjogador2 = jogador2;
 

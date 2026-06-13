@@ -30,6 +30,8 @@ namespace Entidades
 
 			float coolDownTiro;
 
+			int pontuacao;
+
 		public:
 			Jogador(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
 				sf::Vector2f tam = sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
@@ -49,6 +51,8 @@ namespace Entidades
 
 			void setCooldownTiro(float cd);
 			float getCooldownTiro();
+
+			int getPontuacao();
 
 			void mover() override;
 			void pular();

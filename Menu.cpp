@@ -113,11 +113,17 @@ void Menu::criarHUDJogo()
 {
     limparMenu();
 
-    adicionarTexto("", sf::Vector2f(80.f, 30.f));
+    adicionarTexto("", sf::Vector2f(10.f, 10.f));
     idxVidaP1 = vecTexto.size() - 1;
 
-    adicionarTexto("", sf::Vector2f(80.f, 70.f));
+    adicionarTexto("", sf::Vector2f(200.f, 10.f));
+    idxPontuacaoP1 = vecTexto.size() - 1;
+
+    adicionarTexto("", sf::Vector2f(1070.f, 10.f));
     idxVidaP2 = vecTexto.size() - 1;
+
+    adicionarTexto("", sf::Vector2f(780.f, 10.f));
+    idxPontuacaoP2 = vecTexto.size() - 1;
 }
 
 void Menu::criarMenuPrincipal()
@@ -273,11 +279,20 @@ void Menu::executar()
     if (menuAtual == NO_JOGO) {
         std::stringstream ss;
 
-        ss << "VIDA JOGADOR 1: " << pJogo->getVidaJogador(1);
+        ss << "VIDA P1: " << pJogo->getVidaJogador(1);
         vecTexto[idxVidaP1].setString(ss.str());
 
         ss.str("");
-        ss << "VIDA JOGADOR 2: " << pJogo->getVidaJogador(2);
+        ss << "VIDA P2: " << pJogo->getVidaJogador(2);
         vecTexto[idxVidaP2].setString(ss.str());
+
+        ss.str("");
+        ss << "PONTUACAO P1: " << pJogo->getPontuacaoJogador(1);
+        vecTexto[idxPontuacaoP1].setString(ss.str());
+
+        ss.str("");
+        ss << "PONTUACAO P2: " << pJogo->getPontuacaoJogador(2);
+        vecTexto[idxPontuacaoP2].setString(ss.str());
+
     }
 }

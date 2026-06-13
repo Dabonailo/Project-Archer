@@ -32,7 +32,8 @@ private:
 	//HUD
 	int idxVidaP1;
 	int idxVidaP2;
-	int idxPontuacao;
+	int idxPontuacaoP1;
+	int idxPontuacaoP2;
 
 	sf::Font fonte;
 

@@ -1,6 +1,7 @@
 #include "Jogador.h"
 #include "GerenciadorGrafico.h" 
 #include "Inimigo.h"
+#include "Chefao.h"
 
 namespace Entidades
 {
@@ -16,7 +17,7 @@ namespace Entidades
             int n
         )
             : Personagem(pos, tam, textura, v, e, n), movDir(false), movEsq(false), coolDownTiro(0.f),
-            projetil(NULL)
+            projetil(NULL), pontuacao(0)
         {
             texturaEntidade.loadFromFile(textura);
             body.setTexture(&texturaEntidade);
@@ -69,6 +70,11 @@ namespace Entidades
         float Jogador::getCooldownTiro()
         {
             return coolDownTiro;
+        }
+
+        int Jogador::getPontuacao()
+        {
+            return pontuacao;
         }
 
         void Jogador::mover()
@@ -124,6 +130,8 @@ namespace Entidades
         void Jogador::colidir(Inimigo* pIn)
         {
             pIn->recebeDano(10);
+
+            pontuacao = pontuacao + 100 * pIn->getNivelMaldade();
 
             if (pIn->getBounds().left < getBounds().left) {
 

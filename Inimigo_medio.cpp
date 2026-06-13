@@ -49,6 +49,8 @@ namespace Entidades
 
 			while (atual && !achou)
 			{
+				
+
 				Jogador* pJog =
 					dynamic_cast<Jogador*>(atual->getInfo());
 
