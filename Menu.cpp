@@ -128,7 +128,7 @@ void Menu::criarMenuPrincipal()
 
     adicionarTexto("JOGO", sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 200.f), 100);
 
-    vecBotao.push_back(new Botao(ACAO_MENU_FASES, //mudar assim que adicionar o menu fases
+    vecBotao.push_back(new Botao(ACAO_MENU_FASES,
         sf::String("Jogar"),
         pGG->getWindowCentro()
     ));

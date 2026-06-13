@@ -40,6 +40,7 @@ namespace Entidades {
 		~Projetil();
 
 		void setPersonagem(Personagens::Personagem* pP);
+		Personagens::Personagem* getPersonagem();
 
 		void reiniciarProjetil();
 

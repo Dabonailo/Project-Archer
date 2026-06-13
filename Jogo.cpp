@@ -74,7 +74,7 @@ void Jogo::deletarFasePrimeira()
         delete fase1;
         fase1 = NULL;
         pjogador = NULL;
-        GE->setJogador(NULL);
+        GE->deletarJogadores();
         std::cout << "fase deletada" << std::endl;
     }
 }

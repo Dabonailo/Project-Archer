@@ -187,7 +187,11 @@ namespace Gerenciadores
 			for (std::set<Entidades::Projetil*>::iterator itP = LPs.begin(); itP != LPs.end(); ++itP) {
 				if (verificarColisao((*itI), (*itP)) && (*itP)->getAtivo()) {
 					(*itP)->cravarProjetil((*itI));
-					jogador1->colidir((*itI));
+					if (Entidades::Personagens::Jogador* p =
+						dynamic_cast<Entidades::Personagens::Jogador*>((*itP)->getPersonagem())) 
+					{
+						p->colidir((*itI));
+					}
 					if (!(*itI)->getVivo()) {
 						removerinimigo = true;
 						break;

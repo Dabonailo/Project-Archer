@@ -17,7 +17,7 @@ namespace Gerenciadores {
 	{
 		if (pEventos == NULL) {
 			pEventos = new GerenciadorEventos();
-		}	
+		}
 		return pEventos;
 	}
 
@@ -28,6 +28,12 @@ namespace Gerenciadores {
 		else if (!pJog2) {
 			pJog2 = pJ;
 		}
+	}
+
+	void GerenciadorEventos::deletarJogadores()
+	{
+		pJog = NULL;
+		pJog2 = NULL;
 	}
 
 	void GerenciadorEventos::setMenu(Menu* m)
@@ -58,7 +64,7 @@ namespace Gerenciadores {
 					pJog->setCooldownTiro(1.f);
 				}
 			}
-			
+
 			if (tecla == sf::Keyboard::Escape) {
 				menu->mudarMenu(MENU_PAUSA);
 			}
@@ -91,11 +97,11 @@ namespace Gerenciadores {
 			}
 		}
 
-		if (menu && menu->getTipoMenu() == MENU_PRINCIPAL || 
-			menu->getTipoMenu() == MENU_PAUSA || 
+		if (menu && menu->getTipoMenu() == MENU_PRINCIPAL ||
+			menu->getTipoMenu() == MENU_PAUSA ||
 			menu->getTipoMenu() == MENU_FASES ||
 			menu->getTipoMenu() == MENU_GAME_OVER
-			) 
+			)
 		{
 			if (tecla == sf::Keyboard::W || tecla == sf::Keyboard::Up) {
 				menu->selecionarBotoes(CIMA);
@@ -111,17 +117,22 @@ namespace Gerenciadores {
 
 	void GerenciadorEventos::verificaTeclaSolta(sf::Keyboard::Key tecla)
 	{
-		if (tecla == sf::Keyboard::D)
-			pJog->setMovDir(false);
+		if (pJog)
+		{
+			if (tecla == sf::Keyboard::D)
+				pJog->setMovDir(false);
 
-		if (tecla == sf::Keyboard::A)
-			pJog->setMovEsq(false);	
-		
-		if (tecla == sf::Keyboard::Right) {
-			pJog2->setMovDir(false);
+			if (tecla == sf::Keyboard::A)
+				pJog->setMovEsq(false);
 		}
-		if (tecla == sf::Keyboard::Left) {
-			pJog2->setMovEsq(false);
+
+		if (pJog2)
+		{
+			if (tecla == sf::Keyboard::Right)
+				pJog2->setMovDir(false);
+
+			if (tecla == sf::Keyboard::Left)
+				pJog2->setMovEsq(false);
 		}
 	}
 

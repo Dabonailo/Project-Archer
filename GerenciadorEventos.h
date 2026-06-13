@@ -23,6 +23,8 @@ namespace Gerenciadores
 		static GerenciadorEventos* getGerenciadorEventos();
 		
 		void setJogador(Entidades::Personagens::Jogador* pJ);
+		void deletarJogadores();
+
 		void setMenu(Menu* m);
 
 		void verificaTeclaPressionada(sf::Keyboard::Key tecla);

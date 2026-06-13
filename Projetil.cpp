@@ -20,6 +20,11 @@ void Entidades::Projetil::setPersonagem(Personagens::Personagem* pP)
 	pPersonagem = pP;
 }
 
+Entidades::Personagens::Personagem* Entidades::Projetil::getPersonagem()
+{
+	return pPersonagem;
+}
+
 void Entidades::Projetil::reiniciarProjetil()
 {
 	sf::Vector2f pos = pPersonagem->getPosicao();
