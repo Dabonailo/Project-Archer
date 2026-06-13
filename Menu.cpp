@@ -4,7 +4,7 @@
 Menu::Menu(sf::Vector2f pos, sf::Vector2f tam, const std::string& texturaFundo) :
     Ente(pos == sf::Vector2f(0.f, 0.f) ? pGG->getWindowCentro() : pos,
          tam == sf::Vector2f(0.f, 0.f) ? pGG->getWindowTam() : tam, texturaFundo), 
-    pJogo(NULL), vecBotao(), botaoSelecionado(), vecTexto(), txtVidaP1(), txtVidaP2(), txtPontuacao(), fonte()
+    pJogo(NULL), vecBotao(), botaoSelecionado(), vecTexto(), fonte()
 {
     if (!fonte.loadFromFile("ginger_brand/GingerBrand.ttf"))
     {
@@ -113,8 +113,11 @@ void Menu::criarHUDJogo()
 {
     limparMenu();
 
-    adicionarTexto("", sf::Vector2f(80.f, 30.f), 30);
-    txtVidaP1 = &vecTexto.back();
+    adicionarTexto("", sf::Vector2f(80.f, 30.f));
+    idxVidaP1 = vecTexto.size() - 1;
+
+    adicionarTexto("", sf::Vector2f(80.f, 70.f));
+    idxVidaP2 = vecTexto.size() - 1;
 }
 
 void Menu::criarMenuPrincipal()
@@ -271,6 +274,10 @@ void Menu::executar()
         std::stringstream ss;
 
         ss << "VIDA JOGADOR 1: " << pJogo->getVidaJogador(1);
-        txtVidaP1->setString(ss.str());
+        vecTexto[idxVidaP1].setString(ss.str());
+
+        ss.str("");
+        ss << "VIDA JOGADOR 2: " << pJogo->getVidaJogador(2);
+        vecTexto[idxVidaP2].setString(ss.str());
     }
 }

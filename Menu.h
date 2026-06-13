@@ -30,9 +30,9 @@ private:
 	std::vector<sf::Text> vecTexto;
 
 	//HUD
-	sf::Text* txtVidaP1;
-	sf::Text* txtVidaP2;
-	sf::Text* txtPontuacao;
+	int idxVidaP1;
+	int idxVidaP2;
+	int idxPontuacao;
 
 	sf::Font fonte;
 

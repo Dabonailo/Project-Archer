@@ -2,9 +2,9 @@
 
 namespace Fases
 {
-	Fase_Primeira::Fase_Primeira(Entidades::Personagens::Jogador* pJ, 
+	Fase_Primeira::Fase_Primeira(Entidades::Personagens::Jogador* pJ, Entidades::Personagens::Jogador* pJ2, 
         sf::Vector2f pos, sf::Vector2f tam, const std::string& textura) : 
-        Fase(pJ, pos, tam, textura), max_inimigos(1)
+        Fase(pJ, pJ2, pos, tam, textura), max_inimigos(1)
 	{
         criarInimigos();
         criarObstaculos();
@@ -103,6 +103,16 @@ namespace Fases
 
          ListaEntFase.incluir(novoProjetilJogador);
          GC.incluirProjetil(novoProjetilJogador);
+
+         if (pJogador2) {
+             Entidades::Projetil* novoProjetilJogador2 = new Entidades::Projetil();
+
+             pJogador2->setProjetil(novoProjetilJogador2);
+             novoProjetilJogador2->setPersonagem(pJogador2);
+
+             ListaEntFase.incluir(novoProjetilJogador2);
+             GC.incluirProjetil(novoProjetilJogador2);
+         }
      }
 
     void Fase_Primeira::criarObstaculos()
