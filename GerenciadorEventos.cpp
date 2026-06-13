@@ -43,7 +43,7 @@ namespace Gerenciadores {
 				pJog->setDirecao(ESQUERDA);
 			}
 
-			if (tecla == sf::Keyboard::Space) {
+			if (tecla == sf::Keyboard::W) {
 				pJog->pular();
 			}
 

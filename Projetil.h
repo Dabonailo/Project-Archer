@@ -2,6 +2,12 @@
 #include "Entidade.h"
 #include "GerenciadorGrafico.h"
 
+namespace Entidades {
+	namespace Personagens {
+		class Personagem;
+	}
+}
+
 #define TAMANHO_PROJETIL_X 28.f
 #define TAMANHO_PROJETIL_Y 7.f
 
@@ -17,8 +23,11 @@ namespace Entidades {
 	private:
 		bool ativo;
 
+		Personagens::Personagem* pPersonagem;
+
 		Entidade* alvo;
 		sf::Vector2f offset; //posicao do alvo
+
 		bool cravado;
 		float tempoCravado;
 
@@ -29,6 +38,12 @@ namespace Entidades {
 			float e = GRAVIDADE - 100.0);
 
 		~Projetil();
+
+		void setPersonagem(Personagens::Personagem* pP);
+
+		void reiniciarProjetil();
+
+		void tratarAlvoNocauteado();
 
 		void setAtivo(bool a);
 		bool getAtivo();

@@ -99,6 +99,7 @@ namespace Fases
          Entidades::Projetil* novoProjetilJogador = new Entidades::Projetil();
 
          pJogador->setProjetil(novoProjetilJogador);
+         novoProjetilJogador->setPersonagem(pJogador);
 
          ListaEntFase.incluir(novoProjetilJogador);
          GC.incluirProjetil(novoProjetilJogador);
@@ -114,7 +115,6 @@ namespace Fases
     {  
         Ente::desenhar();
 
-        criarProjetilJogador();
         ListaEntFase.percorrerLista();
         GC.executar();
     }

@@ -18,6 +18,16 @@ Jogo::~Jogo()
 {
 }
 
+int Jogo::getVidaJogador(int j)
+{
+    if (pjogador && j == 1) {
+        return pjogador->getVida();
+    }
+    else {
+        return -1;
+    }
+}
+
 void Jogo::criarFasePrimeira()
 {
     if (fase1) {

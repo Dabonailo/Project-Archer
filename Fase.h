@@ -22,9 +22,7 @@ namespace Fases
 		virtual void criarInimigos() = 0;
 		void criarInimgosFaceis();
 		virtual void criarObstaculos() = 0;
-		void criarPlataformas();
-		virtual void criarProjetilJogador();
-		
+		void criarPlataformas();		
 		virtual void criarProjeteis() = 0;
 		
 

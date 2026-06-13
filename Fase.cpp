@@ -23,32 +23,6 @@ namespace Fases {
 		pJogador = p;
 	}
 
-    void Fase::criarProjetilJogador()
-    {
-        /*
-        if (pJogador->getQuerAtirar()) {
-            sf::Vector2f pos = pJogador->getPosicao();
-            sf::Vector2f velP;
-
-            if (pJogador->getDirecao() == Direcao::DIREITA) {
-                pos.x += pJogador->getBody().getSize().x;
-                velP = sf::Vector2f(VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
-            }
-            if (pJogador->getDirecao() == Direcao::ESQUERDA) {
-                pos.x -= pJogador->getBody().getSize().x;
-                velP = sf::Vector2f(-VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
-            }
-
-            Entidades::Projetil* novoProjetil = new Entidades::Projetil(pos, velP);
-
-            ListaEntFase.incluir(novoProjetil);
-            GC.incluirProjetil(novoProjetil);
-
-            pJogador->setQuerAtirar(false);
-        }
-        */
-    }
-
 	Listas::ListaEntidades* Fase::getListaEntFase()
 	{
 		return &ListaEntFase;

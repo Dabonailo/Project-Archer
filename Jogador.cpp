@@ -48,21 +48,7 @@ namespace Entidades
         void Jogador::atirar()
         {
             projetil->setAtivo(true);
-
-            sf::Vector2f pos = getPosicao();
-            sf::Vector2f velP;
-
-            if (getDirecao() == Direcao::DIREITA) {
-                pos.x += body.getSize().x;
-                velP = sf::Vector2f(VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
-            }
-            if (getDirecao() == Direcao::ESQUERDA) {
-                pos.x -= body.getSize().x;
-                velP = sf::Vector2f(-VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
-            }
-
-            projetil->setPosicao(pos);
-            projetil->setVelocidade(velP);
+            projetil->reiniciarProjetil();
         }
 
         void Jogador::setProjetil(Projetil* p)

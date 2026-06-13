@@ -1,17 +1,58 @@
 #include "Projetil.h"
+#include "Personagem.h"
 
 Entidades::Projetil::Projetil(sf::Vector2f pos,
 	sf::Vector2f tam,
 	const std::string& textura,
 	sf::Vector2f velocidade, float e) :
 	Entidade(pos, tam, textura, velocidade, e),
-	ativo(true), alvo(NULL), offset(sf::Vector2f(0.f,0.f)), cravado(false), tempoCravado(0.f)
+	ativo(true), pPersonagem(NULL), alvo(NULL), offset(sf::Vector2f(0.f,0.f)), cravado(false), tempoCravado(0.f)
 {
 }
 
 Entidades::Projetil::~Projetil()
 {
 	ativo = false;
+}
+
+void Entidades::Projetil::setPersonagem(Personagens::Personagem* pP)
+{
+	pPersonagem = pP;
+}
+
+void Entidades::Projetil::reiniciarProjetil()
+{
+	sf::Vector2f pos = pPersonagem->getPosicao();
+	sf::Vector2f velP;
+
+	if (pPersonagem->getDirecao() == Direcao::DIREITA) {
+		pos.x += pPersonagem->getBody().getSize().x;
+		velP = sf::Vector2f(VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
+	}
+	if (pPersonagem->getDirecao() == Direcao::ESQUERDA) {
+		pos.x -= pPersonagem->getBody().getSize().x;
+		velP = sf::Vector2f(-VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
+	}
+
+	setPosicao(pos);
+	setVelocidade(velP);
+}
+
+void Entidades::Projetil::tratarAlvoNocauteado()
+{
+	if (Personagens::Personagem* p = dynamic_cast<Personagens::Personagem*>(alvo)) {
+		if (!p->getVivo()) {
+			alvo = NULL;
+			cravado = false;
+			ativo = true;
+			if (pPersonagem->getDirecao() == DIREITA) {
+				velocidade = sf::Vector2f(200.f, VELOCIDADE_PROJETIL_Y);
+			}
+			else if (pPersonagem->getDirecao() == ESQUERDA) {
+				velocidade = sf::Vector2f(-200.f, VELOCIDADE_PROJETIL_Y);
+			}
+		}
+	}
 }
 
 void Entidades::Projetil::setAtivo(bool a)
@@ -77,6 +118,8 @@ void Entidades::Projetil::executar()
 		mover();
 		verificaForaDaTela();
 	}
+
+	tratarAlvoNocauteado();
 
 	gravitar();
 	desenhar();
