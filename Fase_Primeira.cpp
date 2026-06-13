@@ -23,32 +23,32 @@ namespace Fases
 
     void Fase_Primeira::criarInimgosMedios()
     {
-        Entidades::Personagens::Inimigo_medio* inimigo;
+        Entidades::Personagens::Dragao* inimigo;
 
         if (rand() % 9 == 0)
         {
-            inimigo = new Entidades::Personagens::Inimigo_medio(sf::Vector2f(210.f, 420.f));
+            inimigo = new Entidades::Personagens::Dragao(sf::Vector2f(210.f, 420.f));
             inimigo->setListaJogadores(&lJogs);
             ListaEntFase.incluir(inimigo);
             GC.incluirInimigo(inimigo);
         }
 
-        inimigo = new Entidades::Personagens::Inimigo_medio(sf::Vector2f(595.f, 315.f));
+        inimigo = new Entidades::Personagens::Dragao(sf::Vector2f(595.f, 315.f));
         inimigo->setListaJogadores(&lJogs);
         ListaEntFase.incluir(inimigo);
         GC.incluirInimigo(inimigo);
 
-        inimigo = new Entidades::Personagens::Inimigo_medio(sf::Vector2f(910.f, 210.f));
+        inimigo = new Entidades::Personagens::Dragao(sf::Vector2f(910.f, 210.f));
         inimigo->setListaJogadores(&lJogs);
         ListaEntFase.incluir(inimigo);
         GC.incluirInimigo(inimigo);
 
-        inimigo = new Entidades::Personagens::Inimigo_medio(sf::Vector2f(420.f, 105.f));
+        inimigo = new Entidades::Personagens::Dragao(sf::Vector2f(420.f, 105.f));
         inimigo->setListaJogadores(&lJogs);
         ListaEntFase.incluir(inimigo);
         GC.incluirInimigo(inimigo);
 
-        inimigo = new Entidades::Personagens::Inimigo_medio(sf::Vector2f(1085.f, 105.f));
+        inimigo = new Entidades::Personagens::Dragao(sf::Vector2f(1085.f, 105.f));
         inimigo->setListaJogadores(&lJogs);
         ListaEntFase.incluir(inimigo);
         GC.incluirInimigo(inimigo);
