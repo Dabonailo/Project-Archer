@@ -5,7 +5,7 @@ namespace Entidades
     namespace Personagens
     {
 
-        Inimigo_facil::Inimigo_facil(
+        Oni::Oni(
             sf::Vector2f pos,
             sf::Vector2f tam,
             const std::string& textura,
@@ -15,11 +15,11 @@ namespace Entidades
         {
         }
 
-        Inimigo_facil::~Inimigo_facil()
+        Oni::~Oni()
         {
         }
 
-        void Inimigo_facil::danificar(Jogador* p)
+        void Oni::danificar(Jogador* p)
         {
             if (p->getTempoInvulneravel() <= 0.f) {
 				p->recebeDano(5+nivel_maldade);
@@ -39,7 +39,7 @@ namespace Entidades
             }
         }
 
-        void Inimigo_facil::mover()
+        void Oni::mover()
         {
             if (cooldownKnockback > 0.f)
                 return;
@@ -77,7 +77,7 @@ namespace Entidades
                 movimentoAleatorio();
         }
 
-        void Inimigo_facil::perseguir(Jogador* pJog)
+        void Oni::perseguir(Jogador* pJog)
         {
             if (!pJog)
                 return;
@@ -103,7 +103,7 @@ namespace Entidades
             }
         }
 
-        void Inimigo_facil::movimentoAleatorio()
+        void Oni::movimentoAleatorio()
         {
             if (cooldownMovimento <= 0.f) {
                 movimento = rand() % 4 + 1;
@@ -136,7 +136,7 @@ namespace Entidades
             }
 		}
 
-        void Inimigo_facil::executar()
+        void Oni::executar()
         {
             desenhar();
             mover();

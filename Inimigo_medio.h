@@ -9,7 +9,7 @@ namespace Entidades
 {
 	namespace Personagens
 	{
-		class Inimigo_medio : public Inimigo
+		class Dragao : public Inimigo
 		{
 		private:
 			float altura_voo;
@@ -19,12 +19,12 @@ namespace Entidades
 			int direcao;
 
 		public:
-			Inimigo_medio(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
+			Dragao(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
 				sf::Vector2f tam = sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
 				const std::string& textura = "dragao.png",
 				sf::Vector2f v = sf::Vector2f(ENT_VEL_DEFAULT_X, ENT_VEL_DEFAULT_Y),
 				float e = GRAVIDADE, float a = 50.f, int n = 40, int nm = 1);
-			~Inimigo_medio();
+			~Dragao();
 			void danificar(Jogador* p) override;
 			void mover() override;
 			void executar() override;

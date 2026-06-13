@@ -4,7 +4,7 @@ namespace Entidades
 {
 	namespace Personagens
 	{
-		Inimigo_medio::Inimigo_medio(
+		Dragao::Dragao(
 			sf::Vector2f pos,
 			sf::Vector2f tam,
 			const std::string& textura,
@@ -21,10 +21,10 @@ namespace Entidades
 				<< velocidade.y
 				<< std::endl;
 		}
-		Inimigo_medio::~Inimigo_medio()
+		Dragao::~Dragao()
 		{
 		}
-		void Inimigo_medio::danificar(Jogador* p)
+		void Dragao::danificar(Jogador* p)
 		{
 			if (p->getTempoInvulneravel() <= 0.f) {
 				p->recebeDano(10*nivel_maldade);
@@ -40,7 +40,7 @@ namespace Entidades
 			}
 		}
 		
-		void Inimigo_medio::mover()
+		void Dragao::mover()
 		{
 			bool achou = false;
 
@@ -81,7 +81,7 @@ namespace Entidades
 			}
 		}
 
-		void Inimigo_medio::perseguir(Jogador* pJog)
+		void Dragao::perseguir(Jogador* pJog)
 		{
 			if (!pJog)
 				return;
@@ -130,7 +130,7 @@ namespace Entidades
 				}
 			}
 		}
-		void Inimigo_medio::movimentoAleatorio()
+		void Dragao::movimentoAleatorio()
 		{
 			velocidade.x = direcao * INIMIGO_MEDIO_VELOCIDADE_X;
 
@@ -152,7 +152,7 @@ namespace Entidades
 
 
 
-		void Inimigo_medio::executar()
+		void Dragao::executar()
 		{	
 			/*std::cout << "PosX: " << getPosicao().x
 				<< " Dir: " << direcao

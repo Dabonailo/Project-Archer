@@ -36,11 +36,11 @@ namespace Fases {
 
     void Fase::criarInimgosFaceis()
     {
-        Entidades::Personagens::Inimigo_facil* inimigo;
+        Entidades::Personagens::Oni* inimigo;
 
         if (rand() % 2 == 0)
         {
-            inimigo = new Entidades::Personagens::Inimigo_facil();
+            inimigo = new Entidades::Personagens::Oni();
             inimigo->setPosicao(sf::Vector2f(280.f, 560.f));
             inimigo->setListaJogadores(&lJogs);
             ListaEntFase.incluir(inimigo);
@@ -48,19 +48,19 @@ namespace Fases {
         }
 
 
-        inimigo = new Entidades::Personagens::Inimigo_facil();
+        inimigo = new Entidades::Personagens::Oni();
         inimigo->setPosicao(sf::Vector2f(560.f, 455.f));
         inimigo->setListaJogadores(&lJogs);
         ListaEntFase.incluir(inimigo);
         GC.incluirInimigo(inimigo);
 
-        inimigo = new Entidades::Personagens::Inimigo_facil();
+        inimigo = new Entidades::Personagens::Oni();
         inimigo->setPosicao(sf::Vector2f(875.f, 350.f));
         inimigo->setListaJogadores(&lJogs);
         ListaEntFase.incluir(inimigo);
         GC.incluirInimigo(inimigo);
 
-        inimigo = new Entidades::Personagens::Inimigo_facil();
+        inimigo = new Entidades::Personagens::Oni();
         inimigo->setPosicao(sf::Vector2f(490.f, 245.f));
         inimigo->setListaJogadores(&lJogs);
         ListaEntFase.incluir(inimigo);
@@ -68,7 +68,7 @@ namespace Fases {
 
         if (rand() % 2 == 0)
         {
-            inimigo = new Entidades::Personagens::Inimigo_facil();
+            inimigo = new Entidades::Personagens::Oni();
             inimigo->setPosicao(sf::Vector2f(1015.f, 175.f));
             inimigo->setListaJogadores(&lJogs);
             ListaEntFase.incluir(inimigo);
