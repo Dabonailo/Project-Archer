@@ -11,6 +11,7 @@ namespace Gerenciadores
 	private:
 		static GerenciadorGrafico* pGrafico;
 		Entidades::Personagens::Jogador* pJog;
+		Entidades::Personagens::Jogador* pJog2;
 		Menu* menu;
 
 		static GerenciadorEventos* pEventos;

@@ -1,46 +1,28 @@
 #include "Fase.h"
 
 namespace Fases {
-	Fase::Fase(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura):
+	Fase::Fase(Entidades::Personagens::Jogador* pJ, Entidades::Personagens::Jogador* pJ2,
+        sf::Vector2f pos, sf::Vector2f tam, const std::string& textura):
         Ente(pos == sf::Vector2f(0.f, 0.f) ? pGG->getWindowCentro() : pos,
-            tam == sf::Vector2f(0.f, 0.f) ? pGG->getWindowTam() : tam, textura), ListaEntFase(), GC(), pJogador(NULL)
+            tam == sf::Vector2f(0.f, 0.f) ? pGG->getWindowTam() : tam, textura), ListaEntFase(), GC(), 
+        pJogador(NULL), pJogador2(NULL)
     {
         body.setFillColor(sf::Color(255, 255, 255, 150));
+
+        ListaEntFase.incluir(pJ);
+        lJogs.incluir(pJ);
+        GC.incluirJogadores(pJ);
+        pJogador = pJ;
+
+        if (pJ2) {
+            ListaEntFase.incluir(pJ2);
+            lJogs.incluir(pJ2);
+            GC.incluirJogadores(pJ2);
+            pJogador2 = pJ2;
+        }
     }
 
 	Fase::~Fase() {}
-
-	void Fase::adicionarJogador(Entidades::Personagens::Jogador* p)
-	{
-		ListaEntFase.incluir(p);
-		lJogs.incluir(p);
-		GC.incluirJogadores(p);
-		pJogador = p;
-	}
-
-    void Fase::criarProjetilJogador()
-    {
-        if (pJogador->getQuerAtirar()) {
-            sf::Vector2f pos = pJogador->getPosicao();
-            sf::Vector2f velP;
-
-            if (pJogador->getDirecao() == Direcao::DIREITA) {
-                pos.x += pJogador->getBody().getSize().x;
-                velP = sf::Vector2f(VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
-            }
-            if (pJogador->getDirecao() == Direcao::ESQUERDA) {
-                pos.x -= pJogador->getBody().getSize().x;
-                velP = sf::Vector2f(-VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
-            }
-
-            Entidades::Projetil* novoProjetil = new Entidades::Projetil(pos, velP);
-
-            ListaEntFase.incluir(novoProjetil);
-            GC.incluirProjetil(novoProjetil);
-
-            pJogador->setQuerAtirar(false);
-        }
-    }
 
 	Listas::ListaEntidades* Fase::getListaEntFase()
 	{

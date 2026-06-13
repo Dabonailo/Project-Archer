@@ -4,6 +4,7 @@
 #include "Botao.h"
 #include "GerenciadorGrafico.h"
 #include <vector>
+#include <sstream>
 #include "direcao.h"
 
 class Jogo;
@@ -28,6 +29,11 @@ private:
 	
 	std::vector<sf::Text> vecTexto;
 
+	//HUD
+	int idxVidaP1;
+	int idxVidaP2;
+	int idxPontuacao;
+
 	sf::Font fonte;
 
 public:
@@ -50,6 +56,7 @@ public:
 
 	void adicionarTexto(sf::String s = "Inserir texto", sf::Vector2f pos = sf::Vector2f(0.f, 0.f), unsigned int tam = 30);
 
+	void criarHUDJogo();
 	void criarMenuPrincipal();
 	void criarMenuFases();
 	void criarMenuPausa();

@@ -141,6 +141,10 @@ namespace Gerenciadores
 			pEnt->setVelocidade(vel);
 
 			pEnt->setnoChao(true);
+
+			if (Entidades::Projetil* pPr = dynamic_cast<Entidades::Projetil*>(pEnt)) {
+				pPr->setAtivo(false);
+			}
 		}
 	}
 
@@ -166,26 +170,10 @@ namespace Gerenciadores
 
 	void GerenciadorColisoes::tratarColisaoObstacProjetil()
 	{
-		for (auto it = LPs.begin(); it != LPs.end(); )
-		{
-			if (!(*it)->getAtivo())
-			{
-				it = LPs.erase(it);
-			}
-			else
-			{
-				++it;
-			}
-		}
-
 		for (std::list<Entidades::Obstaculos::Obstaculo*>::iterator itO = LOs.begin(); itO != LOs.end(); ++itO) {
-			for (std::set<Entidades::Projetil*>::iterator itP = LPs.begin(); itP != LPs.end(); ) {
-				if (verificarColisao((*itO), (*itP)) || !(*itP)->getAtivo()) {
+			for (std::set<Entidades::Projetil*>::iterator itP = LPs.begin(); itP != LPs.end(); ++itP) {
+				if (verificarColisao((*itO), (*itP)) && (*itP)->getAtivo()) {
 					(*itP)->cravarProjetil((*itO));
-					itP = LPs.erase(itP);
-				}
-				else {
-					++itP;
 				}
 			}
 		}
@@ -196,18 +184,14 @@ namespace Gerenciadores
 		for (std::vector<Entidades::Personagens::Inimigo*>::iterator itI = LIs.begin(); itI != LIs.end(); ) {
 			bool removerinimigo = false;
 
-			for (std::set<Entidades::Projetil*>::iterator itP = LPs.begin(); itP != LPs.end(); ) {
-				if (verificarColisao((*itI), (*itP))) {
+			for (std::set<Entidades::Projetil*>::iterator itP = LPs.begin(); itP != LPs.end(); ++itP) {
+				if (verificarColisao((*itI), (*itP)) && (*itP)->getAtivo()) {
 					(*itP)->cravarProjetil((*itI));
-					itP = LPs.erase(itP);
 					jogador1->colidir((*itI));
 					if (!(*itI)->getVivo()) {
 						removerinimigo = true;
 						break;
 					}
-				}
-				else {
-					++itP;
 				}
 			}
 			if (removerinimigo) {

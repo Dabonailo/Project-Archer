@@ -12,14 +12,19 @@ class Jogo
 {
 private:
 	Entidades::Personagens::Jogador* pjogador;
+	Entidades::Personagens::Jogador* pjogador2;
+
 	Gerenciadores::GerenciadorGrafico* GG;
 	Gerenciadores::GerenciadorEventos* GE;
+
 	Fases::Fase_Primeira* fase1;
 	Menu* menu;
 
 public:
 	Jogo();
 	~Jogo();
+
+	int getVidaJogador(int j);
 
 	void criarFasePrimeira();
 	void deletarFasePrimeira();

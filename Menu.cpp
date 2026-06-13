@@ -33,7 +33,7 @@ void Menu::mudarMenu(tipoMenu menu)
     switch (menuAtual)
     {
     case NO_JOGO:
-        limparMenu();
+        criarHUDJogo();
         break;
         
     case MENU_PRINCIPAL:
@@ -107,6 +107,17 @@ void Menu::adicionarTexto(sf::String s, sf::Vector2f pos, unsigned int tam)
     texto.setPosition(pos);
 
     vecTexto.push_back(texto);
+}
+
+void Menu::criarHUDJogo()
+{
+    limparMenu();
+
+    adicionarTexto("", sf::Vector2f(80.f, 30.f));
+    idxVidaP1 = vecTexto.size() - 1;
+
+    adicionarTexto("", sf::Vector2f(80.f, 70.f));
+    idxVidaP2 = vecTexto.size() - 1;
 }
 
 void Menu::criarMenuPrincipal()
@@ -257,5 +268,16 @@ void Menu::executar()
     for (std::vector<sf::Text>::iterator it = vecTexto.begin(); it != vecTexto.end(); ++it)
     {
         desenhar((*it));
+    }
+
+    if (menuAtual == NO_JOGO) {
+        std::stringstream ss;
+
+        ss << "VIDA JOGADOR 1: " << pJogo->getVidaJogador(1);
+        vecTexto[idxVidaP1].setString(ss.str());
+
+        ss.str("");
+        ss << "VIDA JOGADOR 2: " << pJogo->getVidaJogador(2);
+        vecTexto[idxVidaP2].setString(ss.str());
     }
 }

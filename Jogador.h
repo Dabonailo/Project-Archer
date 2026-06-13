@@ -1,5 +1,6 @@
 #pragma once
 #include "Personagem.h"
+#include "Projetil.h"
 
 namespace Entidades
 {
@@ -24,8 +25,8 @@ namespace Entidades
 		private:
 			bool movDir;
 			bool movEsq;
-			
-			bool querAtirar;
+
+			Projetil* projetil;
 
 			float coolDownTiro;
 
@@ -41,8 +42,10 @@ namespace Entidades
 			void setMovDir(bool b);
 			void setMovEsq(bool b);
 
-			void setQuerAtirar(bool a);
-			bool getQuerAtirar();
+			void atirar();
+
+			void setProjetil(Projetil* p);
+			bool getProjetilAtivo();
 
 			void setCooldownTiro(float cd);
 			float getCooldownTiro();

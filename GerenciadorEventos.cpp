@@ -5,7 +5,7 @@ namespace Gerenciadores {
 	GerenciadorEventos* GerenciadorEventos::pEventos = NULL;
 	GerenciadorGrafico* GerenciadorEventos::pGrafico = GerenciadorGrafico::getGerenciadorGrafico();
 
-	GerenciadorEventos::GerenciadorEventos() :pJog(NULL), menu(NULL)
+	GerenciadorEventos::GerenciadorEventos() :pJog(NULL), pJog2(NULL), menu(NULL)
 	{
 	}
 
@@ -22,7 +22,12 @@ namespace Gerenciadores {
 	}
 
 	void GerenciadorEventos::setJogador(Entidades::Personagens::Jogador* pJ) {
-		pJog = pJ;
+		if (!pJog) {
+			pJog = pJ;
+		}
+		else if (!pJog2) {
+			pJog2 = pJ;
+		}
 	}
 
 	void GerenciadorEventos::setMenu(Menu* m)
@@ -43,17 +48,44 @@ namespace Gerenciadores {
 				pJog->setDirecao(ESQUERDA);
 			}
 
-			if (tecla == sf::Keyboard::Space) {
+			if (tecla == sf::Keyboard::W) {
 				pJog->pular();
 			}
 
 			if (tecla == sf::Keyboard::Q) {
-				if (pJog->getCooldownTiro() <= 0.f) {
-					pJog->setQuerAtirar(true);
+				if (pJog->getCooldownTiro() <= 0.f && !pJog->getProjetilAtivo()) {
+					pJog->atirar();
 					pJog->setCooldownTiro(1.f);
 				}
 			}
 			
+			if (tecla == sf::Keyboard::Escape) {
+				menu->mudarMenu(MENU_PAUSA);
+			}
+		}
+
+		if (pJog2 && pJog2->getVivo()) {
+			if (tecla == sf::Keyboard::Right) {
+				pJog2->setMovDir(true);
+				pJog2->setDirecao(DIREITA);
+			}
+
+			if (tecla == sf::Keyboard::Left) {
+				pJog2->setMovEsq(true);
+				pJog2->setDirecao(ESQUERDA);
+			}
+
+			if (tecla == sf::Keyboard::Up) {
+				pJog2->pular();
+			}
+
+			if (tecla == sf::Keyboard::Space) {
+				if (pJog2->getCooldownTiro() <= 0.f && !pJog->getProjetilAtivo()) {
+					pJog2->atirar();
+					pJog2->setCooldownTiro(1.f);
+				}
+			}
+
 			if (tecla == sf::Keyboard::Escape) {
 				menu->mudarMenu(MENU_PAUSA);
 			}
@@ -65,10 +97,10 @@ namespace Gerenciadores {
 			menu->getTipoMenu() == MENU_GAME_OVER
 			) 
 		{
-			if (tecla == sf::Keyboard::W || tecla == sf::Keyboard::PageUp) {
+			if (tecla == sf::Keyboard::W || tecla == sf::Keyboard::Up) {
 				menu->selecionarBotoes(CIMA);
 			}
-			if (tecla == sf::Keyboard::S || tecla == sf::Keyboard::PageDown) {
+			if (tecla == sf::Keyboard::S || tecla == sf::Keyboard::Down) {
 				menu->selecionarBotoes(BAIXO);
 			}
 			if (tecla == sf::Keyboard::Enter) {
@@ -84,9 +116,12 @@ namespace Gerenciadores {
 
 		if (tecla == sf::Keyboard::A)
 			pJog->setMovEsq(false);	
-
-		if(tecla == sf::Keyboard::Q){
-			pJog->setQuerAtirar(false);
+		
+		if (tecla == sf::Keyboard::Right) {
+			pJog2->setMovDir(false);
+		}
+		if (tecla == sf::Keyboard::Left) {
+			pJog2->setMovEsq(false);
 		}
 	}
 
