@@ -65,9 +65,7 @@ namespace Entidades
 		void Inimigo::recebeDano(int dano)
 		{
 			numVidas -= dano;
-			if (getVida() >= 0) {
-				std::cout << "vida: " << getVida() << std::endl;
-			}
+
 			if (dano > 5)
 				nivel_maldade++;
 		}

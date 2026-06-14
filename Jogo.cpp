@@ -2,7 +2,8 @@
 #include "Ente.h"
 
 
-Jogo::Jogo(): pjogador(NULL), pjogador2(NULL), GG(), GE(), fase1(NULL), menu(NULL)
+Jogo::Jogo(): pjogador(NULL), pjogador2(NULL), pontuacaoFinalP1(0), pontuacaoFinalP2(0),
+numJogadores(1), GG(), GE(), fase1(NULL), menu(NULL)
 {   
     GG = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
     GE = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
@@ -15,6 +16,32 @@ Jogo::Jogo(): pjogador(NULL), pjogador2(NULL), GG(), GE(), fase1(NULL), menu(NUL
 
 Jogo::~Jogo()
 {
+}
+
+void Jogo::setNumJogadores(int n)
+{
+    numJogadores = n;
+}
+
+int Jogo::getNumJogadores()
+{
+    return numJogadores;
+}
+
+int Jogo::getPontuacaoFinal(int j)
+{
+    switch (j)
+    {
+    case 1:
+        return pjogador->getPontuacao();
+
+    case 2:
+        return pjogador2->getPontuacao();
+
+    default:
+        return -1;  
+    }
+
 }
 
 int Jogo::getVidaJogador(int j)
@@ -65,11 +92,13 @@ void Jogo::criarFasePrimeira()
 
     pjogador = jogador;
 
-    Entidades::Personagens::Jogador* jogador2 = new Entidades::Personagens::Jogador(sf::Vector2f(100.f, 0.f),
-        sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
-        "hanzo2_spray.png");
+    if (numJogadores == 2) {
+        Entidades::Personagens::Jogador* jogador2 = new Entidades::Personagens::Jogador(sf::Vector2f(100.f, 0.f),
+            sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
+            "hanzo2_spray.png");
 
-    pjogador2 = jogador2;
+        pjogador2 = jogador2;
+    }
 
     fase1 = new Fases::Fase_Primeira(pjogador, pjogador2);
 
@@ -84,7 +113,13 @@ void Jogo::deletarFasePrimeira()
     if (fase1) {
         delete fase1;
         fase1 = NULL;
+
         pjogador = NULL;
+        pjogador2 = NULL;
+
+        pontuacaoFinalP1 = 0;
+        pontuacaoFinalP2 = 0;
+
         GE->deletarJogadores();
         std::cout << "fase deletada" << std::endl;
     }
@@ -92,15 +127,32 @@ void Jogo::deletarFasePrimeira()
 
 void Jogo::executarMenu()
 {
-    if (pjogador && !pjogador->getVivo() && pjogador2 && !pjogador2->getVivo() && menu->getTipoMenu() != MENU_GAME_OVER)
+    if (numJogadores == 1)
     {
-        menu->mudarMenu(MENU_GAME_OVER);
+        if (pjogador && !pjogador->getVivo() && menu->getTipoMenu() != MENU_GAME_OVER 
+            && menu->getTipoMenu() != MENU_SALVAR_PONTUACAO) 
+        {
+            pontuacaoFinalP1 = pjogador->getPontuacao();
+
+            menu->mudarMenu(MENU_GAME_OVER);
+        }
+    }
+    else if (numJogadores == 2) {
+        if (pjogador && !pjogador->getVivo() && pjogador2 && !pjogador2->getVivo() 
+            && menu->getTipoMenu() != MENU_GAME_OVER) 
+        {
+            pontuacaoFinalP1 = pjogador->getPontuacao();
+            pontuacaoFinalP2 = pjogador2->getPontuacao();
+
+            menu->mudarMenu(MENU_GAME_OVER);
+        }
     }
 
     switch (menu->getTipoMenu())
     {
     case MENU_PRINCIPAL:
     case MENU_FASES:
+    case MENU_JOGADORES:
         menu->executar();
         break;
 
@@ -111,6 +163,7 @@ void Jogo::executarMenu()
 
     case MENU_GAME_OVER:
     case NO_JOGO:
+    case MENU_SALVAR_PONTUACAO:
         fase1->executar();
         menu->executar();
         break;

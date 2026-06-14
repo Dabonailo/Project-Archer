@@ -14,6 +14,11 @@ private:
 	Entidades::Personagens::Jogador* pjogador;
 	Entidades::Personagens::Jogador* pjogador2;
 
+	int pontuacaoFinalP1;
+	int pontuacaoFinalP2;
+
+	int numJogadores;
+
 	Gerenciadores::GerenciadorGrafico* GG;
 	Gerenciadores::GerenciadorEventos* GE;
 
@@ -23,6 +28,11 @@ private:
 public:
 	Jogo();
 	~Jogo();
+
+	void setNumJogadores(int n);
+	int getNumJogadores();
+
+	int getPontuacaoFinal(int j);
 
 	int getVidaJogador(int j);
 	int getPontuacaoJogador(int j);

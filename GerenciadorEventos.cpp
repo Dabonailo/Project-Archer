@@ -100,7 +100,9 @@ namespace Gerenciadores {
 		if (menu && menu->getTipoMenu() == MENU_PRINCIPAL ||
 			menu->getTipoMenu() == MENU_PAUSA ||
 			menu->getTipoMenu() == MENU_FASES ||
-			menu->getTipoMenu() == MENU_GAME_OVER
+			menu->getTipoMenu() == MENU_GAME_OVER ||
+			menu->getTipoMenu() == MENU_JOGADORES ||
+			menu->getTipoMenu() == MENU_SALVAR_PONTUACAO
 			)
 		{
 			if (tecla == sf::Keyboard::W || tecla == sf::Keyboard::Up) {
@@ -151,6 +153,12 @@ namespace Gerenciadores {
 			else if (evento.type == sf::Event::KeyReleased)
 			{
 				verificaTeclaSolta(evento.key.code);
+			}
+
+			else if(evento.type == sf::Event::TextEntered)
+			{
+				if (menu)
+					menu->digitarNome(evento.text.unicode);
 			}
 		}
 	}

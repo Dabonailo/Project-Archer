@@ -40,6 +40,10 @@ void Menu::mudarMenu(tipoMenu menu)
         criarMenuPrincipal();
         break;
 
+    case MENU_JOGADORES:
+        criarMenuSelecionarJogadores();
+        break;
+
     case MENU_FASES:
         criarMenuFases();
         break;
@@ -50,6 +54,10 @@ void Menu::mudarMenu(tipoMenu menu)
 
     case MENU_GAME_OVER:
         criarMenuGameOver();
+        break;
+
+    case MENU_SALVAR_PONTUACAO:
+        criarMenuSalvarPontuacao();
         break;
 
     default:
@@ -66,6 +74,30 @@ void Menu::mudarMenu(tipoMenu menu)
 tipoMenu Menu::getTipoMenu()
 {
     return menuAtual;
+}
+
+void Menu::digitarNome(sf::Uint32 unicode)
+{
+    if (menuAtual != MENU_SALVAR_PONTUACAO)
+        return;
+
+    if (unicode == 8) // BACKSPACE
+    {
+        if (!nomeDigitado.empty())
+            nomeDigitado.pop_back();
+    }
+
+    else if (unicode >= 32 && unicode <= 126 && nomeDigitado.size() < 12)
+    {
+        nomeDigitado += static_cast<char>(unicode);
+    }
+}
+
+void Menu::centralizarTexto(sf::Text& texto)
+{
+    sf::FloatRect bounds = texto.getLocalBounds();
+
+    texto.setOrigin(bounds.left + bounds.width / 2.f, bounds.top + bounds.height / 2.f);
 }
 
 void Menu::limparvecBotao()
@@ -119,11 +151,13 @@ void Menu::criarHUDJogo()
     adicionarTexto("", sf::Vector2f(200.f, 10.f));
     idxPontuacaoP1 = vecTexto.size() - 1;
 
-    adicionarTexto("", sf::Vector2f(1070.f, 10.f));
-    idxVidaP2 = vecTexto.size() - 1;
+    if (pJogo->getNumJogadores() == 2) {
+        adicionarTexto("", sf::Vector2f(1070.f, 10.f));
+        idxVidaP2 = vecTexto.size() - 1;
 
-    adicionarTexto("", sf::Vector2f(780.f, 10.f));
-    idxPontuacaoP2 = vecTexto.size() - 1;
+        adicionarTexto("", sf::Vector2f(780.f, 10.f));
+        idxPontuacaoP2 = vecTexto.size() - 1;
+    }
 }
 
 void Menu::criarMenuPrincipal()
@@ -134,7 +168,7 @@ void Menu::criarMenuPrincipal()
 
     adicionarTexto("JOGO", sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 200.f), 100);
 
-    vecBotao.push_back(new Botao(ACAO_MENU_FASES,
+    vecBotao.push_back(new Botao(ACAO_MENU_JOGADORES,
         sf::String("Jogar"),
         pGG->getWindowCentro()
     ));
@@ -162,6 +196,39 @@ void Menu::criarMenuFases()
         sf::String("FASE 2"),
         sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 100.f)
     ));
+
+    vecBotao.push_back(new Botao(ACAO_VOLTAR_MENU_JOGADORES,
+        sf::String("Voltar"),
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 200.f)
+    ));
+}
+
+void Menu::criarMenuSelecionarJogadores()
+{
+    body.setFillColor(sf::Color(255, 255, 255, 255));
+
+    limparvecTexto();
+
+    adicionarTexto(
+        "SELECIONE O NUMERO DE JOGADORES",
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 200.f),
+        60
+    );
+
+    vecBotao.push_back(
+        new Botao(
+            ACAO_1_JOGADOR,
+            "1 Jogador",
+            pGG->getWindowCentro()
+        )
+    );
+
+    vecBotao.push_back(
+        new Botao(ACAO_2_JOGADORES,
+            "2 Jogadores",
+            sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 100.)
+        )
+    );
 
     vecBotao.push_back(new Botao(ACAO_VOLTAR,
         sf::String("Voltar"),
@@ -194,16 +261,50 @@ void Menu::criarMenuGameOver()
 
     limparvecTexto();
 
-    adicionarTexto("GAME OVER", sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 200.f), 100);
+    adicionarTexto("GAME OVER", sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 250.f), 100);
+
+    std::stringstream ss;
+
+    ss << "PONTUACAO P1: " << pJogo->getPontuacaoFinal(1);
+    adicionarTexto(ss.str(), sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 150.f), 30);
+
+    if (pJogo->getNumJogadores() == 2) {
+        ss.str("");
+        ss << "PONTUACAO P2: " << pJogo->getPontuacaoFinal(2);
+        adicionarTexto(ss.str(), sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 90.f), 30);
+    }
 
     vecBotao.push_back(new Botao(ACAO_JOGAR_FASE_1,
         sf::String("Tentar de novo"),
         pGG->getWindowCentro()
     ));
 
+    vecBotao.push_back(new Botao(ACAO_MENU_SALVAR_PONTUACAO,
+        sf::String("Salvar Pontuacao"),
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 100.f)
+    ));
+
     vecBotao.push_back(new Botao(ACAO_VOLTAR,
         sf::String("Voltar para o Menu Principal"),
-        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 100.f)
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 200.f)
+    ));
+}
+
+void Menu::criarMenuSalvarPontuacao()
+{
+    body.setFillColor(sf::Color(0, 0, 0, 150));
+
+    limparvecTexto();
+
+    adicionarTexto("DIGITE SEU NOME: ", sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 300.f), 100);
+
+    adicionarTexto("", sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 100.f), 50);
+
+    idxNomeJogador1 = vecTexto.size() - 1;
+
+    vecBotao.push_back(new Botao(ACAO_VOLTAR_MENU_GAME_OVER,
+        sf::String("Voltar"),
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 200.f)
     ));
 }
 
@@ -240,6 +341,20 @@ void Menu::executarBotao()
         mudarMenu(NO_JOGO);
         break;
 
+    case ACAO_MENU_JOGADORES:
+        mudarMenu(MENU_JOGADORES);
+        break;
+
+    case ACAO_1_JOGADOR:
+        pJogo->setNumJogadores(1);
+        mudarMenu(MENU_FASES);
+        break;
+
+    case ACAO_2_JOGADORES:
+        pJogo->setNumJogadores(2);
+        mudarMenu(MENU_FASES);
+        break;
+
     case ACAO_MENU_FASES:
         mudarMenu(MENU_FASES);
         break;
@@ -253,8 +368,20 @@ void Menu::executarBotao()
         pJogo->deletarFasePrimeira();
         break;
 
+    case ACAO_VOLTAR_MENU_JOGADORES:
+        mudarMenu(MENU_JOGADORES);
+        break;
+
+    case ACAO_VOLTAR_MENU_GAME_OVER:
+        mudarMenu(MENU_GAME_OVER);
+        break;
+
     case ACAO_RESUMIR:
         mudarMenu(NO_JOGO);
+        break;
+
+    case ACAO_MENU_SALVAR_PONTUACAO:
+        mudarMenu(MENU_SALVAR_PONTUACAO);
         break;
 
     default:
@@ -264,35 +391,44 @@ void Menu::executarBotao()
 
 void Menu::executar()
 {
-    desenhar(); // desenha o fundo
-
-    for (std::vector<Botao*>::iterator it = vecBotao.begin(); it != vecBotao.end(); ++it)
+    if (menuAtual == NO_JOGO)
     {
-        (*it)->executar();
-    }
-
-    for (std::vector<sf::Text>::iterator it = vecTexto.begin(); it != vecTexto.end(); ++it)
-    {
-        desenhar((*it));
-    }
-
-    if (menuAtual == NO_JOGO) {
         std::stringstream ss;
 
         ss << "VIDA P1: " << pJogo->getVidaJogador(1);
         vecTexto[idxVidaP1].setString(ss.str());
 
         ss.str("");
-        ss << "VIDA P2: " << pJogo->getVidaJogador(2);
-        vecTexto[idxVidaP2].setString(ss.str());
-
-        ss.str("");
         ss << "PONTUACAO P1: " << pJogo->getPontuacaoJogador(1);
         vecTexto[idxPontuacaoP1].setString(ss.str());
 
-        ss.str("");
-        ss << "PONTUACAO P2: " << pJogo->getPontuacaoJogador(2);
-        vecTexto[idxPontuacaoP2].setString(ss.str());
+        if (pJogo->getNumJogadores() == 2)
+        {
+            ss.str("");
+            ss << "VIDA P2: " << pJogo->getVidaJogador(2);
+            vecTexto[idxVidaP2].setString(ss.str());
 
+            ss.str("");
+            ss << "PONTUACAO P2: " << pJogo->getPontuacaoJogador(2);
+            vecTexto[idxPontuacaoP2].setString(ss.str());
+        }
+    }
+
+    if (menuAtual == MENU_SALVAR_PONTUACAO)
+    {
+        vecTexto[idxNomeJogador1].setString(nomeDigitado + "_");
+        centralizarTexto(vecTexto[idxNomeJogador1]);
+    }
+
+    desenhar();
+
+    for (auto it = vecBotao.begin(); it != vecBotao.end(); ++it)
+    {
+        (*it)->executar();
+    }
+
+    for (auto it = vecTexto.begin(); it != vecTexto.end(); ++it)
+    {
+        desenhar(*it);
     }
 }
