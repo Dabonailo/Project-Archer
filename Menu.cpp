@@ -4,7 +4,7 @@
 Menu::Menu(sf::Vector2f pos, sf::Vector2f tam, const std::string& texturaFundo) :
     Ente(pos == sf::Vector2f(0.f, 0.f) ? pGG->getWindowCentro() : pos,
          tam == sf::Vector2f(0.f, 0.f) ? pGG->getWindowTam() : tam, texturaFundo), 
-    pJogo(NULL), vecBotao(), botaoSelecionado(), vecTexto(), fonte()
+    pJogo(NULL), vecBotao(), botaoSelecionado(), vecTexto(), fonte(), jogadorSalvando(1)
 {
     if (!fonte.loadFromFile("ginger_brand/GingerBrand.ttf"))
     {
@@ -38,6 +38,10 @@ void Menu::mudarMenu(tipoMenu menu)
         
     case MENU_PRINCIPAL:
         criarMenuPrincipal();
+        break;
+
+    case MENU_RANKING:
+        criarMenuRanking();
         break;
 
     case MENU_JOGADORES:
@@ -172,10 +176,48 @@ void Menu::criarMenuPrincipal()
         sf::String("Jogar"),
         pGG->getWindowCentro()
     ));
+
+    vecBotao.push_back(new Botao(ACAO_MENU_RANKING,
+        sf::String("Ranking"),
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 100.f)
+    ));
    
     vecBotao.push_back(new Botao(ACAO_SAIR,
         sf::String("Sair"),
-        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 100.f)
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 200.f)
+    ));
+}
+
+void Menu::criarMenuRanking()
+{
+    body.setFillColor(sf::Color(255, 255, 255, 255));
+
+    limparvecTexto();
+
+    adicionarTexto(sf::String("TOP 10"), sf::Vector2f(pGG->getWindowCentro().x, 100.f), 80);
+
+    const std::vector<Ranking>& ranking = pJogo->getRanking();
+
+    float y = 220.f;
+
+    for (unsigned int i = 0; i < ranking.size(); i++)
+    {
+        std::stringstream ss;
+
+        ss << i + 1
+            << ". "
+            << ranking[i].nome
+            << " - "
+            << ranking[i].pontuacao;
+
+        adicionarTexto(ss.str(), sf::Vector2f(pGG->getWindowCentro().x, y), 40);
+
+        y += 50.f;
+    }
+
+    vecBotao.push_back(new Botao(ACAO_VOLTAR,
+        sf::String("Voltar"),
+        sf::Vector2f(pGG->getWindowCentro().x, 650.f)
     ));
 }
 
@@ -302,10 +344,36 @@ void Menu::criarMenuSalvarPontuacao()
 
     idxNomeJogador1 = vecTexto.size() - 1;
 
+    vecBotao.push_back(new Botao(ACAO_SALVAR_PONTUACAO,
+        sf::String("Salvar"),
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 100.f)
+    ));
+
     vecBotao.push_back(new Botao(ACAO_VOLTAR_MENU_GAME_OVER,
         sf::String("Voltar"),
         sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 200.f)
     ));
+}
+
+void Menu::salvarPontuacao()
+{
+    if (nomeDigitado.empty()) {
+        pJogo->salvarPontuacao("Sem Nome", jogadorSalvando);
+    }
+
+    pJogo->salvarPontuacao(nomeDigitado, jogadorSalvando);
+
+    nomeDigitado.clear();
+
+    if (jogadorSalvando == 1 && pJogo->getNumJogadores() == 2)
+    {
+        jogadorSalvando = 2;
+    }
+
+    else
+    {
+        mudarMenu(MENU_GAME_OVER);
+    }
 }
 
 void Menu::selecionarBotoes(Direcao d)
@@ -382,6 +450,14 @@ void Menu::executarBotao()
 
     case ACAO_MENU_SALVAR_PONTUACAO:
         mudarMenu(MENU_SALVAR_PONTUACAO);
+        break;
+
+    case ACAO_SALVAR_PONTUACAO:
+        salvarPontuacao();
+        break;
+
+    case ACAO_MENU_RANKING:
+        mudarMenu(MENU_RANKING);
         break;
 
     default:

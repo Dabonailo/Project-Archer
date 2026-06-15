@@ -102,13 +102,14 @@ namespace Gerenciadores {
 			menu->getTipoMenu() == MENU_FASES ||
 			menu->getTipoMenu() == MENU_GAME_OVER ||
 			menu->getTipoMenu() == MENU_JOGADORES ||
-			menu->getTipoMenu() == MENU_SALVAR_PONTUACAO
+			menu->getTipoMenu() == MENU_SALVAR_PONTUACAO ||
+			menu->getTipoMenu() == MENU_RANKING
 			)
 		{
-			if (tecla == sf::Keyboard::W || tecla == sf::Keyboard::Up) {
+			if (tecla == sf::Keyboard::Up) {
 				menu->selecionarBotoes(CIMA);
 			}
-			if (tecla == sf::Keyboard::S || tecla == sf::Keyboard::Down) {
+			if (tecla == sf::Keyboard::Down) {
 				menu->selecionarBotoes(BAIXO);
 			}
 			if (tecla == sf::Keyboard::Enter) {
@@ -157,7 +158,7 @@ namespace Gerenciadores {
 
 			else if(evento.type == sf::Event::TextEntered)
 			{
-				if (menu)
+				if (menu && menu->getTipoMenu() == MENU_SALVAR_PONTUACAO)
 					menu->digitarNome(evento.text.unicode);
 			}
 		}

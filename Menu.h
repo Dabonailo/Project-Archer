@@ -18,7 +18,8 @@ enum tipoMenu
 	MENU_FASES,
 	MENU_OPCOES,
 	MENU_GAME_OVER,
-	MENU_SALVAR_PONTUACAO
+	MENU_SALVAR_PONTUACAO,
+	MENU_RANKING
 };
 
 class Menu :public Ente {
@@ -40,6 +41,8 @@ private:
 	//PONTUACAO
 	std::string nomeDigitado;
 	int idxNomeJogador1;
+
+	int jogadorSalvando;
 
 	sf::Font fonte;
 
@@ -68,12 +71,14 @@ public:
 
 	void criarHUDJogo();
 	void criarMenuPrincipal();
+	void criarMenuRanking();
 	void criarMenuFases();
 	void criarMenuSelecionarJogadores();
 	void criarMenuPausa();
 	void criarMenuGameOver();
-
 	void criarMenuSalvarPontuacao();
+
+	void salvarPontuacao();
 
 	void selecionarBotoes(Direcao d);
 	void executarBotao();

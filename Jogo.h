@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <fstream>
 
 #include "Jogador.h"
 #include "GerenciadorGrafico.h"
@@ -7,6 +8,17 @@
 #include "ListaEntidades.h"
 #include "Fase_Primeira.h"
 #include "Menu.h"
+
+struct Ranking
+{
+	std::string nome;
+	int pontuacao;
+
+	bool operator<(const Ranking& outro) const
+	{
+		return pontuacao > outro.pontuacao;
+	}
+};
 
 class Jogo
 {
@@ -16,6 +28,8 @@ private:
 
 	int pontuacaoFinalP1;
 	int pontuacaoFinalP2;
+
+	std::vector<Ranking> ranking;
 
 	int numJogadores;
 
@@ -31,6 +45,12 @@ public:
 
 	void setNumJogadores(int n);
 	int getNumJogadores();
+
+	void salvarPontuacao(const std::string& nome, int jogador);
+
+	void carregarRanking();
+
+	const std::vector<Ranking>& getRanking() const;
 
 	int getPontuacaoFinal(int j);
 
