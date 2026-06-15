@@ -49,24 +49,31 @@ namespace Entidades
             Listas::Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* atual =
                 lJogs->getPrimeiro();
 
-            while (atual && !achou)
+            while (atual)
             {
-                Jogador* pJog =
-                    dynamic_cast<Jogador*>(atual->getInfo());
+                Jogador* pJog = dynamic_cast<Jogador*>(atual->getInfo());
 
                 if (pJog)
                 {
+                    std::cout << "Jogador encontrado: "
+                        << pJog
+                        << " Pos: "
+                        << pJog->getPosicao().x << ", "
+                        << pJog->getPosicao().y
+                        << std::endl;
 
-                    float dx = pJog->getPosicao().x - getPosicao().x;
-                    float dy = pJog->getPosicao().y - getPosicao().y;
-
-                    float dist = sqrt(dx * dx + dy * dy);
-
-                    if (dist <= raio)
-
+                    if (!achou)
                     {
-                        perseguir(pJog);
-                        achou = true;
+                        float dx = pJog->getPosicao().x - getPosicao().x;
+                        float dy = pJog->getPosicao().y - getPosicao().y;
+
+                        float dist = sqrt(dx * dx + dy * dy);
+
+                        if (dist <= raio)
+                        {
+                            perseguir(pJog);
+                            achou = true;
+                        }
                     }
                 }
 

@@ -59,6 +59,7 @@ namespace Entidades
 
 			void colidir(Inimigo* pIn);
 
+
 			void executar() override;
 		};
 	}

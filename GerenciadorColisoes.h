@@ -39,7 +39,8 @@ namespace Gerenciadores
 		void tratarColisoesJogsObstacs();
 		void tratarColisoesInimigsObstacs();
 		void tratarColisaoChao(Entidades::Entidade* pEnt);
-		void tratarColisaoEntsChao();
+		void tratarColisaoParedes(Entidades::Entidade* pEnt);
+		void tratarColisoesEntsLimites();
 		void tratarColisaoObstacProjetil();
 		void tratarColisaoInimigsProjetil();
 

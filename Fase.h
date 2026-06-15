@@ -42,6 +42,8 @@ namespace Fases
 
 		virtual void executar() = 0;
 
+		void atualizalJogs();
+
 		void desenhar();
 	};
 }

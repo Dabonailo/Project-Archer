@@ -148,23 +148,48 @@ namespace Gerenciadores
 		}
 	}
 
-	void GerenciadorColisoes::tratarColisaoEntsChao()
+	void GerenciadorColisoes::tratarColisaoParedes(Entidades::Entidade* pEnt)
+	{
+		if (!pEnt)
+			return;
+		float metadeLargura = pEnt->getTamanho().x / 2.f;
+		float left = pEnt->getPosicao().x - metadeLargura;
+		float right = pEnt->getPosicao().x + metadeLargura;
+		if (left < 0.f) {
+			pEnt->setPosicao(sf::Vector2f(metadeLargura, pEnt->getPosicao().y));
+			sf::Vector2f vel = pEnt->getVelocidade();
+			vel.x = 0.f;
+			pEnt->setVelocidade(vel);
+		}
+		else if (right > 1250.f) {
+			pEnt->setPosicao(sf::Vector2f(1250.f - metadeLargura, pEnt->getPosicao().y));
+			sf::Vector2f vel = pEnt->getVelocidade();
+			vel.x = 0.f;
+			pEnt->setVelocidade(vel);
+		}
+	}
+
+	void GerenciadorColisoes::tratarColisoesEntsLimites()
 	{
 		if (jogador1 != NULL) {
 			jogador1->setnoChao(false);
 			tratarColisaoChao(jogador1);
+			tratarColisaoParedes(jogador1);
 		}
 		if (jogador2 != NULL) {
 			jogador2->setnoChao(false);
 			tratarColisaoChao(jogador2);
+			tratarColisaoParedes(jogador2);
 		}
 		for (std::vector<Entidades::Personagens::Inimigo*>::iterator it = LIs.begin(); it != LIs.end(); ++it) {
 			(*it)->setnoChao(false);
 			tratarColisaoChao(*it);
+			tratarColisaoParedes(*it);
 		}
 		for (std::set<Entidades::Projetil*>::iterator it = LPs.begin(); it != LPs.end(); ++it) {
 			(*it)->setnoChao(false);
 			tratarColisaoChao(*it);
+			tratarColisaoParedes(*it);
 		}
 	}
 
@@ -208,7 +233,7 @@ namespace Gerenciadores
 	}
 
 	void GerenciadorColisoes::executar() {
-		tratarColisaoEntsChao();
+		tratarColisoesEntsLimites();
 		tratarColisoesJogsInimigs();
 		tratarColisoesJogsObstacs();
 		tratarColisoesInimigsObstacs();	

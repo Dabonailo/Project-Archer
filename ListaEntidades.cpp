@@ -16,6 +16,11 @@ namespace Listas
         LEs.incluirElemento(pE);
     }
 
+    void ListaEntidades::remover(Entidades::Entidade* e)
+    {
+        LEs.removerElemento(e);
+	}
+
     void ListaEntidades::percorrerLista()
     {
         Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* aux = LEs.getPrimeiro();

@@ -145,6 +145,8 @@ namespace Entidades
             }
         }
 
+
+
         void Jogador::executar()
         {
             if (noChao)

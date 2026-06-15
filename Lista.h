@@ -8,74 +8,95 @@ namespace Listas
 	{
 	public:
 		template<typename TE>
-		class Elemento {
+		class Elemento
+		{
 		private:
 			Elemento<TE>* pProx;
 			TE* pInfo;
 
 		public:
-			Elemento(TE* e) : pProx(NULL), pInfo(e) {}
+			Elemento(TE* e = nullptr)
+				: pProx(nullptr), pInfo(e) {
+			}
+
 			~Elemento() {}
 
-			void incluir(TE* p) {
+			void setInfo(TE* p)
+			{
 				pInfo = p;
 			}
 
-			void setProximo(Elemento<TE>* pE) {
+			void setProximo(Elemento<TE>* pE)
+			{
 				pProx = pE;
 			}
 
-			Elemento<TE>* getProximo() {
+			Elemento<TE>* getProximo() const
+			{
 				return pProx;
 			}
 
-			TE* getInfo() {
+			TE* getInfo() const
+			{
 				return pInfo;
 			}
 		};
 
-		template <class TE>
+		template<class TE>
 		class Iterator
 		{
 		private:
 			Elemento<TE>* atual;
+
 		public:
-			Iterator(Elemento<TE>* c = nullptr) :
-				atual(c) {
+			Iterator(Elemento<TE>* c = nullptr)
+				: atual(c)
+			{
 			}
+
 			~Iterator() {}
 
 			Iterator& operator++()
 			{
-				atual = atual->prox;
+				if (atual)
+					atual = atual->getProximo();
+
 				return *this;
-			}
-			Iterator& operator++(int)
-			{
-				atual = atual->get_Proximo();
-				return *this;
-			}
-			bool operator==(const Elemento<TE>* outro) const
-			{
-				return atual == outro;
 			}
 
-			bool operator!=(const Elemento<TE>* outro) const
+			Iterator operator++(int)
 			{
-				return !(atual == outro);
+				Iterator temp = *this;
+
+				if (atual)
+					atual = atual->getProximo();
+
+				return temp;
 			}
-			void operator=(const Elemento<TE>* outro)
+
+			bool operator==(const Iterator& outro) const
 			{
-				atual = outro;
+				return atual == outro.atual;
 			}
-			TE* operator*()
+
+			bool operator!=(const Iterator& outro) const
+			{
+				return atual != outro.atual;
+			}
+
+			TE* operator*() const
 			{
 				if (atual)
-					return atual->get_data();
-			}
-			const Elemento<TE>* get_atual() const { return atual; }
-		};
+					return atual->getInfo();
 
+				return nullptr;
+			}
+
+			Elemento<TE>* getAtual() const
+			{
+				return atual;
+			}
+		};
 	private:
 		Elemento<TL>* pPrimeiro;
 		Elemento<TL>* pUltimo;
@@ -106,49 +127,46 @@ namespace Listas
 			}
 		}
 
-		void removerElemento(TL* e) {
-			if (pPrimeiro == NULL) {
+		void removerElemento(TL* e)
+		{
+			if (!pPrimeiro)
 				return;
-			}
-			else if (pPrimeiro->getInfo() == pUltimo->getInfo() && pPrimeiro->getInfo() == e) {
-				delete pPrimeiro;
-				pPrimeiro = NULL;
-				pUltimo = NULL;
-			}
-			else if (pPrimeiro->getInfo() == e) {
-				Elemento<TL>* aux = pPrimeiro->getProximo();
-				delete pPrimeiro;
-				pPrimeiro = aux;
-			}
-			else if (pUltimo->getInfo() == e) {
-				Elemento<TL>* aux = pPrimeiro;
-				while (aux->getProximo() != pUltimo) {
-					aux = aux->getProximo();
+
+			Elemento<TL>* atual = pPrimeiro;
+			Elemento<TL>* anterior = nullptr;
+
+			while (atual)
+			{
+				if (atual->getInfo() == e)
+				{
+					if (anterior)
+						anterior->setProximo(atual->getProximo());
+					else
+						pPrimeiro = atual->getProximo();
+
+					if (atual == pUltimo)
+						pUltimo = anterior;
+
+					delete atual;
+					return;
 				}
-				delete pUltimo;
-				aux->setProximo(NULL);
-				pUltimo = aux;
-			}
-			else {
-				Elemento<TL>* aux = pPrimeiro;
-				while (aux->getProximo() && aux->getProximo()->getInfo() != e) {
-					aux = aux->getProximo();
-				}
-				if (aux->getProximo()) {
-					Elemento<TL>* temp = aux->getProximo();
-					aux->setProximo(temp->getProximo());
-					delete temp;
-				}
+
+				anterior = atual;
+				atual = atual->getProximo();
 			}
 		}
 
-		void limpar() {
-			while (pPrimeiro) {
+		void limpar()
+		{
+			while (pPrimeiro)
+			{
 				Elemento<TL>* aux = pPrimeiro;
 				pPrimeiro = pPrimeiro->getProximo();
 				delete aux;
 			}
-			pUltimo = NULL;
+
+			pPrimeiro = nullptr;
+			pUltimo = nullptr;
 		}
 
 		Elemento<TL>* getPrimeiro() { return pPrimeiro; }
