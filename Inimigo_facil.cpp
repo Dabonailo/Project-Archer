@@ -168,8 +168,6 @@ namespace Entidades
                 tempoInvulneravel -= getTempo();
             }
 
-            //std::cout << tempoInvulneravel << std::endl;
-
         }
     }
 }

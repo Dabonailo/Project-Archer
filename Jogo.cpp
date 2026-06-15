@@ -2,8 +2,11 @@
 #include "Ente.h"
 
 
-Jogo::Jogo(): pjogador(NULL), pjogador2(NULL), GG(), GE(), fase1(NULL), menu(NULL)
+Jogo::Jogo(): pjogador(NULL), pjogador2(NULL), pontuacaoFinalP1(0), pontuacaoFinalP2(0), ranking(),
+numJogadores(1), GG(), GE(), fase1(NULL), menu(NULL)
 {   
+    carregarRanking();
+
     GG = Gerenciadores::GerenciadorGrafico::getGerenciadorGrafico();
     GE = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
     Ente::setGG(GG);
@@ -15,6 +18,92 @@ Jogo::Jogo(): pjogador(NULL), pjogador2(NULL), GG(), GE(), fase1(NULL), menu(NUL
 
 Jogo::~Jogo()
 {
+}
+
+void Jogo::setNumJogadores(int n)
+{
+    numJogadores = n;
+}
+
+int Jogo::getNumJogadores()
+{
+    return numJogadores;
+}
+
+void Jogo::salvarPontuacao(const std::string& nome, int jogador)
+{
+    Ranking novo;
+
+    novo.nome = nome;
+
+    if (jogador == 1)
+        novo.pontuacao = pontuacaoFinalP1;
+    else
+        novo.pontuacao = pontuacaoFinalP2;
+
+    ranking.push_back(novo);
+
+    std::sort(ranking.begin(), ranking.end()); //ordena as pontuacoes de maior para menor
+
+    if (ranking.size() > 10) { //pega o top 10
+        ranking.resize(10);
+    }
+
+    std::ofstream arquivo("ranking.txt");
+
+    if (!arquivo.is_open())
+        return;
+
+    for (unsigned int i = 0; i < ranking.size(); i++)
+    {
+        arquivo
+            << ranking[i].nome
+            << " "
+            << ranking[i].pontuacao
+            << std::endl;
+    }
+
+    arquivo.close();
+}
+
+void Jogo::carregarRanking()
+{
+    ranking.clear();
+
+    std::ifstream arquivo("ranking.txt");
+
+    if (!arquivo.is_open())
+        return;
+
+    Ranking r;
+
+    while (arquivo >> r.nome >> r.pontuacao)
+    {
+        ranking.push_back(r);
+    }
+
+    arquivo.close();
+}
+
+const std::vector<Ranking>& Jogo::getRanking() const
+{
+    return ranking;
+}
+
+int Jogo::getPontuacaoFinal(int j)
+{
+    switch (j)
+    {
+    case 1:
+        return pjogador->getPontuacao();
+
+    case 2:
+        return pjogador2->getPontuacao();
+
+    default:
+        return -1;  
+    }
+
 }
 
 int Jogo::getVidaJogador(int j)
@@ -65,11 +154,13 @@ void Jogo::criarFasePrimeira()
 
     pjogador = jogador;
 
-    Entidades::Personagens::Jogador* jogador2 = new Entidades::Personagens::Jogador(sf::Vector2f(100.f, 0.f),
-        sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
-        "hanzo2_spray.png");
+    if (numJogadores == 2) {
+        Entidades::Personagens::Jogador* jogador2 = new Entidades::Personagens::Jogador(sf::Vector2f(100.f, 0.f),
+            sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
+            "hanzo2_spray.png");
 
-    pjogador2 = jogador2;
+        pjogador2 = jogador2;
+    }
 
     fase1 = new Fases::Fase_Primeira(pjogador, pjogador2);
 
@@ -84,7 +175,13 @@ void Jogo::deletarFasePrimeira()
     if (fase1) {
         delete fase1;
         fase1 = NULL;
+
         pjogador = NULL;
+        pjogador2 = NULL;
+
+        pontuacaoFinalP1 = 0;
+        pontuacaoFinalP2 = 0;
+
         GE->deletarJogadores();
         std::cout << "fase deletada" << std::endl;
     }
@@ -92,15 +189,33 @@ void Jogo::deletarFasePrimeira()
 
 void Jogo::executarMenu()
 {
-    if (pjogador && !pjogador->getVivo() && pjogador2 && !pjogador2->getVivo() && menu->getTipoMenu() != MENU_GAME_OVER)
+    if (numJogadores == 1)
     {
-        menu->mudarMenu(MENU_GAME_OVER);
+        if (pjogador && !pjogador->getVivo() && menu->getTipoMenu() != MENU_GAME_OVER 
+            && menu->getTipoMenu() != MENU_SALVAR_PONTUACAO) 
+        {
+            pontuacaoFinalP1 = pjogador->getPontuacao();
+
+            menu->mudarMenu(MENU_GAME_OVER);
+        }
+    }
+    else if (numJogadores == 2) {
+        if (pjogador && !pjogador->getVivo() && pjogador2 && !pjogador2->getVivo() 
+            && menu->getTipoMenu() != MENU_GAME_OVER && menu->getTipoMenu() != MENU_SALVAR_PONTUACAO)
+        {
+            pontuacaoFinalP1 = pjogador->getPontuacao();
+            pontuacaoFinalP2 = pjogador2->getPontuacao();
+
+            menu->mudarMenu(MENU_GAME_OVER);
+        }
     }
 
     switch (menu->getTipoMenu())
     {
     case MENU_PRINCIPAL:
     case MENU_FASES:
+    case MENU_JOGADORES:
+    case MENU_RANKING:
         menu->executar();
         break;
 
@@ -111,6 +226,7 @@ void Jogo::executarMenu()
 
     case MENU_GAME_OVER:
     case NO_JOGO:
+    case MENU_SALVAR_PONTUACAO:
         fase1->executar();
         menu->executar();
         break;

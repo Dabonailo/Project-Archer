@@ -45,7 +45,7 @@ namespace Entidades
 		{
 			numVidas -= dano;
 			if (getVida() >= 0) {
-				std::cout << "vida: " << getVida() << std::endl;
+				//std::cout << "vida: " << getVida() << std::endl;
 			}
 		}
 

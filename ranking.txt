@@ -1,0 +1,7 @@
+teste1 2400
+daniol3 1900
+danilo 1800
+danilo2 1600
+teste3 1400
+teste2 1000
+teste3 0
