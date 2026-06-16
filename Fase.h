@@ -33,7 +33,7 @@ namespace Fases
 		void criarCenario();
 
 	public:
-		Fase(Entidades::Personagens::Jogador* pJ, 
+		Fase(Entidades::Personagens::Jogador* pJ = NULL,
 			Entidades::Personagens::Jogador* pJ2 = NULL,
 			sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
 			sf::Vector2f tam = sf::Vector2f(0.f, 0.f),
