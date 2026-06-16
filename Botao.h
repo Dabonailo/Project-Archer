@@ -45,7 +45,7 @@ public:
 		const sf::String& str = sf::String("Inserir Texto"),
 		sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
 		sf::Vector2f tam = sf::Vector2f(TAMANHO_BOTAO_DEFAUlT_X, TAMANHO_BOTAO_DEFAULT_Y),
-		const std::string& textura = "ginger_brand/Plataforma.png"
+		const std::string& textura = "ginger_brand/Placa.png"
 	);
 
 	~Botao();
