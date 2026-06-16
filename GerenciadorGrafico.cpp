@@ -5,7 +5,7 @@ namespace Gerenciadores
 	GerenciadorGrafico* GerenciadorGrafico::pGrafico = NULL;
 
 	GerenciadorGrafico::GerenciadorGrafico() :
-		window(new sf::RenderWindow(sf::VideoMode(1250, 750), "Project Archers")), relogio(), tempo(0.f)
+		window(new sf::RenderWindow(sf::VideoMode(1500, 1000), "Project Archers")), relogio(), tempo(0.f)
 	{
 		if (window == NULL)
 		{

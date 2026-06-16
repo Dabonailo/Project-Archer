@@ -169,14 +169,14 @@ namespace Gerenciadores
 				pEnt->setVelocidade(vel);
 			}
 		}
-		else if (right > 1250.f) {
+		else if (right > 1500.f) {
 			if (Entidades::Projetil* pPr =
 				dynamic_cast<Entidades::Projetil*>(pEnt))
 			{
 				pPr->setAtivo(false);
 			}
 			else {
-				pEnt->setPosicao(sf::Vector2f(1250.f - metadeLargura, pEnt->getPosicao().y));
+				pEnt->setPosicao(sf::Vector2f(1500.f - metadeLargura, pEnt->getPosicao().y));
 				sf::Vector2f vel = pEnt->getVelocidade();
 				vel.x = 0.f;
 				pEnt->setVelocidade(vel);

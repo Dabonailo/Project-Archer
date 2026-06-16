@@ -8,7 +8,7 @@
 #include "Obstaculo.h"
 #include "Projetil.h"
 
-#define CHAO 659.f
+#define CHAO 875.f
 
 namespace Gerenciadores
 {

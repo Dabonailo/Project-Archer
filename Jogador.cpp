@@ -1,7 +1,7 @@
 #include "Jogador.h"
 #include "GerenciadorGrafico.h" 
 #include "Inimigo.h"
-#include "Chefao.h"
+#include "Ninja.h"
 
 namespace Entidades
 {

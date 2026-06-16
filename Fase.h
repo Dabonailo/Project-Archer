@@ -9,6 +9,7 @@
 #include "Espinho.h"
 #include "Projetil.h"
 #include "Ninja.h"
+#include "Magma_block.h"
 
 #include <vector>
 
@@ -25,11 +26,11 @@ namespace Fases
 
 	protected:
 		virtual void criarInimigos() = 0;
-		void criarInimgosFaceis();
+		void criarOnis();
 		virtual void criarObstaculos() = 0;
 		void criarPlataformas();		
 		virtual void criarProjeteis() = 0;
-		
+		void criarCenario();
 
 	public:
 		Fase(Entidades::Personagens::Jogador* pJ, 

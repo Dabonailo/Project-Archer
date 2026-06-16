@@ -21,11 +21,11 @@ namespace Fases
 
         void criarInimigos() override;
         
-		void criarInimgosMedios();
+		void criarDragoes();
         
         void criarObstaculos() override;
 		
-		void criarEspinhos();
+        void criarBlocosMagma();
 
         void criarProjeteis() override;
 

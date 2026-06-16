@@ -43,7 +43,7 @@ namespace Fases {
 		ListaEntFase.desenharLista();
 	}
 
-    void Fase::criarInimgosFaceis()
+    void Fase::criarOnis()
     {
         Entidades::Personagens::Oni* inimigo;
 
@@ -68,16 +68,15 @@ namespace Fases {
         if (rand() % 2 == 0)
         {
             inimigo = new Entidades::Personagens::Oni();
-            inimigo->setPosicao(sf::Vector2f(910.f, 350.f));
+            inimigo->setPosicao(sf::Vector2f(310.f, 700.f));
             inimigo->setListaJogadores(&lJogs);
-            ListaEntFase.incluir(inimigo);
             GC.incluirInimigo(inimigo);
         }
-        
-        if (rand() % 2 == 0)
+   
+        if (rand() % 2 == 0)      
         {
             inimigo = new Entidades::Personagens::Oni();
-            inimigo->setPosicao(sf::Vector2f(1120.f, 680.f));
+            inimigo->setPosicao(sf::Vector2f(1250.f, 675.f));
             inimigo->setListaJogadores(&lJogs);
             ListaEntFase.incluir(inimigo);
             GC.incluirInimigo(inimigo);
@@ -89,8 +88,8 @@ namespace Fases {
         // Plataforma fixa 1
         Entidades::Obstaculos::Plataforma* p =
             new Entidades::Obstaculos::Plataforma(
-                sf::Vector2f(280.f, 490.f),
-                sf::Vector2f(210.f, 35.f),
+                sf::Vector2f(280.f, 750.f),
+                sf::Vector2f(250.f, 35.f),
                 "ginger_brand/Plataforma.png",
                 sf::Vector2f(0.f, 0.f),
                 false);
@@ -98,10 +97,19 @@ namespace Fases {
         ListaEntFase.incluir(p);
         GC.incluirObstaculo(p);
 
-        // Plataforma fixa 2
         p = new Entidades::Obstaculos::Plataforma(
-            sf::Vector2f(560.f, 350.f),
-            sf::Vector2f(245.f, 35.f),
+                sf::Vector2f(1200.f, 725.f),
+                sf::Vector2f(250.f, 35.f),
+                "ginger_brand/Plataforma.png",
+                sf::Vector2f(0.f, 0.f),
+                false);
+
+        ListaEntFase.incluir(p);
+        GC.incluirObstaculo(p);
+
+        p = new Entidades::Obstaculos::Plataforma(
+            sf::Vector2f(950.f, 575.f),
+            sf::Vector2f(250.f, 35.f),
             "ginger_brand/Plataforma.png",
             sf::Vector2f(0.f, 0.f),
             false);
@@ -109,45 +117,6 @@ namespace Fases {
         ListaEntFase.incluir(p);
         GC.incluirObstaculo(p);
 
-        // Plataforma fixa 3
-        p = new Entidades::Obstaculos::Plataforma(
-            sf::Vector2f(900.f, 490.f),
-            sf::Vector2f(210.f, 35.f),
-            "ginger_brand/Plataforma.png",
-            sf::Vector2f(0.f, 0.f),
-            false);
-
-        ListaEntFase.incluir(p);
-        GC.incluirObstaculo(p);
-
-		if (rand() % 2 == 0)
-        {
-
-            p = new Entidades::Obstaculos::Plataforma(
-                sf::Vector2f(175.f, 245.f),
-                sf::Vector2f(210.f, 35.f),
-                "ginger_brand/Plataforma.png",
-                sf::Vector2f(0.f, 0.f),
-                false);
-
-            ListaEntFase.incluir(p);
-            GC.incluirObstaculo(p);
-        }
-
-        // Opção B
-        if (rand() % 2 == 0)
-        {
-            p = new Entidades::Obstaculos::Plataforma(
-                sf::Vector2f(1030.f, 280.f),
-                sf::Vector2f(175.f, 35.f),
-                "ginger_brand/Plataforma.png",
-                sf::Vector2f(0.f, 0.f),
-                false);
-
-            ListaEntFase.incluir(p);
-            GC.incluirObstaculo(p);
-
-        }
     }
 
     void Fase::atualizalJogs()
@@ -169,4 +138,10 @@ namespace Fases {
             atual = proximo;
         }
     }
+
+    void Fase::criarCenario()
+    {
+        criarObstaculos();
+        criarInimigos();
+	}
 }

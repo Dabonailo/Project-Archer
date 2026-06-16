@@ -6,8 +6,7 @@ namespace Fases
         sf::Vector2f pos, sf::Vector2f tam, const std::string& textura) : 
         Fase(pJ, pJ2, pos, tam, textura), max_inimigos(1)
 	{
-        criarInimigos();
-        criarObstaculos();
+		criarCenario();
         criarProjeteis();
 	}
 
@@ -17,11 +16,11 @@ namespace Fases
 
 	void Fase_Primeira::criarInimigos()
 	{
-		criarInimgosFaceis();
-        criarInimgosMedios();
+		criarOnis();
+        criarDragoes();
 	}
 
-    void Fase_Primeira::criarInimgosMedios()
+    void Fase_Primeira::criarDragoes()
     {
         Entidades::Personagens::Dragao* inimigo;
         inimigo = new Entidades::Personagens::Dragao(sf::Vector2f(180.f, 150.f));
@@ -56,77 +55,67 @@ namespace Fases
         }
     }
  
- 
+    void Fase_Primeira::criarBlocosMagma()
+    {
+        Entidades::Obstaculos::Magma_Block* p =
+            new Entidades::Obstaculos::Magma_Block(
+                sf::Vector2f(525.f, 525.f),
+                sf::Vector2f(250.f, 35.f),
+                "ginger_brand/Magma_Block.png",
+                sf::Vector2f(0.f, 0.f),
+                false);
 
-     void Fase_Primeira::criarEspinhos()
-     {
-         Entidades::Obstaculos::Espinho* esp;
+        ListaEntFase.incluir(p);
+        GC.incluirObstaculo(p);
 
-         esp = new Entidades::Obstaculos::Espinho();
-         esp->setPosicao(sf::Vector2f(280.f, 455.f));
-         ListaEntFase.incluir(esp);
-         GC.incluirObstaculo(esp);
+        p = new Entidades::Obstaculos::Magma_Block(
+            sf::Vector2f(1325.f, 475.f),
+            sf::Vector2f(200.f, 35.f),
+            "ginger_brand/Magma_Block.png",
+            sf::Vector2f(0.f, 0.f),
+            false);
 
-         esp = new Entidades::Obstaculos::Espinho();
-         esp->setPosicao(sf::Vector2f(315.f, 455.f));
-         ListaEntFase.incluir(esp);
-         GC.incluirObstaculo(esp);
+        ListaEntFase.incluir(p);
+        GC.incluirObstaculo(p);
 
-         // Grupo fixo 2 (2 espinhos)
-         esp = new Entidades::Obstaculos::Espinho();
-         esp->setPosicao(sf::Vector2f(580.f, 315.f));
-         ListaEntFase.incluir(esp);
-         GC.incluirObstaculo(esp);
+        p = new Entidades::Obstaculos::Magma_Block(
+            sf::Vector2f(1050.f, 325.f),
+            sf::Vector2f(250.f, 35.f),
+            "ginger_brand/Magma_Block.png",
+            sf::Vector2f(0.f, 0.f),
+            false);
 
-         esp = new Entidades::Obstaculos::Espinho();
-         esp->setPosicao(sf::Vector2f(615.f, 315.f));
-         ListaEntFase.incluir(esp);
-         GC.incluirObstaculo(esp);
+        ListaEntFase.incluir(p);
+        GC.incluirObstaculo(p);
 
-         // Grupo fixo 3 (3 espinhos)
-         esp = new Entidades::Obstaculos::Espinho();
-         esp->setPosicao(sf::Vector2f(885.f, 455.f));
-         ListaEntFase.incluir(esp);
-         GC.incluirObstaculo(esp);
+		if (rand() % 2 == 0)
+        {
+            p = new Entidades::Obstaculos::Magma_Block(
+                sf::Vector2f(200.f, 325.f),
+                sf::Vector2f(150.f, 35.f),
+                "ginger_brand/Magma_Block.png",
+                sf::Vector2f(0.f, 0.f),
+                false);
 
-         esp = new Entidades::Obstaculos::Espinho();
-         esp->setPosicao(sf::Vector2f(920.f, 455.f));
-         ListaEntFase.incluir(esp);
-         GC.incluirObstaculo(esp);
+            ListaEntFase.incluir(p);
+            GC.incluirObstaculo(p);
+        }
 
-         esp = new Entidades::Obstaculos::Espinho();
-         esp->setPosicao(sf::Vector2f(955.f, 455.f));
-         ListaEntFase.incluir(esp);
-         GC.incluirObstaculo(esp);
+        if (rand() % 2 == 0)
+        {
+            p = new Entidades::Obstaculos::Magma_Block(
+                sf::Vector2f(100.f, 150.f),
+                sf::Vector2f(200.f, 35.f),
+                "ginger_brand/Magma_Block.png",
+                sf::Vector2f(0.f, 0.f),
+                false);
 
-         // Opção A (1 espinho)
-         if (rand() % 2 == 0)
-         {
-             esp = new Entidades::Obstaculos::Espinho();
-             esp->setPosicao(sf::Vector2f(700.f, 645.f));
-             ListaEntFase.incluir(esp);
-             GC.incluirObstaculo(esp);
+            ListaEntFase.incluir(p);
+            GC.incluirObstaculo(p);
+        }
+    }
 
-             esp = new Entidades::Obstaculos::Espinho();
-             esp->setPosicao(sf::Vector2f(735.f, 645.f));
-             ListaEntFase.incluir(esp);
-             GC.incluirObstaculo(esp);
-
-             esp = new Entidades::Obstaculos::Espinho();
-             esp->setPosicao(sf::Vector2f(770.f, 645.f));
-             ListaEntFase.incluir(esp);
-             GC.incluirObstaculo(esp);
-         }
-
-         // Opção B (2 espinhos)
-         if (rand() % 2 == 0)
-         {
-             esp = new Entidades::Obstaculos::Espinho();
-             esp->setPosicao(sf::Vector2f(1180.f, 645.f));
-             ListaEntFase.incluir(esp);
-             GC.incluirObstaculo(esp);
-         }
-     }
+    
 
      void Fase_Primeira::criarProjeteis()
      {
@@ -152,6 +141,46 @@ namespace Fases
     void Fase_Primeira::criarObstaculos()
     {
         criarPlataformas();
-        criarEspinhos();
+
+        Entidades::Obstaculos::Plataforma* p;
+
+        if(rand() % 2 == 0)
+        {
+                p = new Entidades::Obstaculos::Plataforma(
+                    sf::Vector2f(120.f, 475.f),
+                    sf::Vector2f(150.f, 35.f),
+                    "ginger_brand/Plataforma.png",
+                    sf::Vector2f(0.f, 0.f),
+                    false);
+
+            ListaEntFase.incluir(p);
+            GC.incluirObstaculo(p);
+        }
+
+        if (rand() % 2 == 0)
+        {
+            p = new Entidades::Obstaculos::Plataforma(
+                sf::Vector2f(1400.f, 250.f),
+                sf::Vector2f(150.f, 35.f),
+                "ginger_brand/Plataforma.png",
+                sf::Vector2f(0.f, 0.f),
+                false);
+
+
+            ListaEntFase.incluir(p);
+            GC.incluirObstaculo(p);
+        }
+
+        p = new Entidades::Obstaculos::Plataforma(
+            sf::Vector2f(750.f, 225.f),
+            sf::Vector2f(250.f, 35.f),
+            "ginger_brand/Plataforma.png",
+            sf::Vector2f(0.f, 0.f),
+            false);
+
+
+        ListaEntFase.incluir(p);
+        GC.incluirObstaculo(p);
+        criarBlocosMagma();
 	}
 }
