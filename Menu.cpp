@@ -316,10 +316,18 @@ void Menu::criarMenuGameOver()
         adicionarTexto(ss.str(), sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 90.f), 30);
     }
 
-    vecBotao.push_back(new Botao(ACAO_JOGAR_FASE_1,
-        sf::String("Tentar de novo"),
-        pGG->getWindowCentro()
-    ));
+    if (pJogo->getFaseAtual() == 1) {
+        vecBotao.push_back(new Botao(ACAO_JOGAR_FASE_1,
+            sf::String("Tentar de novo"),
+            pGG->getWindowCentro()
+        ));
+    }
+    else if (pJogo->getFaseAtual() == 2) {
+        vecBotao.push_back(new Botao(ACAO_JOGAR_FASE_2,
+            sf::String("Tentar de novo"),
+            pGG->getWindowCentro()
+        ));
+    }
 
     vecBotao.push_back(new Botao(ACAO_MENU_SALVAR_PONTUACAO,
         sf::String("Salvar Pontuacao"),

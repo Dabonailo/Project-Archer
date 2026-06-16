@@ -33,6 +33,7 @@ private:
 	std::vector<Ranking> ranking;
 
 	int numJogadores;
+	int faseAtual;
 
 	Gerenciadores::GerenciadorGrafico* GG;
 	Gerenciadores::GerenciadorEventos* GE;
@@ -47,6 +48,8 @@ public:
 
 	void setNumJogadores(int n);
 	int getNumJogadores();
+
+	int getFaseAtual();
 
 	void salvarPontuacao(const std::string& nome, int jogador);
 

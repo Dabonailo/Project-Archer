@@ -3,7 +3,7 @@
 
 
 Jogo::Jogo(): pjogador(NULL), pjogador2(NULL), pontuacaoFinalP1(0), pontuacaoFinalP2(0), ranking(),
-numJogadores(1), GG(), GE(), fase1(NULL), fase2(NULL), menu(NULL)
+numJogadores(1), faseAtual(-1), GG(), GE(), fase1(NULL), fase2(NULL), menu(NULL)
 {   
     carregarRanking();
 
@@ -28,6 +28,11 @@ void Jogo::setNumJogadores(int n)
 int Jogo::getNumJogadores()
 {
     return numJogadores;
+}
+
+int Jogo::getFaseAtual()
+{
+    return faseAtual;
 }
 
 void Jogo::salvarPontuacao(const std::string& nome, int jogador)
@@ -167,6 +172,8 @@ void Jogo::criarFasePrimeira()
     GE->setJogador(pjogador);
     GE->setJogador(pjogador2);
 
+    faseAtual = 1;
+
     std::cout << "fase 1 criada" << std::endl;
 }
 
@@ -183,6 +190,8 @@ void Jogo::deletarFasePrimeira()
         pontuacaoFinalP2 = 0;
 
         GE->deletarJogadores();
+
+        faseAtual = -1;
         std::cout << "fase deletada" << std::endl;
     }
 }
@@ -212,6 +221,8 @@ void Jogo::criarFaseSegunda()
     GE->setJogador(pjogador);
     GE->setJogador(pjogador2);
 
+    faseAtual = 2;
+
     std::cout << "fase 2 criada" << std::endl;
 }
 
@@ -228,6 +239,8 @@ void Jogo::deletarFaseSegunda()
         pontuacaoFinalP2 = 0;
 
         GE->deletarJogadores();
+
+        faseAtual = -1;
         std::cout << "fase 2 deletada" << std::endl;
     }
 }
