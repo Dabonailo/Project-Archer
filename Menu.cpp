@@ -439,6 +439,7 @@ void Menu::executarBotao()
     case ACAO_VOLTAR:
         mudarMenu(MENU_PRINCIPAL);
         pJogo->deletarFasePrimeira();
+        pJogo->deletarFaseSegunda();
         break;
 
     case ACAO_VOLTAR_MENU_JOGADORES:
