@@ -55,12 +55,12 @@ namespace Entidades
 
                 if (pJog)
                 {
-                    std::cout << "Jogador encontrado: "
+                   /* std::cout << "Jogador encontrado: "
                         << pJog
                         << " Pos: "
                         << pJog->getPosicao().x << ", "
                         << pJog->getPosicao().y
-                        << std::endl;
+                        << std::endl; */
 
                     if (!achou)
                     {

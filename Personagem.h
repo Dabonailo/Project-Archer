@@ -4,7 +4,7 @@
 
 #define KNOCKBACK_X 350.f
 #define KNOCKBACK_Y 200.f
-#define FORCA_PULO 650.f
+#define FORCA_PULO 680.f
 
 namespace Entidades
 {

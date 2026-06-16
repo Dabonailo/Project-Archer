@@ -1,7 +1,10 @@
+oioio 3800
 teste1 2400
 daniol3 1900
 danilo 1800
 danilo2 1600
 teste3 1400
+alo1 1300
+oi1 1100
 teste2 1000
-teste3 0
+alo2 1000

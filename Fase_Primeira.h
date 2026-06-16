@@ -1,6 +1,5 @@
 #pragma once
 #include "Fase.h"
-#include "Jogador.h"
 
 namespace Fases
 {
@@ -30,7 +29,6 @@ namespace Fases
 
         void criarProjeteis() override;
 
-        void executar() override;
     };
 }
 

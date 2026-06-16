@@ -154,14 +154,4 @@ namespace Fases
         criarPlataformas();
         criarEspinhos();
 	}
-
-    void Fase_Primeira::executar()
-    {  
-        Ente::desenhar();
-
-        ListaEntFase.percorrerLista();
-        GC.executar();
-        atualizalJogs();
-    }
-
 }

@@ -114,6 +114,7 @@ void Entidades::Projetil::mover()
 
 void Entidades::Projetil::executar()
 {
+
 	if (cravado && alvo)
 	{
 		setPosicao(alvo->getPosicao() + offset);

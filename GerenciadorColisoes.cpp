@@ -152,20 +152,35 @@ namespace Gerenciadores
 	{
 		if (!pEnt)
 			return;
+
 		float metadeLargura = pEnt->getTamanho().x / 2.f;
 		float left = pEnt->getPosicao().x - metadeLargura;
 		float right = pEnt->getPosicao().x + metadeLargura;
 		if (left < 0.f) {
-			pEnt->setPosicao(sf::Vector2f(metadeLargura, pEnt->getPosicao().y));
-			sf::Vector2f vel = pEnt->getVelocidade();
-			vel.x = 0.f;
-			pEnt->setVelocidade(vel);
+			if (Entidades::Projetil* pPr =
+				dynamic_cast<Entidades::Projetil*>(pEnt))
+			{
+				pPr->setAtivo(false);
+			}
+			else {
+				pEnt->setPosicao(sf::Vector2f(metadeLargura, pEnt->getPosicao().y));
+				sf::Vector2f vel = pEnt->getVelocidade();
+				vel.x = 0.f;
+				pEnt->setVelocidade(vel);
+			}
 		}
 		else if (right > 1250.f) {
-			pEnt->setPosicao(sf::Vector2f(1250.f - metadeLargura, pEnt->getPosicao().y));
-			sf::Vector2f vel = pEnt->getVelocidade();
-			vel.x = 0.f;
-			pEnt->setVelocidade(vel);
+			if (Entidades::Projetil* pPr =
+				dynamic_cast<Entidades::Projetil*>(pEnt))
+			{
+				pPr->setAtivo(false);
+			}
+			else {
+				pEnt->setPosicao(sf::Vector2f(1250.f - metadeLargura, pEnt->getPosicao().y));
+				sf::Vector2f vel = pEnt->getVelocidade();
+				vel.x = 0.f;
+				pEnt->setVelocidade(vel);
+			}
 		}
 	}
 

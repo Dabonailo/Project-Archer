@@ -1,13 +1,14 @@
 #pragma once
 #include "Ente.h"
 #include "ListaEntidades.h"
+#include "Jogador.h"
 #include "Inimigo_facil.h"
 #include "Inimigo_medio.h"
 #include "GerenciadorColisoes.h"
 #include "Plataforma.h"
 #include "Espinho.h"
 #include "Projetil.h"
-#include "Chefao.h"
+#include "Ninja.h"
 
 #include <vector>
 
@@ -40,7 +41,7 @@ namespace Fases
 
 		Listas::ListaEntidades* getListaEntFase();
 
-		virtual void executar() = 0;
+		virtual void executar();
 
 		void atualizalJogs();
 

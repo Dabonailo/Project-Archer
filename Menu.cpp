@@ -194,11 +194,11 @@ void Menu::criarMenuRanking()
 
     limparvecTexto();
 
-    adicionarTexto(sf::String("TOP 10"), sf::Vector2f(pGG->getWindowCentro().x, 100.f), 80);
+    adicionarTexto(sf::String("TOP 10"), sf::Vector2f(pGG->getWindowCentro().x, 70.f), 80);
 
     const std::vector<Ranking>& ranking = pJogo->getRanking();
 
-    float y = 220.f;
+    float y = 155.f;
 
     for (unsigned int i = 0; i < ranking.size(); i++)
     {
@@ -217,7 +217,7 @@ void Menu::criarMenuRanking()
 
     vecBotao.push_back(new Botao(ACAO_VOLTAR,
         sf::String("Voltar"),
-        sf::Vector2f(pGG->getWindowCentro().x, 650.f)
+        sf::Vector2f(pGG->getWindowCentro().x, 680.f)
     ));
 }
 
@@ -406,6 +406,11 @@ void Menu::executarBotao()
     {
     case ACAO_JOGAR_FASE_1:
         pJogo->criarFasePrimeira();
+        mudarMenu(NO_JOGO);
+        break;
+
+    case ACAO_JOGAR_FASE_2:
+        pJogo->criarFaseSegunda();
         mudarMenu(NO_JOGO);
         break;
 

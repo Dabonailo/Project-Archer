@@ -3,7 +3,7 @@
 
 
 Jogo::Jogo(): pjogador(NULL), pjogador2(NULL), pontuacaoFinalP1(0), pontuacaoFinalP2(0), ranking(),
-numJogadores(1), GG(), GE(), fase1(NULL), menu(NULL)
+numJogadores(1), GG(), GE(), fase1(NULL), fase2(NULL), menu(NULL)
 {   
     carregarRanking();
 
@@ -187,6 +187,51 @@ void Jogo::deletarFasePrimeira()
     }
 }
 
+void Jogo::criarFaseSegunda()
+{
+    if (fase2) {
+        deletarFaseSegunda();
+    }
+
+    Entidades::Personagens::Jogador* jogador = new Entidades::Personagens::Jogador(sf::Vector2f(100.f, 0.f),
+        sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
+        "hanzo_spray.png");
+
+    pjogador = jogador;
+
+    if (numJogadores == 2) {
+        Entidades::Personagens::Jogador* jogador2 = new Entidades::Personagens::Jogador(sf::Vector2f(100.f, 0.f),
+            sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
+            "hanzo2_spray.png");
+
+        pjogador2 = jogador2;
+    }
+
+    fase2 = new Fases::Fase_segunda(pjogador, pjogador2);
+
+    GE->setJogador(pjogador);
+    GE->setJogador(pjogador2);
+
+    std::cout << "fase 2 criada" << std::endl;
+}
+
+void Jogo::deletarFaseSegunda()
+{
+    if (fase2) {
+        delete fase2;
+        fase2 = NULL;
+
+        pjogador = NULL;
+        pjogador2 = NULL;
+
+        pontuacaoFinalP1 = 0;
+        pontuacaoFinalP2 = 0;
+
+        GE->deletarJogadores();
+        std::cout << "fase 2 deletada" << std::endl;
+    }
+}
+
 void Jogo::executarMenu()
 {
     if (numJogadores == 1)
@@ -220,14 +265,25 @@ void Jogo::executarMenu()
         break;
 
     case MENU_PAUSA:
-        fase1->desenhar();
+        if (fase1) {
+            fase1->desenhar();
+        }
+        else if (fase2) {
+            fase2->desenhar();
+        }
+
         menu->executar();
         break;
 
     case MENU_GAME_OVER:
     case NO_JOGO:
     case MENU_SALVAR_PONTUACAO:
-        fase1->executar();
+        if (fase1) {
+            fase1->executar();
+        }
+        else if (fase2) {
+            fase2->executar();
+        }
         menu->executar();
         break;
     }

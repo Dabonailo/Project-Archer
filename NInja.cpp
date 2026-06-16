@@ -1,10 +1,10 @@
-#include "Chefao.h"
+#include "Ninja.h"
 
 namespace Entidades
 {
 	namespace Personagens
 	{
-		Chefao::Chefao(
+		Ninja::Ninja(
 			sf::Vector2f pos,
 			sf::Vector2f tam,
 			const std::string& textura,
@@ -14,29 +14,29 @@ namespace Entidades
 		{
 		}
 
-		Chefao::~Chefao()
+		Ninja::~Ninja()
 		{
 		}
 
-		void Chefao::setQuerAtirar(bool a) {
+		void Ninja::setQuerAtirar(bool a) {
 			querAtirar = a;
 		}
 
-		bool Chefao::getQuerAtirar() {
+		bool Ninja::getQuerAtirar() {
 			return querAtirar;
 		}
 
-		void Chefao::setCooldownTiro(float cd)
+		void Ninja::setCooldownTiro(float cd)
 		{
 			coolDownTiro = cd;
 		}
 
-		float Chefao::getCooldownTiro()
+		float Ninja::getCooldownTiro()
 		{
 			return coolDownTiro;
 		}
 
-		void Chefao::atirar()
+		void Ninja::atirar()
 		{
 			if (coolDownTiro > 0) {
 				return;
@@ -48,7 +48,19 @@ namespace Entidades
 			}
 		}
 
-		void Chefao::danificar(Jogador* p) //mudar o danificar
+		void Ninja::mover()
+		{
+		}
+
+		void Ninja::movimentoAleatorio()
+		{
+		}
+
+		void Ninja::perseguir(Jogador* pjog)
+		{
+		}
+
+		void Ninja::danificar(Jogador* p) //mudar o danificar
 		{
 			if (p->getTempoInvulneravel() <= 0.f) {
 				p->recebeDano(1);
@@ -68,7 +80,7 @@ namespace Entidades
 			}
 		}
 
-		void Chefao::executar() 
+		void Ninja::executar() 
 		{
 			desenhar();
 		}

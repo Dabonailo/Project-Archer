@@ -7,6 +7,7 @@
 #include "GerenciadorEventos.h"
 #include "ListaEntidades.h"
 #include "Fase_Primeira.h"
+#include "Fase_segunda.h"
 #include "Menu.h"
 
 struct Ranking
@@ -37,6 +38,7 @@ private:
 	Gerenciadores::GerenciadorEventos* GE;
 
 	Fases::Fase_Primeira* fase1;
+	Fases::Fase_segunda* fase2;
 	Menu* menu;
 
 public:
@@ -59,6 +61,9 @@ public:
 
 	void criarFasePrimeira();
 	void deletarFasePrimeira();
+
+	void criarFaseSegunda();
+	void deletarFaseSegunda();
 
 	void executarMenu();
 

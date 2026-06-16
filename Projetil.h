@@ -32,7 +32,7 @@ namespace Entidades {
 		float tempoCravado;
 
 	public:
-		Projetil(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
+		Projetil(sf::Vector2f pos = sf::Vector2f(-1000.f, 1000.f),
 			sf::Vector2f tam = sf::Vector2f(TAMANHO_PROJETIL_X, TAMANHO_PROJETIL_Y),
 			const std::string& textura = "Flecha.png", sf::Vector2f velocidade = sf::Vector2f(0.f, 0.f),
 			float e = GRAVIDADE - 100.0);

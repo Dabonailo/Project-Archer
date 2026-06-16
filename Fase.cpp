@@ -29,6 +29,15 @@ namespace Fases {
 		return &ListaEntFase;
 	}
 
+    void Fase::executar() 
+    {
+        Ente::desenhar();
+
+        ListaEntFase.percorrerLista();
+        GC.executar();
+        atualizalJogs();
+    }
+
 	void Fase::desenhar() {
         Ente::desenhar();
 		ListaEntFase.desenharLista();

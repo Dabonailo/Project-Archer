@@ -6,7 +6,7 @@ namespace Entidades
 {
 	namespace Personagens 
 	{
-		class Chefao :public Inimigo {
+		class Ninja :public Inimigo {
 		private:
 			bool querAtirar;
 
@@ -14,15 +14,15 @@ namespace Entidades
 
 		public:
 
-			Chefao(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
-				sf::Vector2f tam = sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
-				const std::string& textura = "",
+			Ninja(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
+				sf::Vector2f tam = sf::Vector2f(ENT_TAM_DEFAULT_X * 2.f, ENT_TAM_DEFAULT_Y * 2.f),
+				const std::string& textura = "ninja.png",
 				sf::Vector2f v = sf::Vector2f(ENT_VEL_DEFAULT_X, ENT_VEL_DEFAULT_Y),
 				float e = 0,
 				int n = 20, 
 				int nm = 1);
 
-			~Chefao();
+			~Ninja();
 
 			void setQuerAtirar(bool a);
 			bool getQuerAtirar();
@@ -31,6 +31,12 @@ namespace Entidades
 			float getCooldownTiro();
 
 			void atirar();
+
+			void mover() override;
+
+			void movimentoAleatorio() override;
+
+			void perseguir(Jogador* pjog) override;
 
 			void danificar(Jogador* p) override;
 
