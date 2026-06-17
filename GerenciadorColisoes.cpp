@@ -247,6 +247,42 @@ namespace Gerenciadores
 		}
 	}
 
+	void GerenciadorColisoes::tratarColisaoJogsProjetil()
+	{
+		for (std::set<Entidades::Projetil*>::iterator it = LPs.begin(); it != LPs.end(); ++it) {
+			if (jogador1 != NULL) {
+				if (verificarColisao(jogador1, (*it)) && (*it)->getAtivo()) {
+					(*it)->cravarProjetil(jogador1);
+					if (Entidades::Personagens::Inimigo* i =
+						dynamic_cast<Entidades::Personagens::Inimigo*>((*it)->getPersonagem()))
+					{
+						i->danificar(jogador1);
+					}
+
+					if (!jogador1->getVivo()) {
+						jogador1 = NULL;
+						std::cout << "jogador 1 foi nocauteado" << std::endl;
+					}
+				}
+			}
+			if (jogador2 != NULL) {
+				if (verificarColisao(jogador2, (*it)) && (*it)->getAtivo()) {
+					(*it)->cravarProjetil(jogador2);
+					if (Entidades::Personagens::Inimigo* i =
+						dynamic_cast<Entidades::Personagens::Inimigo*>((*it)->getPersonagem()))
+					{
+						i->danificar(jogador2);
+					}
+
+					if (!jogador2->getVivo()) {
+						jogador2 = NULL;
+						std::cout << "jogador 2 foi nocauteado" << std::endl;
+					}
+				}
+			}
+		}
+	}
+
 	void GerenciadorColisoes::executar() {
 		tratarColisoesEntsLimites();
 		tratarColisoesJogsInimigs();
@@ -254,6 +290,7 @@ namespace Gerenciadores
 		tratarColisoesInimigsObstacs();	
 		tratarColisaoObstacProjetil();
 		tratarColisaoInimigsProjetil();
+		tratarColisaoJogsProjetil();
 	}
 
 }

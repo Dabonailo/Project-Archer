@@ -27,6 +27,7 @@ namespace Entidades
 			void mover() override;
 			void movimentoAleatorio();
 			void perseguir(Jogador* pJog);
+			void atualizarCooldowns() override;
 			void executar() override;
 
 		};

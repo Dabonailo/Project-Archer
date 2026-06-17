@@ -43,6 +43,7 @@ namespace Gerenciadores
 		void tratarColisoesEntsLimites();
 		void tratarColisaoObstacProjetil();
 		void tratarColisaoInimigsProjetil();
+		void tratarColisaoJogsProjetil();
 
 		void executar();
 

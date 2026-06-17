@@ -9,9 +9,9 @@ namespace Entidades
 			sf::Vector2f tam,
 			const std::string& textura,
 			sf::Vector2f v, float e, float a, int n, int nm)
-			:Inimigo(sf::Vector2f(pos.x, pos.y - a), tam, textura, v, e, n, nm), altura_voo(a), diving(false), altura_default(pos.y - a), direcao(1), delay_troca_direcao(3.f)
+			:Inimigo(sf::Vector2f(pos.x, pos.y - a), tam, textura, v, e, n, nm), altura_voo(a), diving(false),
+			altura_default(pos.y - a), direcao(1), delay_troca_direcao(3.f), incendiar(false)
 		{
-			//body.setFillColor(sf::Color::Red);
 			std::cout
 				<< "CRIADO: "
 				<< body.getPosition().x
@@ -28,6 +28,9 @@ namespace Entidades
 		{
 			if (p->getTempoInvulneravel() <= 0.f) {
 				p->recebeDano(10*nivel_maldade);
+
+				p->aplicarQueimadura(5.f, 2);
+
 				if (p->getBounds().left < getBounds().left) {
 					p->aplicarKnockback(sf::Vector2f(-KNOCKBACK_X, 0.f));
 					p->setVelocidade(sf::Vector2f(0.f, -KNOCKBACK_Y));
@@ -36,7 +39,7 @@ namespace Entidades
 					p->aplicarKnockback(sf::Vector2f(KNOCKBACK_X, 0.f));
 					p->setVelocidade(sf::Vector2f(0.f, -KNOCKBACK_Y));
 				}
-				p->setTempoInvulneravel(2.f);
+				p->setTempoInvulneravel(2.f);	
 			}
 		}
 		
@@ -156,14 +159,12 @@ namespace Entidades
 
 		void Dragao::executar()
 		{	
-			/*std::cout << "PosX: " << getPosicao().x
-				<< " Dir: " << direcao
-				<< std::endl;*/
 			mover();
 			gravitar();
-			desenhar();
 
 			body.move(velocidade.x * getTempo(), velocidade.y * getTempo());
+
+			desenhar();
 		}
 	}
 }

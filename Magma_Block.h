@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Obstaculo.h"
+#include "Jogador.h"
 
 namespace Entidades
 {
@@ -16,7 +17,6 @@ namespace Entidades
 
             bool jogadorEmCima;
 
-            float cooldownDano;
             float tempoSemJogador;
 
         public:

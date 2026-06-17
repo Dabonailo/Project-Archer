@@ -22,7 +22,6 @@ namespace Entidades
 
             jogadorEmCima = false;
 
-            cooldownDano = 0.f;
             tempoSemJogador = 0.f;
         }
 
@@ -39,10 +38,10 @@ namespace Entidades
             // DANO CONTÍNUO
             //--------------------------------
 
-            if (cooldownDano <= 0.f)
-            {
-                p->recebeDano(1);
-                cooldownDano = 0.35f;
+            if (Entidades::Personagens::Jogador* j = dynamic_cast<Entidades::Personagens::Jogador*>(p)) {
+                if (!j->getQueimando()) {
+                    j->aplicarQueimadura(3.f, 2);
+                }
             }
 
             //--------------------------------
@@ -125,8 +124,6 @@ namespace Entidades
 
         void Magma_Block::executar()
         {
-            if (cooldownDano > 0.f)
-                cooldownDano -= getTempo();
 
             //--------------------------------
             // DESCE

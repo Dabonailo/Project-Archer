@@ -65,6 +65,11 @@ void Ente::setTextura(const std::string& textura)
 	body.setTexture(&texturaEntidade);
 }
 
+void Ente::setCor(sf::Color cor)
+{
+    body.setFillColor(cor);
+}
+
 const sf::RectangleShape& Ente::getBody() const
 {
 	return body;

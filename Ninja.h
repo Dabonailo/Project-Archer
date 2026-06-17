@@ -8,7 +8,7 @@ namespace Entidades
 	{
 		class Ninja :public Inimigo {
 		private:
-			bool querAtirar;
+			Projetil* projetil;
 
 			float coolDownTiro;
 
@@ -24,11 +24,12 @@ namespace Entidades
 
 			~Ninja();
 
-			void setQuerAtirar(bool a);
-			bool getQuerAtirar();
+			void setProjetil(Projetil* p);
 
 			void setCooldownTiro(float cd);
 			float getCooldownTiro();
+
+			void atualizarCooldowns() override;
 
 			void atirar();
 

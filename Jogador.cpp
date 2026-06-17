@@ -17,7 +17,9 @@ namespace Entidades
             int n
         )
             : Personagem(pos, tam, textura, v, e, n), movDir(false), movEsq(false), coolDownTiro(0.f),
-            projetil(NULL), pontuacao(0)
+            congelado(false), tempoCongelado(0.f), fatorLentidao(1.f), projetil(NULL), queimando(false), 
+            tempoQueimadura(0.f), contadorQueimadura(0.f), danoQueimadura(0),
+            pontuacao(0)
         {
             texturaEntidade.loadFromFile(textura);
             body.setTexture(&texturaEntidade);
@@ -77,6 +79,31 @@ namespace Entidades
             return pontuacao;
         }
 
+        void Jogador::atualizarCooldowns()
+        {
+            velocidadeKnockback *= 0.995f;
+
+            if (tempoInvulneravel > 0.f) {
+                if (!queimando && !congelado) {
+                    body.setFillColor(sf::Color(255, 255, 255, 150.f + 105.f * std::sin(tempoInvulneravel * 10.f)));
+                }
+
+                tempoInvulneravel -= getTempo();
+            }
+            else {
+                if (!queimando && !congelado) {
+                    body.setFillColor(sf::Color::White);
+                }
+            }
+
+            if (cooldownKnockback > 0.f)
+                cooldownKnockback -= getTempo();
+
+            if (coolDownTiro > 0.f) {
+                coolDownTiro -= getTempo();
+            }
+        }
+
         void Jogador::mover()
         {
             if (cooldownKnockback > 0.f)
@@ -100,18 +127,24 @@ namespace Entidades
             // MOVIMENTO
             if (movDir)
             {
-                velocidade.x += JOG_ACELERACAO;
-                if (velocidade.x > JOG_VELOCIDADE_MAX)
-                    velocidade.x = JOG_VELOCIDADE_MAX;
+                float fator = congelado ? fatorLentidao : 1.f;
+
+                velocidade.x += JOG_ACELERACAO * fator;
+
+                if (velocidade.x > JOG_VELOCIDADE_MAX * fator)
+                    velocidade.x = JOG_VELOCIDADE_MAX * fator;
 
                 body.setScale(1.f, 1.f);
             }
 
             if (movEsq)
             {
-                velocidade.x -= JOG_ACELERACAO;
-                if (velocidade.x < -JOG_VELOCIDADE_MAX)
-                    velocidade.x = -JOG_VELOCIDADE_MAX;
+                float fator = congelado ? fatorLentidao : 1.f;
+
+                velocidade.x -= JOG_ACELERACAO * fator;
+
+                if (velocidade.x < -JOG_VELOCIDADE_MAX * fator)
+                    velocidade.x = -JOG_VELOCIDADE_MAX * fator;
 
                 body.setScale(-1.f, 1.f);
             }
@@ -121,7 +154,9 @@ namespace Entidades
         {
             if (tempoNoChao > 0.f)
             {
-                velocidade.y = -FORCA_PULO;
+                float fator = congelado ? fatorLentidao : 1.f;
+
+                velocidade.y = -FORCA_PULO * fator;
                 tempoNoChao = 0.f;
                 noChao = false;
             }
@@ -145,7 +180,76 @@ namespace Entidades
             }
         }
 
+        void Jogador::aplicarCongelamento(float duracao, float lentidao)
+        {
+            congelado = true;
+            tempoCongelado = duracao;
+            fatorLentidao = lentidao;
+            
+            velocidade.x *= lentidao;
+        }
 
+        void Jogador::atualizarCongelamento()
+        {
+            if (!congelado)
+                return;
+
+            tempoCongelado -= getTempo();
+
+            body.setFillColor(sf::Color(150, 200, 255));
+
+            if (tempoCongelado <= 0.f)
+            {
+                congelado = false;
+                fatorLentidao = 1.f;
+                body.setFillColor(sf::Color::White);
+            }
+        }
+
+        void Jogador::aplicarQueimadura(float duracao, int dps)
+        {
+            queimando = true;
+            tempoQueimadura = duracao;
+            danoQueimadura = dps;
+            contadorQueimadura = 0.f;
+        }
+
+        void Jogador::atualizarQueimadura()
+        {
+            if (!queimando)
+                return;
+
+            tempoQueimadura -= getTempo();
+            contadorQueimadura += getTempo();
+
+            if (contadorQueimadura >= 1.f)
+            {
+                recebeDano(danoQueimadura);
+                contadorQueimadura = 0.f;
+            }
+
+            if (tempoQueimadura <= 0.f)
+            {
+                queimando = false;
+            }
+
+            if (queimando)
+            {
+                body.setFillColor(sf::Color(255,
+                    127.5f + 127.5f * std::sin(tempoQueimadura * 10.f),
+                    127.5f + 127.5f * std::sin(tempoQueimadura * 10.f)
+                ));
+            }
+            else
+            {
+                body.setFillColor(sf::Color::White);
+            }
+        }
+
+        bool Jogador::getQueimando()
+        {
+            return queimando;
+        }
 
         void Jogador::executar()
         {
@@ -156,28 +260,17 @@ namespace Entidades
 
             mover();
             gravitar();
+            atualizarQueimadura();
+            atualizarCongelamento();
+
+            atualizarCooldowns();
 
             body.move(
                 (velocidade.x + velocidadeKnockback.x) * getTempo(),
                 (velocidade.y + velocidadeKnockback.y) * getTempo()
             );
-
-            velocidadeKnockback *= 0.995f;
-
-            if (tempoInvulneravel > 0.f)
-                tempoInvulneravel -= getTempo();
-
-            if (cooldownKnockback > 0.f)
-                cooldownKnockback -= getTempo();
-
-            if (coolDownTiro > 0.f) {
-                coolDownTiro -= getTempo();
-            }
+            
             desenhar();
-
-			//std::cout << getBody().getPosition().x << " " << getBody().getPosition().y << std::endl; 
-
         }
-
     }
 }

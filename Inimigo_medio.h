@@ -18,6 +18,8 @@ namespace Entidades
 			float delay_troca_direcao;
 			int direcao;
 
+			bool incendiar;
+
 		public:
 			Dragao(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
 				sf::Vector2f tam = sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),

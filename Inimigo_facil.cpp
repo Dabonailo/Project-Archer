@@ -55,13 +55,6 @@ namespace Entidades
 
                 if (pJog)
                 {
-                   /* std::cout << "Jogador encontrado: "
-                        << pJog
-                        << " Pos: "
-                        << pJog->getPosicao().x << ", "
-                        << pJog->getPosicao().y
-                        << std::endl; */
-
                     if (!achou)
                     {
                         float dx = pJog->getPosicao().x - getPosicao().x;
@@ -110,6 +103,22 @@ namespace Entidades
             }
         }
 
+        void Oni::atualizarCooldowns()
+        {
+            velocidadeKnockback *= 0.995f;
+
+            if (cooldownKnockback > 0.f)
+                cooldownKnockback -= getTempo();
+
+            if (cooldownMovimento > 0.f) {
+                cooldownMovimento -= getTempo();
+            }
+
+            if (tempoInvulneravel > 0.f) {
+                tempoInvulneravel -= getTempo();
+            }
+        }
+
         void Oni::movimentoAleatorio()
         {
             if (cooldownMovimento <= 0.f) {
@@ -147,27 +156,16 @@ namespace Entidades
 
         void Oni::executar()
         {
-            desenhar();
             mover();
             gravitar();
+            atualizarCooldowns();
+
             body.move(
                 (velocidade.x + velocidadeKnockback.x) * getTempo(),
                 (velocidade.y + velocidadeKnockback.y) * getTempo()
             );
 
-            velocidadeKnockback *= 0.995f;
-
-            if (cooldownKnockback > 0.f)
-                cooldownKnockback -= getTempo();
-
-            if (cooldownMovimento > 0.f) {
-                cooldownMovimento -= getTempo();
-            }
-
-            if (tempoInvulneravel > 0.f) {
-                tempoInvulneravel -= getTempo();
-            }
-
+            desenhar();
         }
     }
 }

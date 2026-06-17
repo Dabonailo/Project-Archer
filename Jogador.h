@@ -30,6 +30,15 @@ namespace Entidades
 
 			float coolDownTiro;
 
+			bool congelado;
+			float tempoCongelado;
+			float fatorLentidao;
+
+			bool queimando;
+			float tempoQueimadura;
+			float contadorQueimadura;
+			int danoQueimadura;
+
 			int pontuacao;
 
 		public:
@@ -54,11 +63,20 @@ namespace Entidades
 
 			int getPontuacao();
 
+			void atualizarCooldowns() override;
+
 			void mover() override;
 			void pular();
 
 			void colidir(Inimigo* pIn);
 
+			void aplicarCongelamento(float duracao, float lentidao);
+			void atualizarCongelamento();
+
+			void aplicarQueimadura(float duracao, int dps);
+			void atualizarQueimadura();
+
+			bool getQueimando();
 
 			void executar() override;
 		};

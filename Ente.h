@@ -41,6 +41,7 @@ public:
 	//TEXTURA
 
 	void setTextura(const std::string& textura);
+	void setCor(sf::Color cor);
 
 	//CORPO
 

@@ -119,13 +119,13 @@ namespace Fases
 
      void Fase_Primeira::criarProjeteis()
      {
-         Entidades::Projetil* novoProjetilJogador = new Entidades::Projetil();
+         Entidades::Projetil* novoProjetiljogador = new Entidades::Projetil();
 
-         pJogador->setProjetil(novoProjetilJogador);
-         novoProjetilJogador->setPersonagem(pJogador);
+         pJogador->setProjetil(novoProjetiljogador);
+         novoProjetiljogador->setPersonagem(pJogador);
 
-         ListaEntFase.incluir(novoProjetilJogador);
-         GC.incluirProjetil(novoProjetilJogador);
+         ListaEntFase.incluir(novoProjetiljogador);
+         GC.incluirProjetil(novoProjetiljogador);
 
          if (pJogador2) {
              Entidades::Projetil* novoProjetilJogador2 = new Entidades::Projetil();

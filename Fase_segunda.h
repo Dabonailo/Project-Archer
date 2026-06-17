@@ -8,6 +8,8 @@ namespace Fases {
 	private:
 		int maxchefoes;
 
+		std::vector<Entidades::Personagens::Ninja*> vecNinja;
+
 	public:
 		Fase_segunda(Entidades::Personagens::Jogador* pJ, Entidades::Personagens::Jogador* pJ2,
 			sf::Vector2f pos = sf::Vector2f(0.f, 0.f),

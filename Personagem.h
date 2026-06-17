@@ -37,6 +37,8 @@ namespace Entidades
 
             void aplicarKnockback(sf::Vector2f forca);
 
+            virtual void atualizarCooldowns();
+
             virtual void recebeDano(int dano);
 
             virtual void mover() = 0;                                                   

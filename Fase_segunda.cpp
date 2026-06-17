@@ -3,7 +3,8 @@
 namespace Fases {
 
 	Fases::Fase_segunda::Fase_segunda(Entidades::Personagens::Jogador* pJ, Entidades::Personagens::Jogador* pJ2,
-		sf::Vector2f pos, sf::Vector2f tam, const std::string& textura): Fase(pJ, pJ2, pos, tam, textura), maxchefoes(5)
+		sf::Vector2f pos, sf::Vector2f tam, const std::string& textura): Fase(pJ, pJ2, pos, tam, textura), 
+        maxchefoes(5), vecNinja()
 	{
         criarCenario();
         criarProjeteis();
@@ -21,11 +22,11 @@ namespace Fases {
 
 	void Fase_segunda::criarNinjas()
 	{
-        Entidades::Personagens::Ninja* ninja = new Entidades::Personagens::Ninja();
-        ninja->setPosicao(sf::Vector2f(440.f, 680.f));
+        Entidades::Personagens::Ninja* ninja = new Entidades::Personagens::Ninja(sf::Vector2f(440.f, 680.f));
         ninja->setListaJogadores(&lJogs);
         ListaEntFase.incluir(ninja);
         GC.incluirInimigo(ninja);
+        vecNinja.push_back(ninja);
 	}
 
     void Fase_segunda::criarObstaculos()
@@ -124,6 +125,16 @@ namespace Fases {
 
             ListaEntFase.incluir(novoProjetilJogador2);
             GC.incluirProjetil(novoProjetilJogador2);
+        }
+
+        for (std::vector<Entidades::Personagens::Ninja*>::iterator it = vecNinja.begin(); it != vecNinja.end(); ++it) {
+            Entidades::Projetil* novoProjetilNinja = new Entidades::Projetil();
+
+            (*it)->setProjetil(novoProjetilNinja);
+            novoProjetilNinja->setPersonagem(*it);
+
+            ListaEntFase.incluir(novoProjetilNinja);
+            GC.incluirProjetil(novoProjetilNinja);
         }
     }
 }

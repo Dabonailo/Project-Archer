@@ -40,6 +40,17 @@ namespace Entidades
 			velocidadeKnockback += forca;
 			cooldownKnockback = 1.2f;
 		}
+
+		void Personagem::atualizarCooldowns()
+		{
+			velocidadeKnockback *= 0.995f;
+
+			if (tempoInvulneravel > 0.f)
+				tempoInvulneravel -= getTempo();
+
+			if (cooldownKnockback > 0.f)
+				cooldownKnockback -= getTempo();
+		}
 	
 		void Personagem::recebeDano(int dano)
 		{
