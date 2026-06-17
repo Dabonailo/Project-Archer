@@ -41,6 +41,7 @@ namespace Fases
 		~Fase();
 
 		Listas::ListaEntidades* getListaEntFase();
+		int getNumeroInimigos();
 
 		virtual void executar();
 

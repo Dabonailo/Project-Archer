@@ -43,7 +43,7 @@ namespace Entidades
 
 		void Personagem::atualizarCooldowns()
 		{
-			velocidadeKnockback *= 0.995f;
+			velocidadeKnockback *= 0.995f * getTempo();
 
 			if (tempoInvulneravel > 0.f)
 				tempoInvulneravel -= getTempo();

@@ -153,6 +153,10 @@ void Jogo::criarFasePrimeira()
         deletarFasePrimeira();
     }
 
+    if (fase2) {
+        deletarFaseSegunda();
+    }
+
     Entidades::Personagens::Jogador* jogador = new Entidades::Personagens::Jogador(sf::Vector2f(100.f, 0.f),
         sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
         "hanzo_spray.png");
@@ -200,6 +204,10 @@ void Jogo::criarFaseSegunda()
 {
     if (fase2) {
         deletarFaseSegunda();
+    }
+
+    if (fase1) {
+        deletarFasePrimeira();
     }
 
     Entidades::Personagens::Jogador* jogador = new Entidades::Personagens::Jogador(sf::Vector2f(100.f, 0.f),
@@ -256,6 +264,24 @@ void Jogo::executarMenu()
 
             menu->mudarMenu(MENU_GAME_OVER);
         }
+        if (fase1) {
+            if (fase1->getNumeroInimigos() <= 0 &&
+                menu->getTipoMenu() != MENU_VITORIA && menu->getTipoMenu() != MENU_SALVAR_PONTUACAO)
+            {
+                pontuacaoFinalP1 = pjogador->getPontuacao();
+
+                menu->mudarMenu(MENU_VITORIA);
+            }
+        }
+        else if(fase2){
+            if (fase2->getNumeroInimigos() <= 0 &&
+                menu->getTipoMenu() != MENU_VITORIA && menu->getTipoMenu() != MENU_SALVAR_PONTUACAO)
+            {
+                pontuacaoFinalP1 = pjogador->getPontuacao();
+
+                menu->mudarMenu(MENU_VITORIA);
+            }
+        }
     }
     else if (numJogadores == 2) {
         if (pjogador && !pjogador->getVivo() && pjogador2 && !pjogador2->getVivo() 
@@ -265,6 +291,26 @@ void Jogo::executarMenu()
             pontuacaoFinalP2 = pjogador2->getPontuacao();
 
             menu->mudarMenu(MENU_GAME_OVER);
+        }
+        if (fase1) {
+            if (fase1->getNumeroInimigos() <= 0 &&
+                menu->getTipoMenu() != MENU_VITORIA && menu->getTipoMenu() != MENU_SALVAR_PONTUACAO)
+            {
+                pontuacaoFinalP1 = pjogador->getPontuacao();
+                pontuacaoFinalP2 = pjogador2->getPontuacao();
+
+                menu->mudarMenu(MENU_VITORIA);
+            }
+        }
+        else if (fase2) {
+            if (fase2->getNumeroInimigos() <= 0 &&
+                menu->getTipoMenu() != MENU_VITORIA && menu->getTipoMenu() != MENU_SALVAR_PONTUACAO)
+            {
+                pontuacaoFinalP1 = pjogador->getPontuacao();
+                pontuacaoFinalP2 = pjogador2->getPontuacao();
+
+                menu->mudarMenu(MENU_VITORIA);
+            }
         }
     }
 
@@ -291,6 +337,7 @@ void Jogo::executarMenu()
     case MENU_GAME_OVER:
     case NO_JOGO:
     case MENU_SALVAR_PONTUACAO:
+    case MENU_VITORIA:
         if (fase1) {
             fase1->executar();
         }
@@ -298,6 +345,7 @@ void Jogo::executarMenu()
             fase2->executar();
         }
         menu->executar();
+
         break;
     }
 }

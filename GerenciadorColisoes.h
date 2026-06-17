@@ -4,6 +4,7 @@
 #include <set>
 #include "ListaEntidades.h"
 #include "Jogador.h"
+#include "Ninja.h"
 #include "Inimigo.h"
 #include "Obstaculo.h"
 #include "Projetil.h"

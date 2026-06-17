@@ -81,7 +81,7 @@ namespace Entidades
 
         void Jogador::atualizarCooldowns()
         {
-            velocidadeKnockback *= 0.995f;
+            velocidadeKnockback.x *= 0.995f;
 
             if (tempoInvulneravel > 0.f) {
                 if (!queimando && !congelado) {

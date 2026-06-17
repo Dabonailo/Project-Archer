@@ -5,6 +5,8 @@
 namespace Entidades {
 	namespace Personagens {
 		class Personagem;
+		class Jogador;
+		class Ninja;
 	}
 }
 
@@ -23,7 +25,8 @@ namespace Entidades {
 	private:
 		bool ativo;
 
-		Personagens::Personagem* pPersonagem;
+		Personagens::Jogador* pJogador;
+		Personagens::Ninja* pNinja;
 
 		Entidade* alvo;
 		sf::Vector2f offset; //posicao do alvo
@@ -40,7 +43,8 @@ namespace Entidades {
 		~Projetil();
 
 		void setPersonagem(Personagens::Personagem* pP);
-		Personagens::Personagem* getPersonagem();
+		Personagens::Jogador* getJogador();
+		Personagens::Ninja* getNinja();
 
 		void reiniciarProjetil();
 

@@ -29,6 +29,11 @@ namespace Fases {
 		return &ListaEntFase;
 	}
 
+    int Fase::getNumeroInimigos()
+    {
+        return GC.getTamanhoLIs();
+    }
+
     void Fase::executar() 
     {
         Ente::desenhar();
