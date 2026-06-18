@@ -60,6 +60,10 @@ void Menu::mudarMenu(tipoMenu menu)
         criarMenuGameOver();
         break;
 
+    case MENU_VITORIA:
+        criarMenuVitoria();
+        break;
+
     case MENU_SALVAR_PONTUACAO:
         criarMenuSalvarPontuacao();
         break;
@@ -337,6 +341,46 @@ void Menu::criarMenuGameOver()
     vecBotao.push_back(new Botao(ACAO_VOLTAR,
         sf::String("Voltar para o Menu Principal"),
         sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 200.f)
+    ));
+}
+
+void Menu::criarMenuVitoria()
+{
+    body.setFillColor(sf::Color(0, 0, 0, 150));
+
+    limparvecTexto();
+
+    adicionarTexto("FASE CONCLUIDA", sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 250.f), 100);
+
+    std::stringstream ss;
+
+    ss << "PONTUACAO P1: " << pJogo->getPontuacaoFinal(1);
+    adicionarTexto(ss.str(), sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 150.f), 30);
+
+    if (pJogo->getNumJogadores() == 2) {
+        ss.str("");
+        ss << "PONTUACAO P2: " << pJogo->getPontuacaoFinal(2);
+        adicionarTexto(ss.str(), sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 90.f), 30);
+    }
+
+    vecBotao.push_back(new Botao(ACAO_JOGAR_FASE_1,
+        sf::String("Jogar Fase 1"),
+        pGG->getWindowCentro()
+    ));
+
+    vecBotao.push_back(new Botao(ACAO_JOGAR_FASE_2,
+        sf::String("Jogar Fase 2"),
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 100.f)
+    ));
+
+    vecBotao.push_back(new Botao(ACAO_MENU_SALVAR_PONTUACAO,
+        sf::String("Salvar Pontuacao"),
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 200.f)
+    ));
+
+    vecBotao.push_back(new Botao(ACAO_VOLTAR,
+        sf::String("Voltar para o Menu Principal"),
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 300.f)
     ));
 }
 

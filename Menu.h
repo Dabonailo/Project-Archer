@@ -18,6 +18,7 @@ enum tipoMenu
 	MENU_FASES,
 	MENU_OPCOES,
 	MENU_GAME_OVER,
+	MENU_VITORIA,
 	MENU_SALVAR_PONTUACAO,
 	MENU_RANKING
 };
@@ -76,6 +77,7 @@ public:
 	void criarMenuSelecionarJogadores();
 	void criarMenuPausa();
 	void criarMenuGameOver();
+	void criarMenuVitoria();
 	void criarMenuSalvarPontuacao();
 
 	void salvarPontuacao();

@@ -1,12 +1,14 @@
 #include "Projetil.h"
 #include "Personagem.h"
+#include "Jogador.h"
+#include "Ninja.h"
 
 Entidades::Projetil::Projetil(sf::Vector2f pos,
 	sf::Vector2f tam,
 	const std::string& textura,
 	sf::Vector2f velocidade, float e) :
 	Entidade(pos, tam, textura, velocidade, e),
-	ativo(true), pPersonagem(NULL), alvo(NULL), offset(sf::Vector2f(0.f,0.f)), cravado(false), tempoCravado(0.f)
+	ativo(true), pJogador(NULL), pNinja(NULL), alvo(NULL), offset(sf::Vector2f(0.f,0.f)), cravado(false), tempoCravado(0.f)
 {
 }
 
@@ -17,30 +19,59 @@ Entidades::Projetil::~Projetil()
 
 void Entidades::Projetil::setPersonagem(Personagens::Personagem* pP)
 {
-	pPersonagem = pP;
+	if (Entidades::Personagens::Jogador* pJ = dynamic_cast<Entidades::Personagens::Jogador*>(pP)) {
+		pJogador = pJ;
+	}
+	else if (Entidades::Personagens::Ninja* pN = dynamic_cast<Entidades::Personagens::Ninja*>(pP)) {
+		pNinja = pN;
+	}
 }
 
-Entidades::Personagens::Personagem* Entidades::Projetil::getPersonagem()
+Entidades::Personagens::Jogador* Entidades::Projetil::getJogador()
 {
-	return pPersonagem;
+	return pJogador;
+}
+
+Entidades::Personagens::Ninja* Entidades::Projetil::getNinja()
+{
+	return pNinja;
 }
 
 void Entidades::Projetil::reiniciarProjetil()
 {
-	sf::Vector2f pos = pPersonagem->getPosicao();
-	sf::Vector2f velP;
+	if (pJogador) {
+		sf::Vector2f pos = pJogador->getPosicao();
+		sf::Vector2f velP;
 
-	if (pPersonagem->getDirecao() == Direcao::DIREITA) {
-		pos.x += pPersonagem->getBody().getSize().x;
-		velP = sf::Vector2f(VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
-	}
-	if (pPersonagem->getDirecao() == Direcao::ESQUERDA) {
-		pos.x -= pPersonagem->getBody().getSize().x;
-		velP = sf::Vector2f(-VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
+		if (pJogador->getDirecao() == Direcao::DIREITA) {
+			pos.x += pJogador->getBody().getSize().x;
+			velP = sf::Vector2f(VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
+		}
+		if (pJogador->getDirecao() == Direcao::ESQUERDA) {
+			pos.x -= pJogador->getBody().getSize().x;
+			velP = sf::Vector2f(-VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
+		}
+
+		setPosicao(pos);
+		setVelocidade(velP);
 	}
 
-	setPosicao(pos);
-	setVelocidade(velP);
+	else if (pNinja) {
+		sf::Vector2f pos = pNinja->getPosicao();
+		sf::Vector2f velP;
+
+		if (pNinja->getDirecao() == Direcao::DIREITA) {
+			pos.x += pNinja->getBody().getSize().x;
+			velP = sf::Vector2f(VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
+		}
+		if (pNinja->getDirecao() == Direcao::ESQUERDA) {
+			pos.x -= pNinja->getBody().getSize().x;
+			velP = sf::Vector2f(-VELOCIDADE_PROJETIL_X, VELOCIDADE_PROJETIL_Y);
+		}
+
+		setPosicao(pos);
+		setVelocidade(velP);
+	}
 }
 
 void Entidades::Projetil::tratarAlvoNocauteado()
@@ -50,11 +81,21 @@ void Entidades::Projetil::tratarAlvoNocauteado()
 			alvo = NULL;
 			cravado = false;
 			ativo = true;
-			if (pPersonagem->getDirecao() == DIREITA) {
-				velocidade = sf::Vector2f(200.f, VELOCIDADE_PROJETIL_Y);
+			if (pJogador) {
+				if (pJogador->getDirecao() == DIREITA) {
+					velocidade = sf::Vector2f(200.f, VELOCIDADE_PROJETIL_Y);
+				}
+				else if (pJogador->getDirecao() == ESQUERDA) {
+					velocidade = sf::Vector2f(-200.f, VELOCIDADE_PROJETIL_Y);
+				}
 			}
-			else if (pPersonagem->getDirecao() == ESQUERDA) {
-				velocidade = sf::Vector2f(-200.f, VELOCIDADE_PROJETIL_Y);
+			else if (pNinja) {
+				if (pNinja->getDirecao() == DIREITA) {
+					velocidade = sf::Vector2f(200.f, VELOCIDADE_PROJETIL_Y);
+				}
+				else if (pNinja->getDirecao() == ESQUERDA) {
+					velocidade = sf::Vector2f(-200.f, VELOCIDADE_PROJETIL_Y);
+				}
 			}
 		}
 	}

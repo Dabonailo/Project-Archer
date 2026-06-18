@@ -97,14 +97,7 @@ namespace Gerenciadores {
 			}
 		}
 
-		if (menu && menu->getTipoMenu() == MENU_PRINCIPAL ||
-			menu->getTipoMenu() == MENU_PAUSA ||
-			menu->getTipoMenu() == MENU_FASES ||
-			menu->getTipoMenu() == MENU_GAME_OVER ||
-			menu->getTipoMenu() == MENU_JOGADORES ||
-			menu->getTipoMenu() == MENU_SALVAR_PONTUACAO ||
-			menu->getTipoMenu() == MENU_RANKING
-			)
+		if (menu && !menu->getTipoMenu() == NO_JOGO)
 		{
 			if (tecla == sf::Keyboard::Up) {
 				menu->selecionarBotoes(CIMA);

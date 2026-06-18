@@ -227,10 +227,8 @@ namespace Gerenciadores
 			for (std::set<Entidades::Projetil*>::iterator itP = LPs.begin(); itP != LPs.end(); ++itP) {
 				if (verificarColisao((*itI), (*itP)) && (*itP)->getAtivo()) {
 					(*itP)->cravarProjetil((*itI));
-					if (Entidades::Personagens::Jogador* p =
-						dynamic_cast<Entidades::Personagens::Jogador*>((*itP)->getPersonagem())) 
-					{
-						p->colidir((*itI));
+					if ((*itP)->getJogador()) {
+						(*itP)->getJogador()->colidir((*itI));
 					}
 					if (!(*itI)->getVivo()) {
 						removerinimigo = true;
@@ -253,10 +251,9 @@ namespace Gerenciadores
 			if (jogador1 != NULL) {
 				if (verificarColisao(jogador1, (*it)) && (*it)->getAtivo()) {
 					(*it)->cravarProjetil(jogador1);
-					if (Entidades::Personagens::Inimigo* i =
-						dynamic_cast<Entidades::Personagens::Inimigo*>((*it)->getPersonagem()))
+					if ((*it)->getNinja())
 					{
-						i->danificar(jogador1);
+						(*it)->getNinja()->danificar(jogador1);
 					}
 
 					if (!jogador1->getVivo()) {
@@ -268,10 +265,9 @@ namespace Gerenciadores
 			if (jogador2 != NULL) {
 				if (verificarColisao(jogador2, (*it)) && (*it)->getAtivo()) {
 					(*it)->cravarProjetil(jogador2);
-					if (Entidades::Personagens::Inimigo* i =
-						dynamic_cast<Entidades::Personagens::Inimigo*>((*it)->getPersonagem()))
+					if ((*it)->getNinja())
 					{
-						i->danificar(jogador2);
+						(*it)->getNinja()->danificar(jogador2);
 					}
 
 					if (!jogador2->getVivo()) {

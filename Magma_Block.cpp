@@ -35,16 +35,6 @@ namespace Entidades
                 return;
 
             //--------------------------------
-            // DANO CONTÍNUO
-            //--------------------------------
-
-            if (Entidades::Personagens::Jogador* j = dynamic_cast<Entidades::Personagens::Jogador*>(p)) {
-                if (!j->getQueimando()) {
-                    j->aplicarQueimadura(3.f, 2);
-                }
-            }
-
-            //--------------------------------
             // COLISÃO
             //--------------------------------
 
@@ -104,6 +94,12 @@ namespace Entidades
                 else
                 {
                     // pisou em cima
+
+                    if (Entidades::Personagens::Jogador* j = dynamic_cast<Entidades::Personagens::Jogador*>(p)) {
+                        if (!j->getQueimando()) {
+                            j->aplicarQueimadura(3.f, 2);
+                        }
+                    }
 
                     jogadorEmCima = true;
                     tempoSemJogador = 0.f;
