@@ -67,49 +67,6 @@ namespace Entidades
 			}
 		}
 
-		void Ninja::mover()
-		{
-		}
-
-		void Ninja::movimentoAleatorio()
-		{
-			if (cooldownMovimento <= 0.f) {
-				movimento = rand() % 4 + 1;
-
-				switch (movimento)
-				{
-				case 1:
-					velocidade.x = 50.f;
-					body.setScale(1.f, 1.f);
-					setDirecao(DIREITA);
-					break;
-
-				case 2:
-					velocidade.x = -50.f;
-					body.setScale(-1.f, 1.f);
-					setDirecao(ESQUERDA);
-					break;
-
-				case 3:
-					if (noChao)
-					{
-						velocidade.y = -FORCA_PULO;
-						noChao = false;
-					}
-					break;
-
-				case 4:
-					velocidade.x = 0.f;
-					break;
-				}
-				cooldownMovimento = 5.f;
-			}
-		}
-
-		void Ninja::perseguir(Jogador* pjog)
-		{
-		}
-
 		void Ninja::danificar(Jogador* p) //mudar o danificar
 		{
 			if (p->getTempoInvulneravel() <= 0.f) {
@@ -134,7 +91,7 @@ namespace Entidades
 
 		void Ninja::executar() 
 		{
-			movimentoAleatorio();
+			mover();
 			atirar();
 			gravitar();
 

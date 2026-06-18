@@ -33,12 +33,6 @@ namespace Entidades
 
 			void atirar();
 
-			void mover() override;
-
-			void movimentoAleatorio() override;
-
-			void perseguir(Jogador* pjog) override;
-
 			void danificar(Jogador* p) override;
 
 			void executar() override;

@@ -6,7 +6,9 @@ namespace Entidades
 	{
 		
 		Plataforma::Plataforma(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, bool d, float e)
-			: Obstaculo(pos, tam, textura, v, d, e), altura(0)
+			: Obstaculo(pos, tam, textura, v, d, e), seMove(false),
+            posOriginal(pos),
+            direcao(1)
 		{
 			//body.setFillColor(sf::Color::Green);
 		}
@@ -89,6 +91,17 @@ namespace Entidades
 
 		void Plataforma::executar()
 		{
+            gravitar();
+            if (seMove)
+            {
+                body.move(direcao * PLATAFORMA_VEL * getTempo(), 0.f);
+
+                if (body.getPosition().x >= posOriginal.x + PLATAFORMA_DIST)
+                    direcao = -1;
+
+                if (body.getPosition().x <= posOriginal.x - PLATAFORMA_DIST)
+                    direcao = 1;
+            }
 			desenhar();
 		}
 	}

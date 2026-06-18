@@ -31,7 +31,21 @@ namespace Fases {
 
     void Fase_segunda::criarObstaculos()
     {
+
+        Entidades::Obstaculos::Plataforma* p;
+
         criarPlataformas();
+        p = new Entidades::Obstaculos::Plataforma(
+            sf::Vector2f(120.f, 475.f),
+            sf::Vector2f(150.f, 35.f),
+            "ginger_brand/Plataforma.png",
+            sf::Vector2f(0.f, 0.f),
+            false);
+
+		p->setSeMove(true);
+
+        ListaEntFase.incluir(p);
+        GC.incluirObstaculo(p);
 		criarEspinhos();
     }
 

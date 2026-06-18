@@ -138,7 +138,7 @@
     <ClCompile Include="Botao.cpp" />
     <ClCompile Include="Fase_segunda.cpp" />
     <ClCompile Include="Magma_Block.cpp" />
-    <ClCompile Include="NInja.cpp" />
+    <ClCompile Include="Ninja.cpp" />
     <ClCompile Include="direcao.cpp" />
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
@@ -149,8 +149,8 @@
     <ClCompile Include="GerenciadorEventos.cpp" />
     <ClCompile Include="GerenciadorGrafico.cpp" />
     <ClCompile Include="Inimigo.cpp" />
-    <ClCompile Include="Inimigo_facil.cpp" />
-    <ClCompile Include="Inimigo_medio.cpp" />
+    <ClCompile Include="Oni.cpp" />
+    <ClCompile Include="Dragao.cpp" />
     <ClCompile Include="Jogador.cpp" />
     <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="Lista.cpp" />
@@ -177,8 +177,8 @@
     <ClInclude Include="GerenciadorEventos.h" />
     <ClInclude Include="GerenciadorGrafico.h" />
     <ClInclude Include="Inimigo.h" />
-    <ClInclude Include="Inimigo_facil.h" />
-    <ClInclude Include="Inimigo_medio.h" />
+    <ClInclude Include="Oni.h" />
+    <ClInclude Include="Dragao.h" />
     <ClInclude Include="Jogador.h" />
     <ClInclude Include="Jogo.h" />
     <ClInclude Include="Lista.h" />

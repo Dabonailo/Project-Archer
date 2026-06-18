@@ -1,7 +1,6 @@
 #pragma once
 #include "Inimigo.h"
 
-#define INIMIGO_FACIL_VELOCIDADE_X 50.f
 
 namespace Entidades
 {
@@ -11,7 +10,7 @@ namespace Entidades
 		class Oni : public Inimigo //mudar o nome da classe assim que o tema do jogo for escolhido
 		{
 		private:
-			float raio;
+			sf::Vector2f forcaEmpurro;
 
 
 		public:
@@ -23,10 +22,7 @@ namespace Entidades
 
 			~Oni();
 
-			void danificar(Jogador* p) override;
-			void mover() override;
-			void movimentoAleatorio();
-			void perseguir(Jogador* pJog);
+			void danificar(Jogador* p) override;   
 			void atualizarCooldowns() override;
 			void executar() override;
 

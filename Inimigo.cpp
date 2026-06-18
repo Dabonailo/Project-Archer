@@ -34,34 +34,6 @@ namespace Entidades
 			return movimento;
 		}
 
-		void Inimigo::mover()
-		{
-			movimentoAleatorio();
-		}
-
-		void Inimigo::movimentoAleatorio()
-		{
-			int direcao = rand() % 4;
-			switch (direcao)
-			{
-			case 0: // cima
-				velocidade = sf::Vector2f(0.f, -0.1f);
-				break;
-			case 1: // baixo
-				velocidade = sf::Vector2f(0.f, 0.1f);
-				break;
-			case 2: // esquerda
-				velocidade = sf::Vector2f(-0.1f, 0.f);
-				break;
-			case 3: // direita
-				velocidade = sf::Vector2f(0.1f, 0.f);
-				break;
-			default:
-				break;
-			}
-			gravitar();
-		}
-
 		void Inimigo::recebeDano(int dano)
 		{
 			numVidas -= dano;
@@ -75,8 +47,103 @@ namespace Entidades
 			return nivel_maldade;
 		}
 
-		void Inimigo::executar()
+		void Inimigo::mover()
 		{
+			if (cooldownKnockback > 0.f)
+				return;
+
+			bool achou = false;
+
+			Listas::Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* atual =
+				lJogs->getPrimeiro();
+
+			while (atual)
+			{
+				Jogador* pJog = dynamic_cast<Jogador*>(atual->getInfo());
+
+				if (pJog)
+				{
+					if (!achou)
+					{
+						float dx = pJog->getPosicao().x - getPosicao().x;
+						float dy = pJog->getPosicao().y - getPosicao().y;
+
+						float dist = sqrt(dx * dx + dy * dy);
+
+						if (dist <= RANGE_INIMIGO)
+						{
+							perseguir(pJog);
+							achou = true;
+						}
+					}
+				}
+
+				atual = atual->getProximo();
+			}
+
+			if (!achou)
+				movimentoAleatorio();
 		}
+
+		void Inimigo::perseguir(Jogador* pJog)
+		{
+			if (!pJog)
+				return;
+
+			if (pJog->getPosicao().x > getPosicao().x)
+			{
+				velocidade.x = INIMIGO_VELOCIDADE_X;
+				body.setScale(-1.f, 1.f);
+			}
+			else
+			{
+				velocidade.x = -INIMIGO_VELOCIDADE_X;
+				body.setScale(1.f, 1.f);
+			}
+
+			if (pJog->getPosicao().y < getPosicao().y - 40.f)
+			{
+				if (noChao)
+				{
+					velocidade.y = -FORCA_PULO;
+					noChao = false;
+				}
+			}
+		}
+		void Inimigo::movimentoAleatorio()
+		{
+			if (cooldownMovimento <= 0.f) {
+				movimento = rand() % 4 + 1;
+
+				switch (movimento)
+				{
+				case 1:
+					velocidade.x = INIMIGO_VELOCIDADE_X;
+					body.setScale(-1.f, 1.f);
+					setDirecao(DIREITA);
+					break;
+
+				case 2:
+					velocidade.x = -INIMIGO_VELOCIDADE_X;
+					body.setScale(1.f, 1.f);
+					setDirecao(ESQUERDA);
+					break;
+
+				case 3:
+					if (noChao)
+					{
+						velocidade.y = -FORCA_PULO;
+						noChao = false;
+					}
+					break;
+
+				case 4:
+					velocidade.x = 0.f;
+					break;
+				}
+				cooldownMovimento = 5.f;
+			}
+		}
+
 	}
 }

@@ -1,4 +1,6 @@
 #pragma once
+#define RANGE_INIMIGO 250.f
+#define INIMIGO_VELOCIDADE_X 50.f
 
 #include "Personagem.h"
 #include "Jogador.h"
@@ -31,14 +33,14 @@ namespace Entidades
 
             int getNivelMaldade();
 
-			virtual void perseguir(Jogador* pJog) = 0;
-			virtual void movimentoAleatorio() = 0;
+			virtual void perseguir(Jogador* pJog);
+			virtual void movimentoAleatorio();
             void setMovimento(int m);
             int getMovimento();
 			void setListaJogadores(Listas::ListaEntidades* lJ) { lJogs = lJ; }
-            virtual void mover() = 0;
+            virtual void mover();
 
-            virtual void executar() override;
+            virtual void executar() = 0;
         };
 
     }

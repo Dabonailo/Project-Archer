@@ -125,10 +125,6 @@ namespace Entidades
         void Magma_Block::executar()
         {
 
-            //--------------------------------
-            // DESCE
-            //--------------------------------
-
             if (jogadorEmCima)
             {
                 if (getPosicao().y < yLimite)
@@ -141,10 +137,6 @@ namespace Entidades
             else
             {
                 tempoSemJogador += getTempo();
-
-                //--------------------------------
-                // SOBE APÓS 0.5s
-                //--------------------------------
 
                 if (tempoSemJogador > 0.5f)
                 {
@@ -165,8 +157,6 @@ namespace Entidades
             }
 
             desenhar();
-
-            // prepara para o próximo frame
             jogadorEmCima = false;
         }
 

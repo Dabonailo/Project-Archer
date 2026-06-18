@@ -70,6 +70,7 @@ namespace Fases {
             inimigo = new Entidades::Personagens::Oni();
             inimigo->setPosicao(sf::Vector2f(310.f, 700.f));
             inimigo->setListaJogadores(&lJogs);
+            ListaEntFase.incluir(inimigo);
             GC.incluirInimigo(inimigo);
         }
    
