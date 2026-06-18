@@ -20,7 +20,8 @@ namespace Entidades
 				sf::Vector2f v = sf::Vector2f(ENT_VEL_DEFAULT_X, ENT_VEL_DEFAULT_Y),
 				float e = 0,
 				int n = 20, 
-				int nm = 1);
+				int nm = 1,
+				ID _id = ID::ninja);
 
 			~Ninja();
 

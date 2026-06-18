@@ -8,7 +8,8 @@ namespace Entidades
 			sf::Vector2f pos,
 			sf::Vector2f tam,
 			const std::string& textura,
-			sf::Vector2f v, float e, float a, int n, int nm)
+			sf::Vector2f v, float e, float a, int n, int nm,
+			ID _id)
 			:Inimigo(sf::Vector2f(pos.x, pos.y - a), tam, textura, v, e, n, nm), altura_voo(a), diving(false),
 			altura_default(pos.y - a), direcao(1), delay_troca_direcao(3.f), incendiar(false)
 		{

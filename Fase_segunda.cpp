@@ -3,8 +3,8 @@
 namespace Fases {
 
 	Fases::Fase_segunda::Fase_segunda(Entidades::Personagens::Jogador* pJ, Entidades::Personagens::Jogador* pJ2,
-		sf::Vector2f pos, sf::Vector2f tam, const std::string& textura): Fase(pJ, pJ2, pos, tam, textura), 
-        maxchefoes(5), vecNinja()
+		sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, ID _id): Fase(pJ, pJ2, pos, tam, textura),
+		maxchefoes(5), vecNinja()
 	{
         criarCenario();
         criarProjeteis();

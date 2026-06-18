@@ -46,7 +46,8 @@ namespace Entidades
 				sf::Vector2f tam = sf::Vector2f(ENT_TAM_DEFAULT_X, ENT_TAM_DEFAULT_Y),
 				const std::string& textura = "",
 				sf::Vector2f v = sf::Vector2f(ENT_VEL_DEFAULT_X, ENT_VEL_DEFAULT_Y),
-				float e = 0, int n = 100);
+				float e = 0, int n = 100,
+				ID _id = ID::jogador);
 
 			~Jogador();
 

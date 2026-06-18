@@ -6,9 +6,10 @@
 Entidades::Projetil::Projetil(sf::Vector2f pos,
 	sf::Vector2f tam,
 	const std::string& textura,
-	sf::Vector2f velocidade, float e) :
+	sf::Vector2f velocidade, float e,
+	ID _id) :
 	Entidade(pos, tam, textura, velocidade, e),
-	ativo(true), pJogador(NULL), pNinja(NULL), alvo(NULL), offset(sf::Vector2f(0.f,0.f)), cravado(false), tempoCravado(0.f)
+	ativo(true), pJogador(NULL), pNinja(NULL), alvo(NULL), offset(sf::Vector2f(0.f, 0.f)), cravado(false), tempoCravado(0.f)
 {
 }
 

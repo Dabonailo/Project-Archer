@@ -9,9 +9,10 @@ namespace Entidades
             sf::Vector2f pos,
             sf::Vector2f tam,
             const std::string& textura,
-            sf::Vector2f v, float e, int n, int nm)
+            sf::Vector2f v, float e, int n, int nm,
+            ID _id)
 
-            :Inimigo(pos, tam, textura, v, e, n, nm), forcaEmpurro(sf::Vector2f(400.f, 250.f))
+			:Inimigo(pos, tam, textura, v, e, n, nm), forcaEmpurro(sf::Vector2f(400.f, 250.f))
         {
         }
 

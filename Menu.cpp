@@ -1,7 +1,7 @@
 #include "Menu.h"
 #include "Jogo.h"
 
-Menu::Menu(sf::Vector2f pos, sf::Vector2f tam, const std::string& texturaFundo) :
+Menu::Menu(sf::Vector2f pos, sf::Vector2f tam, const std::string& texturaFundo, ID _id) :
     Ente(pos == sf::Vector2f(0.f, 0.f) ? pGG->getWindowCentro() : pos,
          tam == sf::Vector2f(0.f, 0.f) ? pGG->getWindowTam() : tam, texturaFundo), 
     pJogo(NULL), vecBotao(), botaoSelecionado(), vecTexto(), fonte(), jogadorSalvando(1)

@@ -38,7 +38,8 @@ namespace Entidades {
 		Projetil(sf::Vector2f pos = sf::Vector2f(-1000.f, 1000.f),
 			sf::Vector2f tam = sf::Vector2f(TAMANHO_PROJETIL_X, TAMANHO_PROJETIL_Y),
 			const std::string& textura = "Flecha.png", sf::Vector2f velocidade = sf::Vector2f(0.f, 0.f),
-			float e = GRAVIDADE - 100.0);
+			float e = GRAVIDADE - 100.0,
+			ID _id = ID::projetil);
 
 		~Projetil();
 

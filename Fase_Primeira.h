@@ -15,7 +15,8 @@ namespace Fases
         Fase_Primeira(Entidades::Personagens::Jogador* pJ, Entidades::Personagens::Jogador* pJ2,
             sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
             sf::Vector2f tam = sf::Vector2f(0.f, 0.f),
-            const std::string& textura = "Hanamura_fase1.png");
+            const std::string& textura = "Hanamura_fase1.png",
+            ID _id = ID::fase1);
 
         ~Fase_Primeira();
 

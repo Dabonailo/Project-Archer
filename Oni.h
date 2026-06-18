@@ -18,7 +18,8 @@ namespace Entidades
 				sf::Vector2f tam = sf::Vector2f(ENT_TAM_DEFAULT_X*1.5, ENT_TAM_DEFAULT_Y * 1.5),
 				const std::string& textura = "Oni_spray.png",
 				sf::Vector2f v = sf::Vector2f(ENT_VEL_DEFAULT_X, ENT_VEL_DEFAULT_Y),
-				float e = 0, int n = 20, int nm = 1);
+				float e = 0, int n = 20, int nm = 1,
+				ID _id = ID::oni);
 
 			~Oni();
 

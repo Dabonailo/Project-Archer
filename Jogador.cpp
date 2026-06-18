@@ -14,7 +14,8 @@ namespace Entidades
             const std::string& textura,
             sf::Vector2f v,
             float e, 
-            int n
+            int n,
+            ID _id
         )
             : Personagem(pos, tam, textura, v, e, n), movDir(false), movEsq(false), coolDownTiro(0.f),
             congelado(false), tempoCongelado(0.f), fatorLentidao(1.f), projetil(NULL), queimando(false), 

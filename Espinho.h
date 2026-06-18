@@ -18,7 +18,8 @@ namespace Entidades
 			Espinho(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
 				sf::Vector2f tam = sf::Vector2f(ESPINHO_TAM_DEFAULT_X, ESPINHO_TAM_DEFAULT_Y),
 				const std::string& textura = "espinhos.png",
-				sf::Vector2f v = sf::Vector2f(0.f, 0.f), bool d = true, short int dano = ESPINHO_DANO_DEFAULT, float e = GRAVIDADE);
+				sf::Vector2f v = sf::Vector2f(0.f, 0.f), bool d = true, short int dano = ESPINHO_DANO_DEFAULT, float e = GRAVIDADE,
+				ID _id = ID::espinho);
 			~Espinho();
 			const short int getDanosidade() const;
 			void executar() override;
