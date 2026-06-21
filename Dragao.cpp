@@ -2,170 +2,162 @@
 
 namespace Entidades
 {
-	namespace Personagens
-	{
-		Dragao::Dragao(
-			sf::Vector2f pos,
-			sf::Vector2f tam,
-			const std::string& textura,
-			sf::Vector2f v, float e, float a, int n, int nm,
-			ID _id)
-			:Inimigo(sf::Vector2f(pos.x, pos.y - a), tam, textura, v, e, n, nm), altura_voo(a), diving(false),
-			altura_default(pos.y - a), direcao(1), delay_troca_direcao(3.f), incendiar(false)
-		{
-			std::cout
-				<< "CRIADO: "
-				<< body.getPosition().x
-				<< " "
-				<< body.getPosition().y
-				<< " velY="
-				<< velocidade.y
-				<< std::endl;
-		}
-		Dragao::~Dragao()
-		{
-		}
-		void Dragao::danificar(Jogador* p)
-		{
-			if (p->getTempoInvulneravel() <= 0.f) {
-				p->recebeDano(10*nivel_maldade);
+    namespace Personagens
+    {
+        Dragao::Dragao(
+            sf::Vector2f pos,
+            sf::Vector2f tam,
+            const std::string& textura,
+            sf::Vector2f v,
+            float e,
+            int n,
+            int nm,
+            int _id)
 
-				p->aplicarQueimadura(5.f, 2);
+            : Inimigo(pos, tam, textura, v, e, n, nm, _id),
+            delay_troca_direcao(3.f),
+			direcao(1)
+        {
+        }
 
-				if (p->getBounds().left < getBounds().left) {
-					p->aplicarKnockback(sf::Vector2f(-KNOCKBACK_X, 0.f));
-					p->setVelocidade(sf::Vector2f(0.f, -KNOCKBACK_Y));
-				}
-				else {
-					p->aplicarKnockback(sf::Vector2f(KNOCKBACK_X, 0.f));
-					p->setVelocidade(sf::Vector2f(0.f, -KNOCKBACK_Y));
-				}
-				p->setTempoInvulneravel(2.f);	
-			}
-		}
-		
-		void Dragao::mover()
-		{
-			bool achou = false;
+        Dragao::~Dragao()
+        {
+        }
 
-			Listas::Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* atual =
-				lJogs->getPrimeiro();
+        void Dragao::danificar(Jogador* p)
+        {
+            if (p->getTempoInvulneravel() <= 0.f)
+            {
+                p->recebeDano(10 * nivel_maldade);
 
-			while (atual && !achou)
-			{
-				
+                p->aplicarQueimadura(5.f, 2);
 
-				Jogador* pJog =
-					dynamic_cast<Jogador*>(atual->getInfo());
+                if (p->getBounds().left < getBounds().left)
+                {
+                    p->aplicarKnockback(sf::Vector2f(-KNOCKBACK_X, 0.f));
+                    p->setVelocidade(sf::Vector2f(0.f, -KNOCKBACK_Y));
+                }
+                else
+                {
+                    p->aplicarKnockback(sf::Vector2f(KNOCKBACK_X, 0.f));
+                    p->setVelocidade(sf::Vector2f(0.f, -KNOCKBACK_Y));
+                }
 
-				if (pJog)
-				{
-					float dx = pJog->getPosicao().x - getPosicao().x;
-					float dy = pJog->getPosicao().y - getPosicao().y;
+                p->setTempoInvulneravel(2.f);
+            }
+        }
 
-					if (dx < 0.f)
-						dx = -dx;
+        void Dragao::mover()
+        {
+            bool achou = false;
 
-					if (dy < 0.f)
-						dy = -dy;
+            Listas::Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* atual =
+                lJogs->getPrimeiro();
 
-					if (dx <= RANGE_INIM_MEDIO_X &&
-						dy <= RANGE_INIM_MEDIO_Y)
-					{
-						perseguir(pJog);
-						achou = true;
-					}
-				}
+            while (atual && !achou)
+            {
+                Jogador* pJog =
+                    dynamic_cast<Jogador*>(atual->getInfo());
 
-				atual = atual->getProximo();
-			}
+                if (pJog)
+                {
+                    float dx = pJog->getPosicao().x - getPosicao().x;
+                    float dy = pJog->getPosicao().y - getPosicao().y;
 
-			if (!achou)
-			{
-				diving = false;
-				movimentoAleatorio();
-			}
-		}
+                    if (dx < 0.f)
+                        dx = -dx;
 
-		void Dragao::perseguir(Jogador* pJog)
-		{
-			if (!pJog)
-				return;
+                    if (dy < 0.f)
+                        dy = -dy;
 
-			float dx = pJog->getPosicao().x - getPosicao().x;
+                    if (dx <= RANGE_INIM_MEDIO_X &&
+                        dy <= RANGE_INIM_MEDIO_Y)
+                    {
+                        perseguir(pJog);
+                        achou = true;
+                    }
+                }
 
-			if (dx > 0.f)
-			{
-				velocidade.x = INIMIGO_MEDIO_VELOCIDADE_X;
-				body.setScale(1.f, 1.f);
-			}
-			else
-			{
-				velocidade.x = -INIMIGO_MEDIO_VELOCIDADE_X;
-				body.setScale(-1.f, 1.f);
-				dx = -dx;
-			}
+                atual = atual->getProximo();
+            }
 
-			if (dx <= DISTANCIA_RASANTE)
-			{
-				diving = true;
-			}
+            if (!achou)
+            {
+                movimentoAleatorio();
+            }
+        }
 
-			if (diving)
-			{
-				velocidade.y = 0.25f;
+        void Dragao::perseguir(Jogador* pJog)
+        {
+            if (!pJog)
+                return;
 
-				if (getPosicao().y > altura_default + 100.f)
-				{
-					diving = false;
-				}
-			}
-			else
-			{
-				if (getPosicao().y > altura_default)
-				{
-					velocidade.y = -0.15f;
-				}
-				else if (getPosicao().y < altura_default)
-				{
-					velocidade.y = 0.15f;
-				}
-				else
-				{
-					velocidade.y = 0.f;
-				}
-			}
-		}
-		void Dragao::movimentoAleatorio()
-		{
-			velocidade.x = direcao * INIMIGO_MEDIO_VELOCIDADE_X;
+            if (pJog->getPosicao().x > getPosicao().x)
+            {
+                velocidade.x = INIMIGO_MEDIO_VELOCIDADE_X;
+                body.setScale(1.f, 1.f);
+            }
+            else
+            {
+                velocidade.x = -INIMIGO_MEDIO_VELOCIDADE_X;
+                body.setScale(-1.f, 1.f);
+            }
 
-			if (direcao > 0)
-				body.setScale(1.f, 1.f);
-			else
-				body.setScale(-1.f, 1.f);
+            velocidade.y = 0.f;
+        }
 
-			delay_troca_direcao -= getTempo();
+        void Dragao::movimentoAleatorio()
+        {
+            velocidade.x = direcao * INIMIGO_MEDIO_VELOCIDADE_X;
+            velocidade.y = 0.f;
 
-			if (delay_troca_direcao <= 0.f)
-			{
-				direcao *= -1;
-				delay_troca_direcao = 3.f;
-			}
+            if (direcao > 0)
+                body.setScale(1.f, 1.f);
+            else
+                body.setScale(-1.f, 1.f);
 
-			velocidade.y = 0.f;
-		}
+            delay_troca_direcao -= getTempo();
 
+            if (delay_troca_direcao <= 0.f)
+            {
+                direcao *= -1;
+                delay_troca_direcao = 3.f;
+            }
+        }
 
+        void Dragao::executar()
+        {
+            mover();
 
-		void Dragao::executar()
-		{	
-			mover();
-			gravitar();
+            body.move(
+                velocidade.x * getTempo(),
+                velocidade.y * getTempo());
 
-			body.move(velocidade.x * getTempo(), velocidade.y * getTempo());
+            desenhar();
+        }
+        
+        void Dragao::salvarDataBuffer()
+        {
+            Inimigo::salvarDataBuffer();
 
-			desenhar();
-		}
-	}
+            buffer << delay_troca_direcao << ' '
+                << direcao << ' '
+                << std::endl;
+        }
+
+        void Dragao::salvar()
+        {
+            bufferInterno.str("");
+            buffer.clear();
+            salvarDataBuffer();
+        }
+
+        void Dragao::carregar(std::istream& in)
+        {
+            Inimigo::carregar(in);
+
+            in >> delay_troca_direcao;
+            in >> direcao;
+        }
+    }
 }

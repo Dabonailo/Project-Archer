@@ -10,9 +10,9 @@ namespace Entidades
             sf::Vector2f tam,
             const std::string& textura,
             sf::Vector2f v, float e, int n, int nm,
-            ID _id)
+            int _id)
 
-			:Inimigo(pos, tam, textura, v, e, n, nm), forcaEmpurro(sf::Vector2f(400.f, 250.f))
+			:Inimigo(pos, tam, textura, v, e, n, nm, _id), forcaEmpurro(sf::Vector2f(400.f, 250.f))
         {
         }
 
@@ -71,6 +71,30 @@ namespace Entidades
             );
 
             desenhar();
+        }
+
+        void Oni::salvarDataBuffer()
+        {
+            Inimigo::salvarDataBuffer();
+
+            buffer << forcaEmpurro.x << ' '
+                << forcaEmpurro.y << ' '
+                << std::endl;
+        }
+
+        void Oni::salvar()
+        {
+            bufferInterno.str("");
+            buffer.clear();
+            salvarDataBuffer();
+		}
+
+        void Oni::carregar(std::istream& in)
+        {
+            Inimigo::carregar(in);
+
+            in >> forcaEmpurro.x;
+            in >> forcaEmpurro.y;
         }
     }
 }

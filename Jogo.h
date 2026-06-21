@@ -70,6 +70,8 @@ public:
 
 	void executarMenu();
 
+	void carregarJogo();
+
 	void executar();
 };
 

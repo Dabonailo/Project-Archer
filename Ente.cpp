@@ -1,8 +1,8 @@
 #include "Ente.h"
 #include "GerenciadorGrafico.h"
 
-Ente::Ente(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, ID _id)
-    : body(), texturaEntidade()
+Ente::Ente(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, int _id)
+	: body(), texturaEntidade(), id(_id)
 {
     body.setSize(tam);
 

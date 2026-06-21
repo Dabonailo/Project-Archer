@@ -5,8 +5,8 @@ namespace Entidades
 	namespace Personagens
 	{
 
-		Inimigo::Inimigo(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, float e, int n, int nm)
-			:Personagem(pos, tam, textura, v, e, n), cooldownMovimento(0.f), movimento(-1), lJogs(NULL), nivel_maldade(nm)
+		Inimigo::Inimigo(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, float e, int n, int nm, int _id)
+			:Personagem(pos, tam, textura, v, e, n, _id), cooldownMovimento(0.f), movimento(-1), lJogs(NULL), nivel_maldade(nm)
 		{
 		}
 
@@ -143,6 +143,26 @@ namespace Entidades
 				}
 				cooldownMovimento = 5.f;
 			}
+		}
+
+		void Inimigo::salvarDataBuffer()
+		{
+			Personagem::salvarDataBuffer();
+
+			buffer << cooldownMovimento << ' '
+				<< movimento << ' '
+				<< nivel_maldade << ' ';
+		}
+
+		void Inimigo::carregar(std::istream& in)
+		{
+			Personagem::carregar(in);
+
+			in >> cooldownMovimento;
+			in >> movimento;
+			in >> nivel_maldade;
+
+			lJogs = NULL;
 		}
 
 	}

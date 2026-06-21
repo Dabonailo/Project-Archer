@@ -7,9 +7,9 @@ Entidades::Projetil::Projetil(sf::Vector2f pos,
 	sf::Vector2f tam,
 	const std::string& textura,
 	sf::Vector2f velocidade, float e,
-	ID _id) :
-	Entidade(pos, tam, textura, velocidade, e),
-	ativo(true), pJogador(NULL), pNinja(NULL), alvo(NULL), offset(sf::Vector2f(0.f, 0.f)), cravado(false), tempoCravado(0.f)
+	int _id) :
+	Entidade(pos, tam, textura, velocidade, e, _id),
+	ativo(true), pJogador(NULL), pNinja(NULL), alvo(NULL), offset(sf::Vector2f(0.f, 0.f)), cravado(false), tempoCravado(0.f), uIdDono(-1)
 {
 }
 
@@ -171,4 +171,56 @@ void Entidades::Projetil::executar()
 
 	gravitar();
 	desenhar();
+}
+
+void Entidades::Projetil::salvarDataBuffer()
+{
+	Entidade::salvarDataBuffer();
+
+	buffer << getUIdDono() << ' '
+
+		<< ativo << ' '
+
+		<< cravado << ' '
+
+		<< tempoCravado << ' '
+
+		<< offset.x << ' '
+		<< offset.y << ' '
+		<< std::endl;
+}
+
+void Entidades::Projetil::salvar()
+{
+	bufferInterno.str("");
+	buffer.clear();
+	salvarDataBuffer();
+}
+
+void Entidades::Projetil::carregar(std::istream& in)
+{
+	Entidade::carregar(in);
+
+	in >> uIdDono;
+
+	in >> ativo;
+
+	in >> cravado;
+
+	in >> tempoCravado;
+
+	in >> offset.x;
+	in >> offset.y;
+
+	pJogador = NULL;
+	pNinja = NULL;
+	alvo = NULL;
+
+	if (cravado)
+	{
+		cravado = false;
+		ativo = false;
+		offset = sf::Vector2f(0.f, 0.f);
+	}
+
 }

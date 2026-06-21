@@ -326,9 +326,11 @@ void Jogo::executarMenu()
     case MENU_PAUSA:
         if (fase1) {
             fase1->desenhar();
+			fase1->salvarFase();
         }
         else if (fase2) {
             fase2->desenhar();
+			fase2->salvarFase();
         }
 
         menu->executar();
@@ -348,6 +350,119 @@ void Jogo::executarMenu()
 
         break;
     }
+}
+
+void Jogo::carregarJogo()
+{
+    std::ifstream arquivo("Salvamentos/Save.txt");
+
+    if (!arquivo.is_open())
+    {
+        std::cout << "Erro ao abrir Salvamentos/Save.txt" << std::endl;
+        return;
+    }
+
+    int idFaseSalva;
+    int doisJogadores;
+
+    arquivo >> idFaseSalva >> doisJogadores;
+
+    arquivo.close();
+
+
+    if (fase1 != NULL)
+    {
+        deletarFasePrimeira();
+    }
+
+    if (fase2 != NULL)
+    {
+        deletarFaseSegunda();
+    }
+
+    pjogador = NULL;
+    pjogador2 = NULL;
+
+    pontuacaoFinalP1 = 0;
+    pontuacaoFinalP2 = 0;
+
+    GE->deletarJogadores();
+
+    if (doisJogadores == 1)
+    {
+        numJogadores = 2;
+    }
+    else
+    {
+        numJogadores = 1;
+    }
+
+
+    if (idFaseSalva == 1)
+    {
+        fase1 = new Fases::Fase_Primeira(
+            NULL,
+            NULL,
+            sf::Vector2f(0.f, 0.f),
+            sf::Vector2f(0.f, 0.f),
+            "Hanamura_fase1.png",
+            1,
+            true
+        );
+
+        fase2 = NULL;
+
+        pjogador = fase1->getJogador1();
+        pjogador2 = fase1->getJogador2();
+
+        faseAtual = 1;
+
+        std::cout << "Fase 1 carregada" << std::endl;
+    }
+    else if (idFaseSalva == 2)
+    {
+        fase2 = new Fases::Fase_segunda(
+            NULL,
+            NULL,
+            sf::Vector2f(0.f, 0.f),
+            sf::Vector2f(0.f, 0.f),
+            "Hanamura_fase2.png",
+            2,
+            true
+        );
+
+        fase1 = NULL;
+
+        pjogador = fase2->getJogador1();
+        pjogador2 = fase2->getJogador2();
+
+        faseAtual = 2;
+
+        std::cout << "Fase 2 carregada" << std::endl;
+    }
+    else
+    {
+        std::cout << "ID de fase invalido no save: " << idFaseSalva << std::endl;
+        faseAtual = -1;
+        return;
+    }
+
+
+    GE->setJogador(pjogador);
+
+    if (pjogador2 != NULL)
+    {
+        GE->setJogador(pjogador2);
+    }
+
+    // Se quiser já entrar no jogo depois de carregar:
+    if (menu != NULL)
+    {
+        menu->mudarMenu(NO_JOGO);
+    }
+
+	GG->resetarRelogio();
+
 }
 
 void Jogo::executar()

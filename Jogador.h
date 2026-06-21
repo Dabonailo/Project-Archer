@@ -47,7 +47,7 @@ namespace Entidades
 				const std::string& textura = "",
 				sf::Vector2f v = sf::Vector2f(ENT_VEL_DEFAULT_X, ENT_VEL_DEFAULT_Y),
 				float e = 0, int n = 100,
-				ID _id = ID::jogador);
+				int _id = 3);
 
 			~Jogador();
 
@@ -80,6 +80,10 @@ namespace Entidades
 			bool getQueimando();
 
 			void executar() override;
+
+			void salvarDataBuffer();
+			virtual void salvar();
+			void carregar(std::istream& in);
 		};
 	}
 }

@@ -27,9 +27,15 @@ namespace Entidades
 
             float tempoInvulneravel;
 
+			static int proximoUid;
+			int uId;    
+
         public:
-            Personagem(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, float e, int n);
+            Personagem(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, float e, int n, int _id);
             ~Personagem();
+
+			void setUid(int id) { uId = id; }
+            int getUid() const { return uId; }
 
             const int getVida() const;
 
@@ -51,6 +57,10 @@ namespace Entidades
 
             void setDirecao(Direcao d);
             Direcao getDirecao();
+
+			void salvarDataBuffer();
+			virtual void salvar() = 0;
+            virtual void carregar(std::istream& in);
 
         };
     }

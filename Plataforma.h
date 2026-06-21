@@ -23,11 +23,14 @@ namespace Entidades
 				sf::Vector2f tam = sf::Vector2f(PLAT_TAM_DEFAULT_X, PLAT_TAM_DEFAULT_Y),
 				const std::string& textura = "ginger_brand/Plataforma.png",
 				sf::Vector2f v = sf::Vector2f(0.f, 0.f), bool d = false, float e = GRAVIDADE,
-				ID _id = ID::plataforma);
+				int _id = 7);
 			~Plataforma();
 			void setSeMove(bool b) { seMove = b; }
 			void executar();
 			void obstaculizar(Entidades::Personagens::Personagem* p);
+			void salvarDataBuffer();
+			virtual void salvar();
+			void carregar(std::istream& in);
 		};
 	}
 	

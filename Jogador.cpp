@@ -15,12 +15,12 @@ namespace Entidades
             sf::Vector2f v,
             float e, 
             int n,
-            ID _id
+            int _id
         )
-            : Personagem(pos, tam, textura, v, e, n), movDir(false), movEsq(false), coolDownTiro(0.f),
+            : Personagem(pos, tam, textura, v, e, n, _id), movDir(false), movEsq(false), coolDownTiro(0.f),
             congelado(false), tempoCongelado(0.f), fatorLentidao(1.f), projetil(NULL), queimando(false), 
             tempoQueimadura(0.f), contadorQueimadura(0.f), danoQueimadura(0),
-            pontuacao(0)
+			pontuacao(0)
         {
             texturaEntidade.loadFromFile(textura);
             body.setTexture(&texturaEntidade);
@@ -272,6 +272,69 @@ namespace Entidades
             );
             
             desenhar();
+        }
+        void Jogador::salvar()
+        {
+            bufferInterno.str("");
+            buffer.clear();
+
+            salvarDataBuffer();
+        }
+
+        void Jogador::salvarDataBuffer()
+        {
+            Personagem::salvarDataBuffer();
+
+            buffer << movDir << ' '
+                << movEsq << ' '
+
+                << coolDownTiro << ' '
+
+                << congelado << ' '
+                << tempoCongelado << ' '
+                << fatorLentidao << ' '
+
+                << queimando << ' '
+                << tempoQueimadura << ' '
+                << contadorQueimadura << ' '
+                << danoQueimadura << ' '
+
+                << pontuacao << ' '
+                << std::endl;
+
+            if (!getnoChao())
+            {
+                sf::Vector2f vel = getVelocidade();
+                vel.y = 0.f;
+                setVelocidade(vel);
+
+                velocidadeKnockback.y = 0.f;
+            }
+        }
+
+        void Jogador::carregar(std::istream& in)
+        {
+            Personagem::carregar(in);
+
+            in >> movDir;
+            in >> movEsq;
+
+            in >> coolDownTiro;
+
+            in >> congelado;
+            in >> tempoCongelado;
+            in >> fatorLentidao;
+
+            in >> queimando;
+            in >> tempoQueimadura;
+            in >> contadorQueimadura;
+            in >> danoQueimadura;
+
+            in >> pontuacao;
+
+            projetil = NULL;
+
+
         }
     }
 }

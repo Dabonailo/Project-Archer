@@ -1,5 +1,8 @@
 #pragma once
 #include "Ente.h"
+#include <string>
+#include <sstream>
+#include <istream>
 
 #define GRAVIDADE 1200.f
 #define VEL_QUEDA_MAX 600.f
@@ -21,8 +24,12 @@ namespace Entidades
 		bool noChao;
 		float empuxo;
 
+		std::ostream buffer;
+		std::stringbuf bufferInterno;
+
+
 	public:
-		Entidade(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, float e);
+		Entidade(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, float e, int _id);
 
 		virtual ~Entidade();
 
@@ -39,7 +46,11 @@ namespace Entidades
 		void movimentar(sf::Vector2f m);
 
 		virtual void executar() = 0;
+		void salvarDataBuffer();
+		virtual void salvar() = 0;
+		virtual void carregar(std::istream& in); 
 
+		const std::string getBufferInterno() const { return bufferInterno.str(); }
 	};
 
 }

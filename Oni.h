@@ -19,13 +19,16 @@ namespace Entidades
 				const std::string& textura = "Oni_spray.png",
 				sf::Vector2f v = sf::Vector2f(ENT_VEL_DEFAULT_X, ENT_VEL_DEFAULT_Y),
 				float e = 0, int n = 20, int nm = 1,
-				ID _id = ID::oni);
+				int _id = 4);
 
 			~Oni();
 
 			void danificar(Jogador* p) override;   
 			void atualizarCooldowns() override;
 			void executar() override;
+			void salvarDataBuffer();
+			virtual void salvar();
+			void carregar(std::istream& in);
 
 		};
 

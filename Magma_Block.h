@@ -27,7 +27,7 @@ namespace Entidades
                 sf::Vector2f vel = sf::Vector2f(0.f, 0.f),
                 bool d = false,
                 float emp = 0.f,
-                ID _id = ID::blocomagma
+                int _id = 8
             );
 
             ~Magma_Block();
@@ -35,6 +35,9 @@ namespace Entidades
             void obstaculizar(Personagens::Personagem* p);
 
             void executar();
+            void salvarDataBuffer();
+            virtual void salvar();
+            void carregar(std::istream& in);
         };
     }
 }

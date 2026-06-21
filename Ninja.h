@@ -12,6 +12,9 @@ namespace Entidades
 
 			float coolDownTiro;
 
+			static int proximoUid;
+			int uId;
+			
 		public:
 
 			Ninja(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
@@ -21,7 +24,7 @@ namespace Entidades
 				float e = 0,
 				int n = 20, 
 				int nm = 1,
-				ID _id = ID::ninja);
+				int _id = 6);
 
 			~Ninja();
 
@@ -37,6 +40,9 @@ namespace Entidades
 			void danificar(Jogador* p) override;
 
 			void executar() override;
+			void salvarDataBuffer();
+			virtual void salvar();
+			void carregar(std::istream& in);
 		};
 	}
 }

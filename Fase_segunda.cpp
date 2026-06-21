@@ -3,12 +3,22 @@
 namespace Fases {
 
 	Fases::Fase_segunda::Fase_segunda(Entidades::Personagens::Jogador* pJ, Entidades::Personagens::Jogador* pJ2,
-		sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, ID _id): Fase(pJ, pJ2, pos, tam, textura),
-		maxchefoes(5), vecNinja()
-	{
-        criarCenario();
-        criarProjeteis();
-	}
+		sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, int _id, bool carregando) :
+
+        Fase(pJ, pJ2, pos, tam, textura, _id),
+        maxchefoes(5),
+        vecNinja()
+    {
+        if (carregando)
+        {
+            carregarFase();
+        }
+        else
+        {
+            criarCenario();
+            criarProjeteis();
+        }
+    }
 
 	Fase_segunda::~Fase_segunda()
 	{
@@ -127,6 +137,7 @@ namespace Fases {
 
         pJogador->setProjetil(novoProjetilJogador);
         novoProjetilJogador->setPersonagem(pJogador);
+		novoProjetilJogador->setUIdDono(pJogador->getUid());
 
         ListaEntFase.incluir(novoProjetilJogador);
         GC.incluirProjetil(novoProjetilJogador);
@@ -136,6 +147,7 @@ namespace Fases {
 
             pJogador2->setProjetil(novoProjetilJogador2);
             novoProjetilJogador2->setPersonagem(pJogador2);
+			novoProjetilJogador2->setUIdDono(pJogador2->getUid());
 
             ListaEntFase.incluir(novoProjetilJogador2);
             GC.incluirProjetil(novoProjetilJogador2);
@@ -146,6 +158,7 @@ namespace Fases {
 
             (*it)->setProjetil(novoProjetilNinja);
             novoProjetilNinja->setPersonagem(*it);
+			novoProjetilNinja->setId((*it)->getUid());
 
             ListaEntFase.incluir(novoProjetilNinja);
             GC.incluirProjetil(novoProjetilNinja);

@@ -12,6 +12,9 @@
 #include "Magma_block.h"
 
 #include <vector>
+#include <fstream>
+#include <sstream>
+#include <map>
 
 namespace Fases	
 {
@@ -23,6 +26,7 @@ namespace Fases
 		Gerenciadores::GerenciadorColisoes GC;
 		Entidades::Personagens::Jogador* pJogador;
 		Entidades::Personagens::Jogador* pJogador2;
+		bool acabouDeCarregar;
 
 	protected:
 		virtual void criarInimigos() = 0;
@@ -37,16 +41,23 @@ namespace Fases
 			Entidades::Personagens::Jogador* pJ2 = NULL,
 			sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
 			sf::Vector2f tam = sf::Vector2f(0.f, 0.f),
-			const std::string& textura = "");
+			const std::string& textura = "", int _id = -1);
 		~Fase();
 
 		Listas::ListaEntidades* getListaEntFase();
 		int getNumeroInimigos();
+
+		Entidades::Personagens::Jogador* getJogador1() { return pJogador;}
+		Entidades::Personagens::Jogador* getJogador2() { return pJogador2; }
 
 		virtual void executar();
 
 		void atualizalJogs();
 
 		void desenhar();
+
+		void salvarFase();
+
+		void carregarFase();
 	};
 }

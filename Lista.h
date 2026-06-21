@@ -170,5 +170,17 @@ namespace Listas
 		}
 
 		Elemento<TL>* getPrimeiro() { return pPrimeiro; }
+
+		int getTamanho() const
+		{
+			int count = 0;
+			Elemento<TL>* atual = pPrimeiro;
+			while (atual)
+			{
+				count++;
+				atual = atual->getProximo();
+			}
+			return count;
+		}
 	};
 }

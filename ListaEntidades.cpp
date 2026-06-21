@@ -1,4 +1,5 @@
 #include "ListaEntidades.h"
+#include <fstream>
 
 namespace Listas
 {
@@ -46,6 +47,48 @@ namespace Listas
 
             aux = prox;
         }
+    }
+
+    void ListaEntidades::salvarEntidades(int idFase, bool doisJogadores)
+    {
+        std::ofstream arquivo("Salvamentos/Save.txt");
+
+        if (!arquivo.is_open())
+        {
+            std::cout << "Erro ao abrir Save.txt" << std::endl;
+            return;
+        }
+
+        // -------------------------
+        // Cabeçalho do save
+        // -------------------------
+
+        arquivo << idFase << " "
+            << (doisJogadores ? 1 : 0)
+            << std::endl;
+
+        // -------------------------
+        // Entidades
+        // -------------------------
+
+        Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* atual =
+            LEs.getPrimeiro();
+
+        while (atual)
+        {
+            Entidades::Entidade* pEnt = atual->getInfo();
+
+            if (pEnt)
+            {
+                pEnt->salvar();
+
+                arquivo << pEnt->getBufferInterno();
+            }
+
+            atual = atual->getProximo();
+        }
+
+        arquivo.close();
     }
 
     void ListaEntidades::desenharLista()

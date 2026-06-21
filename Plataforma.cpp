@@ -5,8 +5,8 @@ namespace Entidades
 	namespace Obstaculos
 	{
 		
-		Plataforma::Plataforma(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, bool d, float e, ID _id)
-			: Obstaculo(pos, tam, textura, v, d, e), seMove(false),
+		Plataforma::Plataforma(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, bool d, float e, int _id)
+			: Obstaculo(pos, tam, textura, v, d, e, _id), seMove(false),
             posOriginal(pos),
 			direcao(1)
 		{
@@ -104,5 +104,36 @@ namespace Entidades
             }
 			desenhar();
 		}
+        void Plataforma::salvarDataBuffer()
+        {
+            Obstaculo::salvarDataBuffer();
+
+            buffer << seMove << ' '
+
+                << posOriginal.x << ' '
+                << posOriginal.y << ' '
+
+                << direcao << ' '
+                << std::endl;
+        }
+
+        void Plataforma::salvar()
+        {
+            bufferInterno.str("");
+            buffer.clear();
+            salvarDataBuffer();
+        }
+
+        void Plataforma::carregar(std::istream& in)
+        {
+            Obstaculo::carregar(in);
+
+            in >> seMove;
+
+            in >> posOriginal.x;
+            in >> posOriginal.y;
+
+            in >> direcao;
+        }
 	}
 }

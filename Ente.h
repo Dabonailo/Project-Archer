@@ -12,26 +12,27 @@ namespace Gerenciadores {
 	class GerenciadorGrafico;
 }
 
-enum ID
-{
-	vazio = -1,
-	jogador = 0,
-	oni = 1,
-	dragao = 2,
-	ninja = 3,
-	plataforma = 4,
-	blocomagma = 5,
-	espinho = 6,
-	projetil = 7,
-	fase1 = 8,
-	fase2 = 9,
-	menu = 10
-};
+
 
 class Ente
 {
 protected:
 	int id;
+	/*
+	vazio = -1
+	menu = 0
+	fase1 = 1
+	fase2 = 2
+	jogador = 3
+	oni = 4
+	dragao = 5
+	ninja = 6
+	plataforma = 7
+	blocomagma = 8
+	espinho = 9
+	projetil = 10
+	*/
+
 	static Gerenciadores::GerenciadorGrafico* pGG;
 	sf::RectangleShape body;
 	sf::Texture texturaEntidade;
@@ -40,7 +41,7 @@ public:
 	Ente(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
 		sf::Vector2f tam = sf::Vector2f(0.f, 0.f),
 		const std::string& textura = "",
-		ID _id = ID::vazio);
+		int _id = -1);
 
 	virtual ~Ente();
 

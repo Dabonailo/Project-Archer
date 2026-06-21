@@ -9,9 +9,9 @@ namespace Entidades
 			sf::Vector2f tam,
 			const std::string& textura,
 			sf::Vector2f v, float e, int n, int nm,
-			ID _id):
+			int _id):
 
-			Inimigo(pos, tam, textura, v, e, n, nm), projetil(NULL), coolDownTiro(0.f)
+			Inimigo(pos, tam, textura, v, e, n, nm, _id), projetil(NULL), coolDownTiro(0.f)
 		{
 		}
 
@@ -105,6 +105,27 @@ namespace Entidades
 			desenhar();
 
 		}
+		void Ninja::salvarDataBuffer()
+		{
+			Inimigo::salvarDataBuffer();
 
+			buffer << coolDownTiro << ' '
+				<< std::endl;
+		}
+		void Ninja::salvar()
+		{
+			bufferInterno.str("");
+			buffer.clear();
+			salvarDataBuffer();
+		}
+
+		void Ninja::carregar(std::istream& in)
+		{
+			Inimigo::carregar(in);
+
+			in >> coolDownTiro;
+
+			projetil = NULL;
+		}
 	}
 }

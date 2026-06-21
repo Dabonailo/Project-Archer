@@ -19,11 +19,14 @@ namespace Entidades
 				sf::Vector2f tam = sf::Vector2f(ESPINHO_TAM_DEFAULT_X, ESPINHO_TAM_DEFAULT_Y),
 				const std::string& textura = "espinhos.png",
 				sf::Vector2f v = sf::Vector2f(0.f, 0.f), bool d = true, short int dano = ESPINHO_DANO_DEFAULT, float e = GRAVIDADE,
-				ID _id = ID::espinho);
+				int _id = 9);
 			~Espinho();
 			const short int getDanosidade() const;
 			void executar() override;
 			void obstaculizar(Entidades::Personagens::Personagem* p) override;
+			void salvarDataBuffer();
+			virtual void salvar();
+			void carregar(std::istream& in);
 		};
 	}
 }

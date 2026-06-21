@@ -4,8 +4,8 @@ namespace Entidades
 {
 	namespace Obstaculos
 	{
-		Espinho::Espinho(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, bool d, short int dano, float e, ID _id)
-			: Obstaculo(pos, tam, textura, v, d, e), danosidade(dano), cooldown(1000)
+		Espinho::Espinho(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, bool d, short int dano, float e, int _id)
+			: Obstaculo(pos, tam, textura, v, d, e, _id), danosidade(dano), cooldown(1000)
 		{
 			body.setFillColor(sf::Color::White);
 		}
@@ -71,6 +71,30 @@ namespace Entidades
 				cooldown--;
 
 			desenhar();
+		}
+
+		void Espinho::salvarDataBuffer()
+		{
+			Obstaculo::salvarDataBuffer();
+
+			buffer << danosidade << ' '
+				<< cooldown << ' '
+				<< std::endl;
+		}
+
+		void Espinho::salvar()
+		{
+			bufferInterno.str("");
+			buffer.clear();
+			salvarDataBuffer();
+		}
+
+		void Espinho::carregar(std::istream& in)
+		{
+			Obstaculo::carregar(in);
+
+			in >> danosidade;
+			in >> cooldown;
 		}
 	}
 }

@@ -1,9 +1,9 @@
 #include "Menu.h"
 #include "Jogo.h"
 
-Menu::Menu(sf::Vector2f pos, sf::Vector2f tam, const std::string& texturaFundo, ID _id) :
+Menu::Menu(sf::Vector2f pos, sf::Vector2f tam, const std::string& texturaFundo, int _id) :
     Ente(pos == sf::Vector2f(0.f, 0.f) ? pGG->getWindowCentro() : pos,
-         tam == sf::Vector2f(0.f, 0.f) ? pGG->getWindowTam() : tam, texturaFundo), 
+         tam == sf::Vector2f(0.f, 0.f) ? pGG->getWindowTam() : tam, texturaFundo, _id),
     pJogo(NULL), vecBotao(), botaoSelecionado(), vecTexto(), fonte(), jogadorSalvando(1)
 {
     if (!fonte.loadFromFile("ginger_brand/GingerBrand.ttf"))
@@ -462,7 +462,8 @@ void Menu::executarBotao()
         break;
 
     case ACAO_JOGAR_FASE_2:
-        pJogo->criarFaseSegunda();
+        //pJogo->criarFaseSegunda();
+		pJogo->carregarJogo();
         mudarMenu(NO_JOGO);
         break;
 

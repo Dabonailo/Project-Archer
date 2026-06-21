@@ -52,7 +52,7 @@ public:
 		sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
 		sf::Vector2f tam = sf::Vector2f(0.f, 0.f),
 		const std::string& texturaFundo = "Hanamura.jpeg",
-		ID _id = ID::menu
+		int _id =0
 	);
 
 	~Menu();

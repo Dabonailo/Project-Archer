@@ -3,12 +3,21 @@
 namespace Fases
 {
 	Fase_Primeira::Fase_Primeira(Entidades::Personagens::Jogador* pJ, Entidades::Personagens::Jogador* pJ2, 
-        sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, ID _id) :
-		Fase(pJ, pJ2, pos, tam, textura), max_inimigos(1)
-	{
-		criarCenario();
-        criarProjeteis();
-	}
+        sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, int _id, bool carregando) :
+
+        Fase(pJ, pJ2, pos, tam, textura, _id),
+        max_inimigos(1)
+    {
+        if (carregando)
+        {
+            carregarFase();
+        }
+        else
+        {
+            criarCenario();
+            criarProjeteis();
+        }
+    }   
 
 	Fase_Primeira::~Fase_Primeira()
 	{
@@ -123,6 +132,7 @@ namespace Fases
 
          pJogador->setProjetil(novoProjetiljogador);
          novoProjetiljogador->setPersonagem(pJogador);
+		 novoProjetiljogador->setUIdDono(pJogador->getUid());
 
          ListaEntFase.incluir(novoProjetiljogador);
          GC.incluirProjetil(novoProjetiljogador);
@@ -132,6 +142,7 @@ namespace Fases
 
              pJogador2->setProjetil(novoProjetilJogador2);
              novoProjetilJogador2->setPersonagem(pJogador2);
+			 novoProjetilJogador2 ->setUIdDono(pJogador2->getUid());
 
              ListaEntFase.incluir(novoProjetilJogador2);
              GC.incluirProjetil(novoProjetilJogador2);

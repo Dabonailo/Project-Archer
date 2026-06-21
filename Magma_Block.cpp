@@ -12,9 +12,9 @@ namespace Entidades
             sf::Vector2f vel,
             bool d,
             float emp,
-            ID _id)
+			int _id)
 
-			: Obstaculo(pos, tam, textura, vel, d, emp)
+			: Obstaculo(pos, tam, textura, vel, d, emp, _id)
         {
             yOriginal = pos.y;
             yLimite = pos.y + 120.f;
@@ -157,5 +157,37 @@ namespace Entidades
             jogadorEmCima = false;
         }
 
+        void Magma_Block::salvarDataBuffer()
+        {
+            Obstaculo::salvarDataBuffer();
+
+            buffer << yOriginal << ' '
+                << yLimite << ' '
+
+                << velocidadeMovimento << ' '
+
+                << jogadorEmCima << ' '
+
+                << tempoSemJogador << ' '
+                << std::endl;
+        }
+
+        void Magma_Block::salvar()
+        {
+            bufferInterno.str("");
+            buffer.clear();
+            salvarDataBuffer();
+		}
+
+        void Magma_Block::carregar(std::istream& in)
+        {
+            Obstaculo::carregar(in);
+
+            in >> yOriginal;
+            in >> yLimite;
+            in >> velocidadeMovimento;
+            in >> jogadorEmCima;
+            in >> tempoSemJogador;
+        }
     }
 }

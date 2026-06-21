@@ -19,7 +19,10 @@ namespace Listas
 		void remover(Entidades::Entidade* e);
 		void percorrerLista();
 		void desenharLista();
-
+		int getTamanho() const { return LEs.getTamanho(); }
+		void salvarEntidades(int idFase, bool doisJogadores);
+		void limparLista() { LEs.limpar(); }
+				
 		Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* getPrimeiro()
 		{
 			return LEs.getPrimeiro();
