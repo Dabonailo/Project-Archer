@@ -12,6 +12,7 @@ namespace Entidades
 		private:
 			sf::Vector2f forcaEmpurro;
 
+			float raiva;
 
 		public:
 			Oni(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),

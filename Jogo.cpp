@@ -200,6 +200,11 @@ void Jogo::deletarFasePrimeira()
     }
 }
 
+void Jogo::salvarFasePrimeira()
+{
+    fase1->salvarFase();
+}
+
 void Jogo::criarFaseSegunda()
 {
     if (fase2) {
@@ -251,6 +256,11 @@ void Jogo::deletarFaseSegunda()
         faseAtual = -1;
         std::cout << "fase 2 deletada" << std::endl;
     }
+}
+
+void Jogo::salvarFaseSegunda()
+{
+    fase2->salvarFase();
 }
 
 void Jogo::executarMenu()
@@ -326,11 +336,11 @@ void Jogo::executarMenu()
     case MENU_PAUSA:
         if (fase1) {
             fase1->desenhar();
-			fase1->salvarFase();
+			//fase1->salvarFase();
         }
         else if (fase2) {
             fase2->desenhar();
-			fase2->salvarFase();
+			//fase2->salvarFase();
         }
 
         menu->executar();

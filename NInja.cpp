@@ -11,7 +11,7 @@ namespace Entidades
 			sf::Vector2f v, float e, int n, int nm,
 			int _id):
 
-			Inimigo(pos, tam, textura, v, e, n, nm, _id), projetil(NULL), coolDownTiro(0.f)
+			Inimigo(pos, tam, textura, v, e, n, nm, _id), projetil(NULL), coolDownTiro(0.f), precisao(0.f)
 		{
 		}
 
@@ -64,13 +64,14 @@ namespace Entidades
 			if (rand() % 3 == 1) {
 				projetil->setAtivo(true);
 				projetil->reiniciarProjetil();
-				setCooldownTiro(5.f);
+				setCooldownTiro(5.f - precisao);
 			}
 		}
 
 		void Ninja::danificar(Jogador* p) //mudar o danificar
 		{
 			if (p->getTempoInvulneravel() <= 0.f) {
+				precisao += 0.3f;
 
 				p->recebeDano(5 + nivel_maldade);
 				p->aplicarCongelamento(5.f, 0.5f);

@@ -64,9 +64,11 @@ public:
 
 	void criarFasePrimeira();
 	void deletarFasePrimeira();
+	void salvarFasePrimeira();
 
 	void criarFaseSegunda();
 	void deletarFaseSegunda();
+	void salvarFaseSegunda();
 
 	void executarMenu();
 

@@ -12,6 +12,8 @@ namespace Entidades
 
 			float coolDownTiro;
 
+			float precisao;
+
 			static int proximoUid;
 			int uId;
 			
