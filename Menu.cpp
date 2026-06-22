@@ -243,9 +243,14 @@ void Menu::criarMenuFases()
         sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 100.f)
     ));
 
+    vecBotao.push_back(new Botao(ACAO_CARREGAR_JOGO,
+        sf::String("Carregar Jogo"),
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 200.f)
+    ));
+
     vecBotao.push_back(new Botao(ACAO_VOLTAR_MENU_JOGADORES,
         sf::String("Voltar"),
-        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 200.f)
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 300.f)
     ));
 }
 
@@ -295,9 +300,14 @@ void Menu::criarMenuPausa()
         pGG->getWindowCentro()
     ));
 
+    vecBotao.push_back(new Botao(ACAO_SALVAR_FASE,
+        sf::String("Salvar"),
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 100.f)
+    ));
+
     vecBotao.push_back(new Botao(ACAO_VOLTAR,
         sf::String("Voltar para o Menu Principal"),
-        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 100.f)
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 200.f)
     ));
 }
 
@@ -462,8 +472,12 @@ void Menu::executarBotao()
         break;
 
     case ACAO_JOGAR_FASE_2:
-        //pJogo->criarFaseSegunda();
-		pJogo->carregarJogo();
+        pJogo->criarFaseSegunda();
+        mudarMenu(NO_JOGO);
+        break;
+
+    case ACAO_CARREGAR_JOGO:
+        pJogo->carregarJogo();
         mudarMenu(NO_JOGO);
         break;
 
@@ -517,6 +531,19 @@ void Menu::executarBotao()
 
     case ACAO_MENU_RANKING:
         mudarMenu(MENU_RANKING);
+        break;
+
+    case ACAO_SALVAR_FASE:
+        if (pJogo->getFaseAtual() == 1) {
+            pJogo->salvarFasePrimeira();
+        }
+        else if (pJogo->getFaseAtual() == 2) {
+            pJogo->salvarFaseSegunda();
+        }
+        
+        adicionarTexto("Fase Salva com Sucesso", 
+            sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 100.f), 30);
+
         break;
 
     default:

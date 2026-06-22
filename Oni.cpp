@@ -12,7 +12,7 @@ namespace Entidades
             sf::Vector2f v, float e, int n, int nm,
             int _id)
 
-			:Inimigo(pos, tam, textura, v, e, n, nm, _id), forcaEmpurro(sf::Vector2f(400.f, 250.f))
+			:Inimigo(pos, tam, textura, v, e, n, nm, _id), forcaEmpurro(sf::Vector2f(400.f, 250.f)), raiva(1.f)
         {
         }
 
@@ -24,6 +24,7 @@ namespace Entidades
         {
             if (p->getTempoInvulneravel() <= 0.f) {
 				p->recebeDano(5+nivel_maldade);
+                raiva += 0.3f;
 
                 if (p->getBounds().left < getBounds().left) {
 
@@ -66,7 +67,7 @@ namespace Entidades
             atualizarCooldowns();
 
             body.move(
-                (velocidade.x + velocidadeKnockback.x) * getTempo(),
+                ((velocidade.x * raiva) + velocidadeKnockback.x) * getTempo(),
                 (velocidade.y + velocidadeKnockback.y) * getTempo()
             );
 
