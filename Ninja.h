@@ -24,7 +24,7 @@ namespace Entidades
 				const std::string& textura = "ninja.png",
 				sf::Vector2f v = sf::Vector2f(ENT_VEL_DEFAULT_X, ENT_VEL_DEFAULT_Y),
 				float e = 0,
-				int n = 20, 
+				int n = 60, 
 				int nm = 1,
 				int _id = 6);
 

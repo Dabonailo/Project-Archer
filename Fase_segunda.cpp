@@ -6,7 +6,7 @@ namespace Fases {
 		sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, int _id, bool carregando) :
 
         Fase(pJ, pJ2, pos, tam, textura, _id),
-        maxchefoes(5),
+        maxChefoes(rand()%5),
         vecNinja()
     {
         if (carregando)
@@ -32,11 +32,41 @@ namespace Fases {
 
 	void Fase_segunda::criarNinjas()
 	{
-        Entidades::Personagens::Ninja* ninja = new Entidades::Personagens::Ninja(sf::Vector2f(440.f, 680.f));
+        Entidades::Personagens::Ninja* ninja = new Entidades::Personagens::Ninja(sf::Vector2f(175.f, 660.f));
         ninja->setListaJogadores(&lJogs);
         ListaEntFase.incluir(ninja);
         GC.incluirInimigo(ninja);
         vecNinja.push_back(ninja);
+
+        ninja = new Entidades::Personagens::Ninja(sf::Vector2f(1150.f, 660.f));
+        ninja->setListaJogadores(&lJogs);
+        ListaEntFase.incluir(ninja);
+        GC.incluirInimigo(ninja);
+        vecNinja.push_back(ninja);
+
+        ninja = new Entidades::Personagens::Ninja(sf::Vector2f(1075.f, 520.f));
+        ninja->setListaJogadores(&lJogs);
+        ListaEntFase.incluir(ninja);
+        GC.incluirInimigo(ninja);
+        vecNinja.push_back(ninja);
+
+        if(maxChefoes > -1)
+        {
+            ninja = new Entidades::Personagens::Ninja(sf::Vector2f(700.f, 820.f));
+            ninja->setListaJogadores(&lJogs);
+            ListaEntFase.incluir(ninja);
+            GC.incluirInimigo(ninja);
+            vecNinja.push_back(ninja);
+        }
+
+        if (maxChefoes > -1)
+        {
+           ninja = new Entidades::Personagens::Ninja(sf::Vector2f(1200.f, 820.f));
+            ninja->setListaJogadores(&lJogs);
+            ListaEntFase.incluir(ninja);
+            GC.incluirInimigo(ninja);
+            vecNinja.push_back(ninja);
+        }
 	}
 
     void Fase_segunda::criarObstaculos()
@@ -46,7 +76,7 @@ namespace Fases {
 
         criarPlataformas();
         p = new Entidades::Obstaculos::Plataforma(
-            sf::Vector2f(120.f, 475.f),
+            sf::Vector2f(600.f, 575.f),
             sf::Vector2f(150.f, 35.f),
             "ginger_brand/Plataforma.png",
             sf::Vector2f(0.f, 0.f),
@@ -57,73 +87,48 @@ namespace Fases {
         ListaEntFase.incluir(p);
         GC.incluirObstaculo(p);
 		criarEspinhos();
+
+        p = new Entidades::Obstaculos::Plataforma(
+            sf::Vector2f(850.f, 725.f),
+            sf::Vector2f(150.f, 35.f),
+            "ginger_brand/Plataforma.png",
+            sf::Vector2f(0.f, 0.f),
+            false);
+
+        p->setSeMove(true);
+
+        ListaEntFase.incluir(p);
+        GC.incluirObstaculo(p);
+        criarEspinhos();
     }
 
     void Fase_segunda::criarEspinhos()
     {
         Entidades::Obstaculos::Espinho* esp;
 
-        esp = new Entidades::Obstaculos::Espinho();
-        esp->setPosicao(sf::Vector2f(280.f, 455.f));
+        esp = new Entidades::Obstaculos::Espinho(sf::Vector2f(280.f, 717.f), sf::Vector2f(75.f,35.f));
         ListaEntFase.incluir(esp);
         GC.incluirObstaculo(esp);
 
-        esp = new Entidades::Obstaculos::Espinho();
-        esp->setPosicao(sf::Vector2f(315.f, 455.f));
+        esp = new Entidades::Obstaculos::Espinho(sf::Vector2f(1250.f, 692.f), sf::Vector2f(75.f, 35.f));
         ListaEntFase.incluir(esp);
         GC.incluirObstaculo(esp);
 
-        // Grupo fixo 2 (2 espinhos)
-        esp = new Entidades::Obstaculos::Espinho();
-        esp->setPosicao(sf::Vector2f(580.f, 315.f));
+        esp = new Entidades::Obstaculos::Espinho(sf::Vector2f(900.f, 542.f), sf::Vector2f(75.f, 35.f));
         ListaEntFase.incluir(esp);
         GC.incluirObstaculo(esp);
 
-        esp = new Entidades::Obstaculos::Espinho();
-        esp->setPosicao(sf::Vector2f(615.f, 315.f));
-        ListaEntFase.incluir(esp);
-        GC.incluirObstaculo(esp);
 
-        // Grupo fixo 3 (3 espinhos)
-        esp = new Entidades::Obstaculos::Espinho();
-        esp->setPosicao(sf::Vector2f(885.f, 455.f));
-        ListaEntFase.incluir(esp);
-        GC.incluirObstaculo(esp);
-
-        esp = new Entidades::Obstaculos::Espinho();
-        esp->setPosicao(sf::Vector2f(920.f, 455.f));
-        ListaEntFase.incluir(esp);
-        GC.incluirObstaculo(esp);
-
-        esp = new Entidades::Obstaculos::Espinho();
-        esp->setPosicao(sf::Vector2f(955.f, 455.f));
-        ListaEntFase.incluir(esp);
-        GC.incluirObstaculo(esp);
-
-        // Opção A (1 espinho)
         if (rand() % 2 == 0)
         {
-            esp = new Entidades::Obstaculos::Espinho();
-            esp->setPosicao(sf::Vector2f(700.f, 645.f));
-            ListaEntFase.incluir(esp);
-            GC.incluirObstaculo(esp);
-
-            esp = new Entidades::Obstaculos::Espinho();
-            esp->setPosicao(sf::Vector2f(735.f, 645.f));
-            ListaEntFase.incluir(esp);
-            GC.incluirObstaculo(esp);
-
-            esp = new Entidades::Obstaculos::Espinho();
-            esp->setPosicao(sf::Vector2f(770.f, 645.f));
+            esp = new Entidades::Obstaculos::Espinho(sf::Vector2f(975.f, 857.f), sf::Vector2f(75.f, 35.f));
             ListaEntFase.incluir(esp);
             GC.incluirObstaculo(esp);
         }
 
-        // Opção B (2 espinhos)
         if (rand() % 2 == 0)
         {
-            esp = new Entidades::Obstaculos::Espinho();
-            esp->setPosicao(sf::Vector2f(1180.f, 645.f));
+            esp = new Entidades::Obstaculos::Espinho(sf::Vector2f(425.f, 857.f), sf::Vector2f(75.f, 35.f));
             ListaEntFase.incluir(esp);
             GC.incluirObstaculo(esp);
         }
@@ -158,7 +163,7 @@ namespace Fases {
 
             (*it)->setProjetil(novoProjetilNinja);
             novoProjetilNinja->setPersonagem(*it);
-			novoProjetilNinja->setId((*it)->getUid());
+			novoProjetilNinja->setUIdDono((*it)->getUid());
 
             ListaEntFase.incluir(novoProjetilNinja);
             GC.incluirProjetil(novoProjetilNinja);

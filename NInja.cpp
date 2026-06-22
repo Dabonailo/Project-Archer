@@ -111,6 +111,7 @@ namespace Entidades
 			Inimigo::salvarDataBuffer();
 
 			buffer << coolDownTiro << ' '
+				<< precisao
 				<< std::endl;
 		}
 		void Ninja::salvar()
@@ -125,7 +126,7 @@ namespace Entidades
 			Inimigo::carregar(in);
 
 			in >> coolDownTiro;
-
+			in >> precisao;
 			projetil = NULL;
 		}
 	}

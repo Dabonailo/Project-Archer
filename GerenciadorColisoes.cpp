@@ -128,7 +128,6 @@ namespace Gerenciadores
 		float metadeAltura = pEnt->getTamanho().y / 2.f;
 		float bottom = pEnt->getPosicao().y + metadeAltura;
 
-		// CORREÇÃO: Só colide com o chão se o personagem NÃO estiver subindo (vel.y >= 0)
 		if (bottom >= CHAO && pEnt->getVelocidade().y >= 0.f)
 		{
 			pEnt->setPosicao(sf::Vector2f(

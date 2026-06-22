@@ -6,7 +6,7 @@ namespace Fases {
 	class Fase_segunda:public Fase
 	{
 	private:
-		int maxchefoes;
+		int maxChefoes;
 
 		std::vector<Entidades::Personagens::Ninja*> vecNinja;
 

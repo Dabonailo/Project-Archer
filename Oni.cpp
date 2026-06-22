@@ -80,6 +80,7 @@ namespace Entidades
 
             buffer << forcaEmpurro.x << ' '
                 << forcaEmpurro.y << ' '
+                << raiva << ' '
                 << std::endl;
         }
 
@@ -96,6 +97,7 @@ namespace Entidades
 
             in >> forcaEmpurro.x;
             in >> forcaEmpurro.y;
+			in >> raiva;
         }
     }
 }
