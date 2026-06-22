@@ -174,21 +174,26 @@ void Menu::criarMenuPrincipal()
 
     limparvecTexto();
 
-    adicionarTexto("JOGO", sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 200.f), 100);
+    adicionarTexto("PROJECT ARCHER", sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y - 200.f), 100);
 
     vecBotao.push_back(new Botao(ACAO_MENU_JOGADORES,
         sf::String("Jogar"),
         pGG->getWindowCentro()
     ));
 
+    vecBotao.push_back(new Botao(ACAO_CARREGAR_JOGO,
+        sf::String("Carregar Jogo"),
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 100.f)
+    ));
+
     vecBotao.push_back(new Botao(ACAO_MENU_RANKING,
         sf::String("Ranking"),
-        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 100.f)
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 200.f)
     ));
    
     vecBotao.push_back(new Botao(ACAO_SAIR,
         sf::String("Sair"),
-        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 200.f)
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 300.f)
     ));
 }
 
@@ -243,14 +248,9 @@ void Menu::criarMenuFases()
         sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 100.f)
     ));
 
-    vecBotao.push_back(new Botao(ACAO_CARREGAR_JOGO,
-        sf::String("Carregar Jogo"),
-        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 200.f)
-    ));
-
     vecBotao.push_back(new Botao(ACAO_VOLTAR_MENU_JOGADORES,
         sf::String("Voltar"),
-        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 300.f)
+        sf::Vector2f(pGG->getWindowCentro().x, pGG->getWindowCentro().y + 200.f)
     ));
 }
 
