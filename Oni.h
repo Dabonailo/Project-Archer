@@ -7,7 +7,7 @@ namespace Entidades
 	namespace Personagens
 	{
 
-		class Oni : public Inimigo //mudar o nome da classe assim que o tema do jogo for escolhido
+		class Oni : public Inimigo 
 		{
 		private:
 			sf::Vector2f forcaEmpurro;
