@@ -66,8 +66,8 @@ namespace Fases
  
     void Fase_Primeira::criarBlocosMagma()
     {
-        Entidades::Obstaculos::Magma_Block* p =
-            new Entidades::Obstaculos::Magma_Block(
+        Entidades::Obstaculos::Bloco_Magma* p =
+            new Entidades::Obstaculos::Bloco_Magma(
                 sf::Vector2f(525.f, 525.f),
                 sf::Vector2f(250.f, 35.f),
                 "ginger_brand/Magma_Block.png",
@@ -77,7 +77,7 @@ namespace Fases
         ListaEntFase.incluir(p);
         GC.incluirObstaculo(p);
 
-        p = new Entidades::Obstaculos::Magma_Block(
+        p = new Entidades::Obstaculos::Bloco_Magma(
             sf::Vector2f(1325.f, 475.f),
             sf::Vector2f(200.f, 35.f),
             "ginger_brand/Magma_Block.png",
@@ -87,7 +87,7 @@ namespace Fases
         ListaEntFase.incluir(p);
         GC.incluirObstaculo(p);
 
-        p = new Entidades::Obstaculos::Magma_Block(
+        p = new Entidades::Obstaculos::Bloco_Magma(
             sf::Vector2f(1050.f, 325.f),
             sf::Vector2f(250.f, 35.f),
             "ginger_brand/Magma_Block.png",
@@ -99,7 +99,7 @@ namespace Fases
 
 		if (rand() % 2 == 0)
         {
-            p = new Entidades::Obstaculos::Magma_Block(
+            p = new Entidades::Obstaculos::Bloco_Magma(
                 sf::Vector2f(200.f, 325.f),
                 sf::Vector2f(150.f, 35.f),
                 "ginger_brand/Magma_Block.png",
@@ -112,7 +112,7 @@ namespace Fases
 
         if (rand() % 2 == 0)
         {
-            p = new Entidades::Obstaculos::Magma_Block(
+            p = new Entidades::Obstaculos::Bloco_Magma(
                 sf::Vector2f(100.f, 150.f),
                 sf::Vector2f(200.f, 35.f),
                 "ginger_brand/Magma_Block.png",

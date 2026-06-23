@@ -7,7 +7,7 @@ namespace Entidades
 {
     namespace Obstaculos
     {
-        class Magma_Block : public Obstaculo
+        class Bloco_Magma : public Obstaculo
         {
         private:
             float yOriginal;
@@ -20,7 +20,7 @@ namespace Entidades
             float tempoSemJogador;
 
         public:
-            Magma_Block(
+            Bloco_Magma(
                 sf::Vector2f pos = sf::Vector2f(),
                 sf::Vector2f tam = sf::Vector2f(35.f, 35.f),
                 const std::string& textura = "magma.png",
@@ -30,7 +30,7 @@ namespace Entidades
                 int _id = 8
             );
 
-            ~Magma_Block();
+            ~Bloco_Magma();
 
             void obstaculizar(Personagens::Personagem* p);
 

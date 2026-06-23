@@ -9,7 +9,7 @@
 #include "Espinho.h"
 #include "Projetil.h"
 #include "Ninja.h"
-#include "Magma_block.h"
+#include "Bloco_Magma.h"
 
 #include <vector>
 #include <fstream>

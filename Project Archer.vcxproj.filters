@@ -90,7 +90,7 @@
     <ClCompile Include="Fase_segunda.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Magma_Block.cpp">
+    <ClCompile Include="Bloco_Magma.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>
@@ -167,7 +167,7 @@
     <ClInclude Include="Fase_segunda.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Magma_Block.h">
+    <ClInclude Include="Bloco_Magma.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>
