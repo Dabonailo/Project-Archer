@@ -32,7 +32,7 @@ namespace Fases {
 
 	void Fase_segunda::criarNinjas()
 	{
-        Entidades::Personagens::Ninja* ninja = new Entidades::Personagens::Ninja(sf::Vector2f(190.f, 660.f));
+        Entidades::Personagens::Ninja* ninja = new Entidades::Personagens::Ninja(sf::Vector2f(1400.f, 660.f));
         ninja->setListaJogadores(&lJogs);
         ListaEntFase.incluir(ninja);
         GC.incluirInimigo(ninja);
