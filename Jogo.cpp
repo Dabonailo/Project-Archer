@@ -1,5 +1,7 @@
 #include "Jogo.h"
 #include "Ente.h"
+#include <stdexcept>
+#include <sstream>
 
 
 Jogo::Jogo(): pjogador(NULL), pjogador2(NULL), pontuacaoFinalP1(0), pontuacaoFinalP2(0), ranking(),
@@ -73,21 +75,49 @@ void Jogo::salvarPontuacao(const std::string& nome, int jogador)
 
 void Jogo::carregarRanking()
 {
-    ranking.clear();
-
-    std::ifstream arquivo("ranking.txt");
-
-    if (!arquivo.is_open())
-        return;
-
-    Ranking r;
-
-    while (arquivo >> r.nome >> r.pontuacao)
+    try
     {
-        ranking.push_back(r);
-    }
+        ranking.clear();
 
-    arquivo.close();
+        std::ifstream arquivo("ranking.txt");
+
+        if (!arquivo.is_open())
+        {
+            throw std::runtime_error("Nao foi possivel abrir ranking.txt.");
+        }
+
+        Ranking r;
+        std::string linha;
+
+        while (std::getline(arquivo, linha))
+        {
+            if (linha.size() == 0)
+            {
+                continue;
+            }
+
+            std::stringstream ss(linha);
+
+            if (!(ss >> r.nome >> r.pontuacao))
+            {
+                throw std::runtime_error("Formato invalido em ranking.txt.");
+            }
+
+            ranking.push_back(r);
+        }
+
+        arquivo.close();
+
+        std::cout << "Ranking carregado com sucesso." << std::endl;
+    }
+    catch (const std::exception& erro)
+    {
+        ranking.clear();
+
+        std::cout << "Erro ao carregar ranking: "
+            << erro.what()
+            << std::endl;
+    }
 }
 
 const std::vector<Ranking>& Jogo::getRanking() const
