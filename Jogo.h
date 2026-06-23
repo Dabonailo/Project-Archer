@@ -40,7 +40,7 @@ private:
 
 	Fases::Fase_Primeira* fase1;
 	Fases::Fase_segunda* fase2;
-	Menu* menu;
+	Menus::Menu* menu;
 
 public:
 	Jogo();

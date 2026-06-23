@@ -11,7 +11,7 @@ numJogadores(1), faseAtual(-1), GG(), GE(), fase1(NULL), fase2(NULL), menu(NULL)
     GE = Gerenciadores::GerenciadorEventos::getGerenciadorEventos();
     Ente::setGG(GG);
 
-    menu = new Menu();
+    menu = new Menus::Menu();
     GE->setMenu(menu);
     menu->setJogo(this);
 }

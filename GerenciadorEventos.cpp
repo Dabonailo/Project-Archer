@@ -36,7 +36,7 @@ namespace Gerenciadores {
 		pJog2 = NULL;
 	}
 
-	void GerenciadorEventos::setMenu(Menu* m)
+	void GerenciadorEventos::setMenu(Menus::Menu* m)
 	{
 		menu = m;
 	}
