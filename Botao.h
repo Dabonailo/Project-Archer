@@ -29,36 +29,37 @@ enum AcaoBotao
 	ACAO_MENU_RANKING,
 	ACAO_SALVAR_FASE
 };
-
-class Botao : public Ente
+namespace Menus
 {
-private:
-	sf::Text texto;
-	sf::Font fonte;
+	class Botao : public Ente
+	{
+	private:
+		sf::Text texto;
+		sf::Font fonte;
 
-	AcaoBotao acao;
-	bool selecionado;
+		AcaoBotao acao;
+		bool selecionado;
 
-	float tempoAnimacao;
+		float tempoAnimacao;
 
-public:
-	Botao(
-		AcaoBotao a = ACAO_JOGAR_FASE_1,
-		const sf::String& str = sf::String("Inserir Texto"),
-		sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
-		sf::Vector2f tam = sf::Vector2f(TAMANHO_BOTAO_DEFAUlT_X, TAMANHO_BOTAO_DEFAULT_Y),
-		const std::string& textura = "ginger_brand/Placa.png"
-	);
+	public:
+		Botao(
+			AcaoBotao a = ACAO_JOGAR_FASE_1,
+			const sf::String& str = sf::String("Inserir Texto"),
+			sf::Vector2f pos = sf::Vector2f(0.f, 0.f),
+			sf::Vector2f tam = sf::Vector2f(TAMANHO_BOTAO_DEFAUlT_X, TAMANHO_BOTAO_DEFAULT_Y),
+			const std::string& textura = "ginger_brand/Placa.png"
+		);
 
-	~Botao();
+		~Botao();
 
-	AcaoBotao getAcao() const;
-	
-	void centralizarTexto();
+		AcaoBotao getAcao() const;
 
-	void setSelecionado(bool s);
-	bool getSelecionado();
+		void centralizarTexto();
 
-	void executar() override;
-};
+		void setSelecionado(bool s);
+		bool getSelecionado();
 
+		void executar() override;
+	};
+}

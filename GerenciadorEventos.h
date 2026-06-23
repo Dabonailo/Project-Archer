@@ -12,7 +12,7 @@ namespace Gerenciadores
 		static GerenciadorGrafico* pGrafico;
 		Entidades::Personagens::Jogador* pJog;
 		Entidades::Personagens::Jogador* pJog2;
-		Menu* menu;
+		Menus::Menu* menu;
 
 		static GerenciadorEventos* pEventos;
 		GerenciadorEventos();
@@ -25,7 +25,7 @@ namespace Gerenciadores
 		void setJogador(Entidades::Personagens::Jogador* pJ);
 		void deletarJogadores();
 
-		void setMenu(Menu* m);
+		void setMenu(Menus::Menu* m);
 
 		void verificaTeclaPressionada(sf::Keyboard::Key tecla);
 		void verificaTeclaSolta(sf::Keyboard::Key tecla);
