@@ -6,7 +6,7 @@ namespace Fases
         sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, int _id, bool carregando) :
 
         Fase(pJ, pJ2, pos, tam, textura, _id),
-        max_inimigos(1)
+		maxInimMedios(rand() % 5)
     {
         if (carregando)
         {
@@ -47,7 +47,7 @@ namespace Fases
         ListaEntFase.incluir(inimigo);
         GC.incluirInimigo(inimigo);
 
-        if (rand() % 2 == 0)
+        if (maxInimMedios > 2)
         {
             inimigo = new Entidades::Personagens::Dragao(sf::Vector2f(960.f, 120.f));
             inimigo->setListaJogadores(&lJogs);
@@ -55,7 +55,7 @@ namespace Fases
             GC.incluirInimigo(inimigo);
         }
 
-        if (rand() % 2 == 0)
+        if (maxInimMedios > 3)
         {
             inimigo = new Entidades::Personagens::Dragao(sf::Vector2f(1120.f, 250.f));
             inimigo->setListaJogadores(&lJogs);

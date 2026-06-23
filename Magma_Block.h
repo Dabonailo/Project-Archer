@@ -26,7 +26,7 @@ namespace Entidades
                 const std::string& textura = "magma.png",
                 sf::Vector2f vel = sf::Vector2f(0.f, 0.f),
                 bool d = false,
-                float emp = 0.f,
+                float e = 0.f,
                 int _id = 8
             );
 

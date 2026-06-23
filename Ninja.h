@@ -14,9 +14,6 @@ namespace Entidades
 
 			float precisao;
 
-			static int proximoUid;
-			int uId;
-			
 		public:
 
 			Ninja(sf::Vector2f pos = sf::Vector2f(0.f, 0.f),

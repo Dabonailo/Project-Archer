@@ -8,7 +8,7 @@ namespace Fases
         public Fase
     {
     private:
-        const int max_inimigos;
+        const int maxInimMedios;
 
 
     public:

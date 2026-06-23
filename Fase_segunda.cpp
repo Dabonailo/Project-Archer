@@ -32,7 +32,7 @@ namespace Fases {
 
 	void Fase_segunda::criarNinjas()
 	{
-        Entidades::Personagens::Ninja* ninja = new Entidades::Personagens::Ninja(sf::Vector2f(175.f, 660.f));
+        Entidades::Personagens::Ninja* ninja = new Entidades::Personagens::Ninja(sf::Vector2f(190.f, 660.f));
         ninja->setListaJogadores(&lJogs);
         ListaEntFase.incluir(ninja);
         GC.incluirInimigo(ninja);
@@ -44,13 +44,13 @@ namespace Fases {
         GC.incluirInimigo(ninja);
         vecNinja.push_back(ninja);
 
-        ninja = new Entidades::Personagens::Ninja(sf::Vector2f(1075.f, 520.f));
+        ninja = new Entidades::Personagens::Ninja(sf::Vector2f(1075.f, 500.f));
         ninja->setListaJogadores(&lJogs);
         ListaEntFase.incluir(ninja);
         GC.incluirInimigo(ninja);
         vecNinja.push_back(ninja);
 
-        if(maxChefoes > -1)
+        if(maxChefoes > 2)
         {
             ninja = new Entidades::Personagens::Ninja(sf::Vector2f(700.f, 820.f));
             ninja->setListaJogadores(&lJogs);
@@ -59,7 +59,7 @@ namespace Fases {
             vecNinja.push_back(ninja);
         }
 
-        if (maxChefoes > -1)
+        if (maxChefoes > 3)
         {
            ninja = new Entidades::Personagens::Ninja(sf::Vector2f(1200.f, 820.f));
             ninja->setListaJogadores(&lJogs);

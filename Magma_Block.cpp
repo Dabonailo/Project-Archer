@@ -11,10 +11,10 @@ namespace Entidades
             const std::string& textura,
             sf::Vector2f vel,
             bool d,
-            float emp,
+            float e,
 			int _id)
 
-			: Obstaculo(pos, tam, textura, vel, d, emp, _id)
+			: Obstaculo(pos, tam, textura, vel, d, e, _id)
         {
             yOriginal = pos.y;
             yLimite = pos.y + 120.f;
