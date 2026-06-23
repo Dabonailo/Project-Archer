@@ -353,8 +353,8 @@ namespace Fases {
 
             case 8:
             {
-                Entidades::Obstaculos::Magma_Block* magma =
-                    new Entidades::Obstaculos::Magma_Block(
+                Entidades::Obstaculos::Bloco_Magma* magma =
+                    new Entidades::Obstaculos::Bloco_Magma(
                         sf::Vector2f(0.f, 0.f),
                         sf::Vector2f(250.f, 35.f),
                         "ginger_brand/Magma_Block.png",

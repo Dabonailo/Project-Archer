@@ -1,11 +1,11 @@
-#include "Magma_Block.h"
+#include "Bloco_Magma.h"
 
 namespace Entidades
 {
     namespace Obstaculos
     {
 
-        Magma_Block::Magma_Block(
+        Bloco_Magma::Bloco_Magma(
             sf::Vector2f pos,
             sf::Vector2f tam,
             const std::string& textura,
@@ -26,11 +26,11 @@ namespace Entidades
             tempoSemJogador = 0.f;
         }
 
-        Magma_Block::~Magma_Block()
+        Bloco_Magma::~Bloco_Magma()
         {
         }
 
-        void Magma_Block::obstaculizar(Personagens::Personagem* p)
+        void Bloco_Magma::obstaculizar(Personagens::Personagem* p)
         {
             if (!p)
                 return;
@@ -119,7 +119,7 @@ namespace Entidades
             }
         }
 
-        void Magma_Block::executar()
+        void Bloco_Magma::executar()
         {
 
             if (jogadorEmCima)
@@ -157,7 +157,7 @@ namespace Entidades
             jogadorEmCima = false;
         }
 
-        void Magma_Block::salvarDataBuffer()
+        void Bloco_Magma::salvarDataBuffer()
         {
             Obstaculo::salvarDataBuffer();
 
@@ -172,14 +172,14 @@ namespace Entidades
                 << std::endl;
         }
 
-        void Magma_Block::salvar()
+        void Bloco_Magma::salvar()
         {
             bufferInterno.str("");
             buffer.clear();
             salvarDataBuffer();
 		}
 
-        void Magma_Block::carregar(std::istream& in)
+        void Bloco_Magma::carregar(std::istream& in)
         {
             Obstaculo::carregar(in);
 
