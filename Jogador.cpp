@@ -110,7 +110,6 @@ namespace Entidades
             if (cooldownKnockback > 0.f)
                 return;
 
-            // ATRITO
             if (!movDir && !movEsq)
             {
                 if (velocidade.x > 0.f)
@@ -125,7 +124,6 @@ namespace Entidades
                 }
             }
 
-            // MOVIMENTO
             if (movDir)
             {
                 float fator = congelado ? fatorLentidao : 1.f;
@@ -257,7 +255,7 @@ namespace Entidades
         void Jogador::executar()
         {
             if (noChao)
-                tempoNoChao = 0.1f; // 100 ms
+                tempoNoChao = 0.1f; 
             else if (tempoNoChao > 0.f)
                 tempoNoChao -= getTempo();
 

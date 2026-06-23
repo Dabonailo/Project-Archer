@@ -32,7 +32,6 @@ namespace Entidades
 
 		virtual ~Entidade();
 
-		//VELOCIDADE
 
 		void setVelocidade(sf::Vector2f v);
 		const sf::Vector2f getVelocidade() const;
@@ -40,7 +39,6 @@ namespace Entidades
 		void setnoChao(bool nc);
 		const bool getnoChao() const;
 
-		//CORPO
 
 		void movimentar(sf::Vector2f m);
 

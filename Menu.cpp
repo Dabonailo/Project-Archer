@@ -455,7 +455,7 @@ namespace Menus
         }
         if (d == BAIXO) {
             std::vector<Botao*>::iterator ultimo = vecBotao.end();
-            --ultimo; // ultimo botao valido
+            --ultimo; 
 
             if (botaoSelecionado != ultimo) {
                 (*botaoSelecionado)->setSelecionado(false);

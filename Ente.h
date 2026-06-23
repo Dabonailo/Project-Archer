@@ -47,7 +47,7 @@ public:
 
 	void setId(int i) { id = i; }
 	int getId() const { return id; }
-	//TAMANHO E POSICAO
+
 
 	void setTamanho(sf::Vector2f tam);
 	void setPosicao(sf::Vector2f pos);
@@ -55,16 +55,13 @@ public:
 	const sf::Vector2f getTamanho() const;
 	const sf::Vector2f getPosicao() const;
 
-	//TEMPO
 
 	float getTempo() const;
 
-	//TEXTURA
 
 	void setTextura(const std::string& textura);
 	void setCor(sf::Color cor);
 
-	//CORPO
 
 	const sf::RectangleShape& getBody() const;
 	const sf::FloatRect getBounds() const;

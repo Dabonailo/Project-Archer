@@ -50,9 +50,9 @@ void Jogo::salvarPontuacao(const std::string& nome, int jogador)
 
     ranking.push_back(novo);
 
-    std::sort(ranking.begin(), ranking.end()); //ordena as pontuacoes de maior para menor
+    std::sort(ranking.begin(), ranking.end()); 
 
-    if (ranking.size() > 10) { //pega o top 10
+    if (ranking.size() > 10) { 
         ranking.resize(10);
     }
 
@@ -366,11 +366,9 @@ void Jogo::executarMenu()
     case MENU_PAUSA:
         if (fase1) {
             fase1->desenhar();
-			//fase1->salvarFase();
         }
         else if (fase2) {
             fase2->desenhar();
-			//fase2->salvarFase();
         }
 
         menu->executar();
@@ -495,7 +493,6 @@ void Jogo::carregarJogo()
         GE->setJogador(pjogador2);
     }
 
-    // Se quiser já entrar no jogo depois de carregar:
     if (menu != NULL)
     {
         menu->mudarMenu(NO_JOGO);

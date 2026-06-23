@@ -34,13 +34,13 @@ namespace Menus
 
 		std::vector<sf::Text> vecTexto;
 
-		//HUD
+
 		int idxVidaP1;
 		int idxVidaP2;
 		int idxPontuacaoP1;
 		int idxPontuacaoP2;
 
-		//PONTUACAO
+
 		std::string nomeDigitado;
 		int idxNomeJogador1;
 

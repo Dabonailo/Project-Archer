@@ -68,7 +68,7 @@ namespace Entidades
 			}
 		}
 
-		void Ninja::danificar(Jogador* p) //mudar o danificar
+		void Ninja::danificar(Jogador* p) 
 		{
 			if (p->getTempoInvulneravel() <= 0.f) {
 				precisao += 0.3f;

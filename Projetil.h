@@ -29,7 +29,7 @@ namespace Entidades {
 		Personagens::Ninja* pNinja;
 
 		Entidade* alvo;
-		sf::Vector2f offset; //posicao do alvo
+		sf::Vector2f offset;
 
 		bool cravado;
 		float tempoCravado;

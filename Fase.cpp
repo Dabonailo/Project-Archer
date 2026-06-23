@@ -109,7 +109,6 @@ namespace Fases {
 
     void Fase::criarPlataformas()
     {
-        // Plataforma fixa 1
         Entidades::Obstaculos::Plataforma* p =
             new Entidades::Obstaculos::Plataforma(
                 sf::Vector2f(280.f, 750.f),

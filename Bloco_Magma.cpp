@@ -35,10 +35,6 @@ namespace Entidades
             if (!p)
                 return;
 
-            //--------------------------------
-            // COLISÃO
-            //--------------------------------
-
             sf::Vector2f posPlat = getPosicao();
             sf::Vector2f posJog = p->getPosicao();
 
@@ -56,9 +52,6 @@ namespace Entidades
 
             if (overlapX < overlapY)
             {
-                //-------------------------
-                // lateral
-                //-------------------------
 
                 if (dx > 0)
                 {
@@ -80,13 +73,9 @@ namespace Entidades
             }
             else
             {
-                //-------------------------
-                // vertical
-                //-------------------------
 
                 if (dy > 0)
                 {
-                    // bateu por baixo
 
                     p->setPosicao(sf::Vector2f(
                         posJog.x,
@@ -94,7 +83,6 @@ namespace Entidades
                 }
                 else
                 {
-                    // pisou em cima
 
                     if (Entidades::Personagens::Jogador* j = dynamic_cast<Entidades::Personagens::Jogador*>(p)) {
                         if (!j->getQueimando()) {

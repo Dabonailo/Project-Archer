@@ -10,7 +10,6 @@ namespace Entidades
             posOriginal(pos),
 			direcao(1)
 		{
-			//body.setFillColor(sf::Color::Green);
 		}
 		Plataforma::~Plataforma()
 		{
@@ -35,7 +34,7 @@ namespace Entidades
 
             if (overlapX < overlapY)
             {
-                // colisão horizontal
+                //horizontal
 
                 if (dx > 0)
                 {
@@ -59,7 +58,7 @@ namespace Entidades
             }
             else
             {
-                // colisão vertical
+                //vertical
 
                 if (dy > 0)
                 {

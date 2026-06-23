@@ -30,7 +30,7 @@ namespace Listas
         {
             Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* prox = aux->getProximo();
 
-            bool remover = false; // <<-- mover/definir aqui por iteração
+            bool remover = false; 
 
             aux->getInfo()->executar();
 
@@ -59,17 +59,11 @@ namespace Listas
             return;
         }
 
-        // -------------------------
-        // Cabeçalho do save
-        // -------------------------
 
         arquivo << idFase << " "
             << (doisJogadores ? 1 : 0)
             << std::endl;
 
-        // -------------------------
-        // Entidades
-        // -------------------------
 
         Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* atual =
             LEs.getPrimeiro();
