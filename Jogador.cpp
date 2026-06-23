@@ -167,7 +167,9 @@ namespace Entidades
         {
             pIn->recebeDano(10);
 
-            pontuacao = pontuacao + 100 * pIn->getNivelMaldade();
+            if (!pIn->getVivo()) {
+                pontuacao = pontuacao + 100 * pIn->getNivelMaldade();
+            }
 
             if (pIn->getBounds().left < getBounds().left) {
 

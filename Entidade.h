@@ -27,7 +27,6 @@ namespace Entidades
 		std::ostream buffer;
 		std::stringbuf bufferInterno;
 
-
 	public:
 		Entidade(sf::Vector2f pos, sf::Vector2f tam, const std::string& textura, sf::Vector2f v, float e, int _id);
 
